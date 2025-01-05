@@ -1,0 +1,6 @@
+.direnv
+.pre-commit-config.yaml
+result
+*.qcow2
+
+nix/packages/berkeley-mono/berkeley-mono.zip
