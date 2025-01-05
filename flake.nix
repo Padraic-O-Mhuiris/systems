@@ -7,7 +7,6 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     pre-commit-hooks = {
@@ -15,12 +14,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixos-facter-modules = {
+      url = "github:numtide/nixos-facter-modules";
+    };
   };
 
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [ ./nix ];
+      imports = [
+        ./nix
+        ./hosts
+        ./iso
+        ./lib
+      ];
       systems = [ "x86_64-linux" ];
     };
 }
