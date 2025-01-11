@@ -17,6 +17,11 @@
     nixos-facter-modules = {
       url = "github:numtide/nixos-facter-modules";
     };
+
+    microvm = {
+      url = "github:astro/microvm.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -24,10 +29,11 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./nix
-        ./hosts
         ./iso
         ./lib
+        ./vms
       ];
       systems = [ "x86_64-linux" ];
+
     };
 }

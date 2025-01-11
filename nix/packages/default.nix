@@ -1,14 +1,11 @@
-_: {
+{ self, ... }:
+{
   perSystem =
+    { pkgs, ... }:
     {
-      config,
-      self',
-      inputs',
-      pkgs,
-      system,
-      ...
-    }:
-    {
-      packages.berkeley-mono = pkgs.callPackage ./berkeley-mono { };
+      packages = {
+        berkeley-mono = pkgs.callPackage ./berkeley-mono { };
+        HeliumVM = self.vms.Helium.config.microvm.declaredRunner;
+      };
     };
 }

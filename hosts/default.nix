@@ -9,7 +9,7 @@ let
 
   # system = "${self}/system";
   # users = "${self}/users";
-  hosts = "${self}/hosts";
+  # hosts = "${self}/hosts";
   # home = "${self}/home";
   # secrets = "${self}/secrets";
 
@@ -17,7 +17,7 @@ let
     inherit inputs;
     inherit l;
     # inherit home;
-    inherit hosts;
+    # inherit hosts;
     inherit self;
   };
 
@@ -59,6 +59,10 @@ in
     Oxygen = nixosSystem {
       inherit specialArgs;
       modules = [ ./Oxygen ] ++ common;
+    };
+
+    Helium = nixosSystem {
+
     };
   };
 }
