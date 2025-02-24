@@ -12,14 +12,18 @@
       url = "github:numtide/nixos-facter-modules";
     };
 
+    nixos-anywhere = {
+      url = "github:nix-community/nixos-anywhere";
+    };
+
     microvm = {
       url = "github:astro/microvm.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ {flake-parts, ...}:
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         ./nix
         ./iso
