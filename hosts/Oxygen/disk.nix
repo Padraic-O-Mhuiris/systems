@@ -34,7 +34,7 @@ _: let
         name = "crypted";
         extraOpenArgs = [];
         settings = {
-          keyFile = "/tmp/secret.key";
+          passwordFile = "/tmp/disk.key";
           allowDiscards = true;
         };
         content = {
