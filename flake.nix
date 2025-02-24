@@ -6,14 +6,17 @@
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-facter-modules = {
       url = "github:numtide/nixos-facter-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-anywhere = {
       url = "github:nix-community/nixos-anywhere";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     microvm = {
