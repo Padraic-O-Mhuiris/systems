@@ -1,5 +1,4 @@
-_:
-let
+_: let
   ESP = {
     size = "500M";
     type = "EF00";
@@ -7,7 +6,7 @@ let
       type = "filesystem";
       format = "vfat";
       mountpoint = "/boot";
-      mountOptions = [ "umask=0077" ];
+      mountOptions = ["umask=0077"];
     };
   };
 
@@ -16,7 +15,7 @@ let
     content = {
       type = "luks";
       name = "crypted";
-      extraOpenArgs = [ ];
+      extraOpenArgs = [];
       settings = {
         keyFile = "/tmp/secret.key";
         allowDiscards = true;
@@ -28,8 +27,7 @@ let
       };
     };
   };
-in
-{
+in {
   disko.devices = {
     disk = {
       nvme = {
@@ -65,7 +63,7 @@ in
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
-              mountOptions = [ "defaults" ];
+              mountOptions = ["defaults"];
             };
           };
           home = {
@@ -84,7 +82,6 @@ in
     };
   };
 }
-
 # {
 #   nvme = {
 #     type = "disk";
@@ -118,7 +115,6 @@ in
 #       };
 #     };
 #   };
-
 #   sda = {
 #     type = "disk";
 #     device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M";
@@ -136,3 +132,4 @@ in
 #     };
 #   };
 # }
+

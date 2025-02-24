@@ -2,7 +2,6 @@
   description = "Description for the project";
 
   inputs = {
-
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     flake-parts = {
@@ -24,16 +23,14 @@
     };
   };
 
-  outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       imports = [
         ./nix
         ./iso
         ./lib
         ./vms
       ];
-      systems = [ "x86_64-linux" ];
-
+      systems = ["x86_64-linux"];
     };
 }

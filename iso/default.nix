@@ -1,7 +1,10 @@
 # This configuration produces a package "iso" which is an iso image of a base nix configuration image.
 # Used in order to bootstrap nixos installations
-{ inputs, l, ... }:
-let
+{
+  inputs,
+  l,
+  ...
+}: let
   inherit (inputs) nixpkgs;
 
   iso = l.nixosSystem {
@@ -15,8 +18,11 @@ let
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
 
       (
-        { pkgs, l, ... }:
         {
+          pkgs,
+          l,
+          ...
+        }: {
           nixpkgs.hostPlatform = l.mkDefault "x86_64-linux";
           nixpkgs.config.allowUnfree = true;
 
@@ -55,7 +61,7 @@ let
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
           ];
 
-          systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
+          systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
           system.stateVersion = l.mkDefault "24.11";
 
@@ -64,18 +70,15 @@ let
       )
     ];
   };
-in
-{
-  perSystem =
-    {
-      config,
-      self',
-      inputs',
-      pkgs,
-      system,
-      ...
-    }:
-    {
-      packages.iso = iso.config.system.build.isoImage;
-    };
+in {
+  perSystem = {
+    config,
+    self',
+    inputs',
+    pkgs,
+    system,
+    ...
+  }: {
+    packages.iso = iso.config.system.build.isoImage;
+  };
 }

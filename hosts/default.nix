@@ -3,8 +3,7 @@
   inputs,
   l,
   ...
-}:
-let
+}: let
   inherit (l) nixosSystem;
 
   # system = "${self}/system";
@@ -53,16 +52,15 @@ let
 
     # "${secrets}"
   ];
-in
-{
+in {
   flake.nixosConfigurations = {
     Oxygen = nixosSystem {
       inherit specialArgs;
-      modules = [ ./Oxygen ] ++ common;
+      modules = [./Oxygen] ++ common;
     };
 
-    Helium = nixosSystem {
-
-    };
+    Helium =
+      nixosSystem {
+      };
   };
 }

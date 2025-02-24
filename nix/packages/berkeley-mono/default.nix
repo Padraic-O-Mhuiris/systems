@@ -3,10 +3,9 @@
   requireFile,
   stdenvNoCC,
   unzip,
-# create your own name to help reference ð style you downloaded
-# variant ? "ligaturesoff-0variant1-7variant0",
+  # create your own name to help reference ð style you downloaded
+  # variant ? "ligaturesoff-0variant1-7variant0",
 }:
-
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "berkeley-mono";
   version = "1.009";
@@ -17,7 +16,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     message = "";
   };
 
-  nativeBuildInputs = [ unzip ];
+  nativeBuildInputs = [unzip];
 
   unpackPhase = ''
     unzip $src
