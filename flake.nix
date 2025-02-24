@@ -8,11 +8,6 @@
       url = "github:hercules-ci/flake-parts";
     };
 
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-facter-modules = {
       url = "github:numtide/nixos-facter-modules";
     };
