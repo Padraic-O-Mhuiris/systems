@@ -1,4 +1,4 @@
-_: let
+{inputs, ...}: let
   partition = {
     boot = {
       size = "500M";
@@ -7,39 +7,22 @@ _: let
         type = "filesystem";
         format = "vfat";
         mountpoint = "/boot";
-        mountOptions = ["umask=0077"];
+        mountOptions = ["defaults"];
       };
     };
 
-    root."/" = {
-      fsType = "tmpfs";
-      mountOptions = [
-        "size=500M"
-      ];
-    };
-
-    swap = {
-      size = "16G";
-      content = {
-        type = "swap";
-        randomEncryption = true;
-        priority = 100;
-      };
-    };
-
-    luks = {
-      size = "100%";
-      content = {
-        type = "luks";
-        name = "crypted";
-        extraOpenArgs = [];
-        settings = {
-          passwordFile = "/tmp/disk.key";
-          allowDiscards = true;
-        };
+    luks = name: {
+      "${name}" = {
+        size = "100%";
         content = {
-          type = "lvm_pv";
-          vg = "pool";
+          type = "luks";
+          inherit name;
+          passwordFile = "/tmp/secret.key";
+          settings.allowDiscards = true;
+          content = {
+            type = "lvm_pv";
+            vg = "pool";
+          };
         };
       };
     };
@@ -50,9 +33,11 @@ _: let
     device = "/dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_2TB_S4J4NF0NC04658B";
     content = {
       type = "gpt";
-      partitions = {
-        inherit (partition) boot luks swap;
-      };
+      partitions =
+        {
+          inherit (partition) boot;
+        }
+        // (partition.luks "crypted-nvme");
     };
   };
 
@@ -61,9 +46,7 @@ _: let
     device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M";
     content = {
       type = "gpt";
-      partitions = {
-        inherit (partition) luks;
-      };
+      partitions = partition.luks "crypted-sda";
     };
   };
 
@@ -74,6 +57,15 @@ _: let
         type = "filesystem";
         format = "ext4";
         mountpoint = "/persist";
+      };
+    };
+
+    swap = {
+      size = "16G";
+      content = {
+        type = "swap";
+        randomEncryption = true;
+        priority = 100;
       };
     };
 
@@ -96,14 +88,23 @@ _: let
     };
   };
 in {
+  imports = [inputs.disko.nixosModules.disko];
   disko.devices = {
     disk = {inherit nvme sda;};
 
-    nodev = partition.root;
+    nodev = {
+      root = {
+        fsType = "tmpfs";
+        mountpoint = "/";
+        mountOptions = [
+          "size=250M"
+        ];
+      };
+    };
 
     lvm_vg.pool = {
       type = "lvm_vg";
-      lvs = {inherit (volumes) persist home nix;};
+      lvs = {inherit (volumes) swap persist home nix;};
     };
   };
 }

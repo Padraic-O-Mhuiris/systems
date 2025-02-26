@@ -58,9 +58,5 @@ in {
       inherit specialArgs;
       modules = [./Oxygen] ++ common;
     };
-
-    Helium =
-      nixosSystem {
-      };
   };
 }
