@@ -5,8 +5,6 @@
         alejandra
         inputs.nixos-anywhere.packages.${pkgs.system}.default
         git
-        sops
-        ssh-to-age
         hcloud
       ];
     };
