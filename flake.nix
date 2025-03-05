@@ -22,11 +22,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    microvm = {
-      url = "github:astro/microvm.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -43,7 +38,6 @@
         ./nix
         ./iso
         ./lib
-        ./vms
         ./hosts
       ];
       systems = ["x86_64-linux"];
