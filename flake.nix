@@ -34,6 +34,7 @@
 
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+      debug = true;
       imports = [
         ./nix
         ./iso
