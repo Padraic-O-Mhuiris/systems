@@ -37,7 +37,6 @@
       imports = [
         ./nix
         ./iso
-        ./lib
         ./hosts
       ];
       systems = ["x86_64-linux"];

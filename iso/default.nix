@@ -2,15 +2,15 @@
 # Used in order to bootstrap nixos installations
 {
   inputs,
-  l,
+  lib,
   ...
 }: let
   inherit (inputs) nixpkgs;
 
-  iso = l.nixosSystem {
+  iso = lib.nixosSystem {
     specialArgs = {
       inherit inputs;
-      inherit l;
+      inherit lib;
     };
 
     modules = [
@@ -20,10 +20,10 @@
       (
         {
           pkgs,
-          l,
+          lib,
           ...
         }: {
-          nixpkgs.hostPlatform = l.mkDefault "x86_64-linux";
+          nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
           nixpkgs.config.allowUnfree = true;
 
           nix.settings.experimental-features = [
@@ -43,7 +43,7 @@
           services.xserver = {
             xkb = {
               options = "ctrl:swapcaps";
-              layout = l.mkDefault "gb";
+              layout = lib.mkDefault "gb";
             };
           };
           console.useXkbConfig = true;
@@ -91,7 +91,7 @@
             };
           };
 
-          system.stateVersion = l.mkDefault "24.11";
+          system.stateVersion = lib.mkDefault "24.11";
 
           isoImage.squashfsCompression = "gzip -Xcompression-level 1";
         }

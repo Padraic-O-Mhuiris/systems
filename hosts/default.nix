@@ -1,10 +1,10 @@
 {
   self,
   inputs,
-  l,
+  lib,
   ...
 }: let
-  inherit (l) nixosSystem;
+  inherit (lib) nixosSystem;
 
   # system = "${self}/system";
   # users = "${self}/users";
@@ -14,7 +14,7 @@
 
   specialArgs = {
     inherit inputs;
-    inherit l;
+    inherit lib;
     # inherit home;
     # inherit hosts;
     inherit self;

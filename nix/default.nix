@@ -3,5 +3,6 @@ _: {
     ./formatter.nix
     ./shell.nix
     ./packages
+    ./lib
   ];
 }
