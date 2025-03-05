@@ -29,6 +29,10 @@
 
     impermanence = {
       url = "github:nix-community/impermanence";
+    };
+
+    secrets = {
+      url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
