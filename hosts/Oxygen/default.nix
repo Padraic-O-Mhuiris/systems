@@ -3,11 +3,13 @@
   config,
   pkgs,
   lib,
+  vars,
   ...
 }: {
   imports = [
     inputs.nixos-facter-modules.nixosModules.facter
     inputs.impermanence.nixosModules.impermanence
+    inputs.secrets.nixosModules.default
 
     ./disk.nix
   ];
@@ -21,10 +23,13 @@
       "/var/log"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
+      "/var/lib/sudo"
       "/var/lib/systemd/coredump"
       "/etc/NetworkManager/system-connections"
     ];
     files = [
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/machine-id"
     ];
   };
@@ -36,7 +41,7 @@
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
   users.extraUsers.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
+    vars.PRIMARY_USER.SSH_PUBLIC_KEY
   ];
 
   environment.systemPackages = with pkgs; [
@@ -45,7 +50,7 @@
     git
     rsync
     (pkgs.writeShellScriptBin "connect-wifi" ''
-      nmcli device wifi connect VM2888317 password cedkkdJzbxzgxe2a
+      nmcli device wifi connect ${vars.WIFI.HOST} password ${vars.WIFI.PASSWORD}
     '')
   ];
 
@@ -62,13 +67,11 @@
   };
 
   services.getty = {
-    autologinUser = "padraic";
+    autologinUser = vars.PRIMARY_USER.NAME;
     autologinOnce = true;
-    greetingLine = ""; # TODO ASCII ART THIS
-    helpLine = "";
   };
 
-  users.users.padraic = {
+  users.users."${vars.PRIMARY_USER.NAME}" = {
     isNormalUser = true;
     createHome = true;
 
@@ -87,7 +90,7 @@
     ];
 
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
+      vars.PRIMARY_USER.SSH_PUBLIC_KEY
     ];
   };
 
