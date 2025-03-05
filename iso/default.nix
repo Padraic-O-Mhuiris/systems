@@ -2,10 +2,11 @@
 # Used in order to bootstrap nixos installations
 {
   inputs,
-  lib,
+  self,
   ...
 }: let
   inherit (inputs) nixpkgs;
+  inherit (self) lib;
 
   iso = lib.nixosSystem {
     specialArgs = {
