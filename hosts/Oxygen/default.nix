@@ -10,6 +10,7 @@
     inputs.nixos-facter-modules.nixosModules.facter
     inputs.impermanence.nixosModules.impermanence
     inputs.secrets.nixosModules.default
+    inputs.home-manager.nixosModules.default
 
     ./disk.nix
   ];
@@ -40,10 +41,6 @@
   services.openssh.enable = true;
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
-  users.extraUsers.root.openssh.authorizedKeys.keys = [
-    vars.PRIMARY_USER.SSH_PUBLIC_KEY
-  ];
-
   environment.systemPackages = with pkgs; [
     vim
     htop
@@ -71,6 +68,10 @@
     autologinOnce = true;
   };
 
+  users.extraUsers.root.openssh.authorizedKeys.keys = [
+    vars.PRIMARY_USER.SSH_PUBLIC_KEY
+  ];
+
   users.users."${vars.PRIMARY_USER.NAME}" = {
     isNormalUser = true;
     createHome = true;
@@ -94,8 +95,19 @@
     ];
   };
 
+  home-manager.users."${vars.PRIMARY_USER.NAME}" = {
+    config,
+    osConfig,
+    ...
+  }: {
+    home = {
+      homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
+      inherit (osConfig.system) stateVersion;
+    };
+  };
+
   nixpkgs.hostPlatform = "x86_64-linux";
-  system.stateVersion = config.system.nixos.version;
+  system.stateVersion = "24.11";
 
   networking.hostName = "Oxygen";
 }
