@@ -25,7 +25,7 @@ in {
 
         ${nixos-anywhere}/bin/nixos-anywhere \
           --extra-files "$temp" \
-          --disk-encryption-keys /tmp/secret.key <(pass show systems/disk/${host}) \
+          --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/${host}) \
           --flake '.#${host}' \
           --phases 'kexec,disko,install,reboot' \
           root@${inputs.secrets.vars.HOSTS."${host}".LOCAL_IP}

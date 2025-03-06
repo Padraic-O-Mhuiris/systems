@@ -100,6 +100,27 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "secrets",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741217763,
+        "narHash": "sha256-g/TrltIjFHIjtzKY5CJpoPANfHQWDD43G5U1a/v5oVg=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "486b066025dccd8af7fbe5dd2cc79e46b88c80da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1737831083,
@@ -250,17 +271,18 @@
     "secrets": {
       "inputs": {
         "flake-parts": "flake-parts_3",
+        "home-manager": "home-manager",
         "nixpkgs": [
           "nixpkgs"
         ],
         "sops": "sops"
       },
       "locked": {
-        "lastModified": 1741219777,
-        "narHash": "sha256-WpNoC2cP/9eFWrxe2UqoQQiFPT5YTSF/PuTcUHdQFCY=",
+        "lastModified": 1741220614,
+        "narHash": "sha256-zb/oWYP+lICpOdhhgGSZvRHdEzxMKiTIHyMIXmZPbb0=",
         "ref": "refs/heads/master",
-        "rev": "b1d55678c65bf98be86df49873096c6a779a4843",
-        "revCount": 23,
+        "rev": "11e4457e40580e0abb2565e856a12492254214a7",
+        "revCount": 24,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
       },
