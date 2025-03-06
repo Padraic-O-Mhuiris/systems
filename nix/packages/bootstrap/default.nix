@@ -9,9 +9,8 @@ in {
     nixos-anywhere =
       inputs.nixos-anywhere.packages.${pkgs.system}.default;
   in {
-    packages = lib.mapByHostName (host: {
-      "bootstrap-${host}" = pkgs.writeShellScriptBin "" ''
-
+    packages = lib.mkMerge (lib.mapByHostName (host: {
+      "bootstrap-${host}" = pkgs.writeShellScriptBin "bootstrap-${host}" ''
         temp=$(mktemp -d)
 
         cleanup() {
@@ -24,13 +23,13 @@ in {
         ${pkgs.pass}/bin/pass show systems/ssh/${host}/ssh_host_ed25519_key.pub > "$temp/etc/ssh/ssh_host_ed25519_key.pub"
         ${pkgs.pass}/bin/pass show systems/ssh/${host}/ssh_host_ed25519_key > "$temp/etc/ssh/ssh_host_ed25519_key"
 
-        ${nixos-anywhere} \
+        ${nixos-anywhere}/bin/nixos-anywhere \
           --extra-files "$temp" \
           --disk-encryption-keys /tmp/secret.key <(pass show systems/disk/${host}) \
           --flake '.#${host}' \
           --phases 'kexec,disko,install,reboot' \
           root@${inputs.secrets.vars.HOSTS."${host}".LOCAL_IP}
       '';
-    });
+    }));
   };
 }
