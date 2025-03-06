@@ -6,6 +6,7 @@
         inputs.nixos-anywhere.packages.${pkgs.system}.default
         git
         hcloud
+        just
       ];
     };
   };
