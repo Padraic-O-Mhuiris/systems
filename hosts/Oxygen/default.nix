@@ -1,6 +1,5 @@
 {
   inputs,
-  config,
   pkgs,
   lib,
   vars,
@@ -10,7 +9,7 @@
     inputs.nixos-facter-modules.nixosModules.facter
     inputs.impermanence.nixosModules.impermanence
     inputs.secrets.nixosModules.default
-    inputs.home-manager.nixosModules.default
+    inputs.home-manager.nixosModules.home-manager
 
     ./disk.nix
   ];
@@ -95,14 +94,17 @@
     ];
   };
 
-  home-manager.users."${vars.PRIMARY_USER.NAME}" = {
-    config,
-    osConfig,
-    ...
-  }: {
-    home = {
-      homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
-      inherit (osConfig.system) stateVersion;
+  home-manager = {
+    users.${vars.PRIMARY_USER.NAME} = {
+      config,
+      osConfig,
+      ...
+    }: {
+      imports = [inputs.secrets.homeModules.default];
+      home = {
+        homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
+        inherit (osConfig.system) stateVersion;
+      };
     };
   };
 
