@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   lib,
   vars,
   ...
@@ -71,27 +72,29 @@
     vars.PRIMARY_USER.SSH_PUBLIC_KEY
   ];
 
-  users.users."${vars.PRIMARY_USER.NAME}" = {
-    isNormalUser = true;
-    createHome = true;
+  sops.secrets."primary_user_password".neededForUsers = true;
+  users = {
+    mutableUsers = false;
+    users."${vars.PRIMARY_USER.NAME}" = {
+      isNormalUser = true;
+      createHome = true;
 
-    # passwordFile = config.sops.secrets."user@${name}".path;
-    # TODO Figure out why sops is not working for this on first installation?
-    hashedPassword = "$6$7RhoYiLu0Xn50HZD$pOIypZUz6aALwRt4SlsckKmTFo0r6fHh5zbSTLBQGkrPuoJS.7bJirx936XensJSlkn0e472nKjzE7Y4tv7td0";
-    group = "users";
+      hashedPasswordFile = config.sops.secrets."primary_user_password".path;
+      group = "users";
 
-    extraGroups = [
-      "wheel"
-      "input"
-      "networkmanager"
-      "audio"
-      "pipewire"
-      "video"
-    ];
+      extraGroups = [
+        "wheel"
+        "input"
+        "networkmanager"
+        "audio"
+        "pipewire"
+        "video"
+      ];
 
-    openssh.authorizedKeys.keys = [
-      vars.PRIMARY_USER.SSH_PUBLIC_KEY
-    ];
+      openssh.authorizedKeys.keys = [
+        vars.PRIMARY_USER.SSH_PUBLIC_KEY
+      ];
+    };
   };
 
   home-manager = {
