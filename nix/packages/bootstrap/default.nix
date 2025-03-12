@@ -14,10 +14,10 @@
       }
       trap cleanup EXIT
 
-      install -d -m755 "$temp/etc/ssh"
+      install -d -m755 "$temp/persist/etc/ssh"
 
-      ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key.pub" > "$temp/etc/ssh/ssh_host_ed25519_key.pub"
-      ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key" > "$temp/etc/ssh/ssh_host_ed25519_key"
+      ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key.pub" > "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
+      ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key" > "$temp/persist/etc/ssh/ssh_host_ed25519_key"
 
       ${nixos-anywhere}/bin/nixos-anywhere \
         --extra-files "$temp" \
