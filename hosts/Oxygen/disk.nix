@@ -1,8 +1,4 @@
-{
-  inputs,
-  lib,
-  ...
-}: let
+{inputs, ...}: let
   partition = {
     boot = {
       size = "500M";
@@ -95,18 +91,8 @@ in {
   imports = [inputs.disko.nixosModules.disko];
 
   disko = {
-    imageBuilder.extraConfig = {
-      boot.initrd.preDeviceCommands = ''
-        echo -n 'abc123' > /tmp/secret.key
-      '';
-      # disko.devices.disk = {
-      #   nvme.content.partitions.crypted-nvme.content.askPassword = true;
-      #   sda.content.partitions.crypted-sda.content.askPassword = true;
-      # };
-    };
     devices = {
       disk = {inherit nvme sda;};
-
       nodev = {
         root = {
           fsType = "tmpfs";
@@ -116,15 +102,10 @@ in {
           ];
         };
       };
-
       lvm_vg.pool = {
         type = "lvm_vg";
         lvs = {inherit (volumes) swap persist home nix;};
       };
     };
-  };
-
-  virtualisation.vmVariantWithDisko = {
-    virtualisation.fileSystems."/persist".neededForBoot = true;
   };
 }
