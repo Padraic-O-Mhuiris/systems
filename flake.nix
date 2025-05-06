@@ -13,7 +13,7 @@
     };
 
     nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere";
+      url = "github:nix-community/nixos-anywhere/1.9.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
