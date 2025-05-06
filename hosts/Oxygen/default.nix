@@ -72,14 +72,19 @@
     vars.PRIMARY_USER.SSH_PUBLIC_KEY
   ];
 
-  sops.secrets."primary_user_password".neededForUsers = true;
+  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
+    neededForUsers = true;
+  };
+
+  programs.zsh.enable = true;
   users = {
     mutableUsers = false;
     users."${vars.PRIMARY_USER.NAME}" = {
       isNormalUser = true;
       createHome = true;
+      shell = pkgs.zsh;
 
-      hashedPasswordFile = config.sops.secrets."primary_user_password".path;
+      hashedPasswordFile = config.sops.secrets."${vars.PRIMARY_USER.NAME}_password".path;
       group = "users";
 
       extraGroups = [
@@ -107,6 +112,74 @@
       home = {
         homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
         inherit (osConfig.system) stateVersion;
+      };
+
+      programs.zsh = {
+        enable = true;
+        autosuggestion.enable = true;
+        enableCompletion = true;
+        syntaxHighlighting.enable = true;
+        enableVteIntegration = true;
+        autocd = true;
+        historySubstringSearch.enable = true;
+        history = {
+          expireDuplicatesFirst = true;
+          extended = true;
+          ignoreDups = true;
+          ignorePatterns = [];
+          ignoreSpace = true;
+          path = "${config.xdg.dataHome}/zsh/zsh_history";
+          save = 100000;
+          share = true;
+        };
+      };
+
+      programs.atuin = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          daemon.enabled = true;
+          update_check = false;
+          sync_address = "https://api.atuin.sh"; # TODO Change
+          sync_frequency = "15m";
+          sync.records = true;
+          dialect = "uk";
+          key_path = config.sops.secrets.atuin_key.path;
+        };
+      };
+
+      sops.secrets.atuin_key = {};
+      systemd.user.services.atuin-daemon = {
+        Unit = {
+          Description = "Atuin daemon";
+          Requires = ["atuin-daemon.socket"];
+        };
+        Install = {
+          Also = ["atuin-daemon.socket"];
+          WantedBy = ["default.target"];
+        };
+        Service = {
+          ExecStart = "${lib.getExe pkgs.atuin} daemon";
+          Environment = ["ATUIN_LOG=info"];
+          Restart = "on-failure";
+          RestartSteps = 3;
+          RestartMaxDelaySec = 6;
+        };
+      };
+
+      systemd.user.sockets.atuin-daemon = let
+        socket_dir =
+          if lib.versionAtLeast pkgs.atuin.version "18.4.0"
+          then "%t"
+          else "%D/atuin";
+      in {
+        Unit = {Description = "Atuin daemon socket";};
+        Install = {WantedBy = ["sockets.target"];};
+        Socket = {
+          ListenStream = "${socket_dir}/atuin.sock";
+          SocketMode = "0600";
+          RemoveOnStop = true;
+        };
       };
     };
   };
