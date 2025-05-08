@@ -21,6 +21,9 @@
       ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key.pub" > "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
       ${pkgs.pass}/bin/pass show "systems/ssh/$HOST/ssh_host_ed25519_key" > "$temp/persist/etc/ssh/ssh_host_ed25519_key"
 
+      chmod 0600 "$temp/persist/etc/ssh/ssh_host_ed25519_key"
+      chmod 0644 "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
+
       ${nixos-anywhere}/bin/nixos-anywhere \
         --extra-files "$temp" \
         --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/$HOST) \

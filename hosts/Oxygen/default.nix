@@ -13,9 +13,14 @@
     inputs.home-manager.nixosModules.home-manager
 
     ./disk.nix
+    ../../modules/networking/wifi.nix
+    ../../modules/networking/ssh.nix
+    ../../modules/networking/firewall.nix
+    ../../modules/networking/dns.nix
+    ../../modules/security/sudo.nix
   ];
-  facter.reportPath = ./facter.json;
 
+  facter.reportPath = ./facter.json;
   fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {
     enable = true;
@@ -46,9 +51,6 @@
     htop
     git
     rsync
-    (pkgs.writeShellScriptBin "connect-wifi" ''
-      nmcli device wifi connect ${vars.WIFI.HOST} password ${vars.WIFI.PASSWORD}
-    '')
   ];
 
   services.xserver = {
@@ -58,25 +60,18 @@
     };
   };
   console.useXkbConfig = true;
-  networking = {
-    networkmanager.enable = true;
-    wireless.enable = false;
-  };
 
   services.getty = {
     autologinUser = vars.PRIMARY_USER.NAME;
     autologinOnce = true;
   };
 
-  users.extraUsers.root.openssh.authorizedKeys.keys = [
-    vars.PRIMARY_USER.SSH_PUBLIC_KEY
-  ];
-
   sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
     neededForUsers = true;
   };
 
   programs.zsh.enable = true;
+
   users = {
     mutableUsers = false;
     users."${vars.PRIMARY_USER.NAME}" = {
@@ -95,10 +90,6 @@
         "pipewire"
         "video"
       ];
-
-      openssh.authorizedKeys.keys = [
-        vars.PRIMARY_USER.SSH_PUBLIC_KEY
-      ];
     };
   };
 
@@ -110,12 +101,13 @@
     imports = [inputs.secrets.homeModules.default];
     home = {
       homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
+      preferXdgDirectories = true;
       inherit (osConfig.system) stateVersion;
     };
 
     programs.zsh = {
       enable = true;
-      dotDir = "${config.xdg.dataHome}/zsh";
+      dotDir = ".config/zsh";
       autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;

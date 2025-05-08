@@ -17,11 +17,12 @@
     modules = [
       "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-
+      inputs.secrets.nixosModules.default
       (
         {
           pkgs,
           lib,
+          vars,
           ...
         }: {
           nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
@@ -35,7 +36,33 @@
 
           networking = {
             hostName = "iso";
-            networkmanager.enable = true;
+            networkmanager = {
+              enable = true;
+              ensureProfiles = {
+                home-wifi = {
+                  connection = {
+                    id = vars.WIFI.SSID;
+                    type = "wifi";
+                  };
+                  ipv4 = {
+                    method = "auto";
+                  };
+                  ipv6 = {
+                    addr-gen-mode = "default";
+                    method = "auto";
+                  };
+                  wifi = {
+                    mode = "infrastructure";
+                    ssid = vars.WIFI.SSID;
+                  };
+                  wifi-security = {
+                    auth-alg = "open";
+                    key-mgmt = "wpa-psk";
+                    psk = vars.WIFI.SSID;
+                  };
+                };
+              };
+            };
             wireless.enable = false;
           };
 
@@ -61,36 +88,6 @@
           ];
 
           systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
-
-          systemd.services.connectToLocalInternet = {
-            description = "Connect to local Wi-Fi on boot using nmcli";
-
-            after = ["default.target"];
-            wantedBy = ["default.target"];
-
-            script = ''
-              #!/usr/bin/env bash
-              SSID="VM2888317"
-              PASSWORD="cedkkdJzbxzgxe2a"
-
-              for i in {1..30}; do
-                if ${pkgs.networkmanager}/bin/nmcli general status &> /dev/null; then
-                  echo "NetworkManager is ready."
-                  break
-                fi
-                echo "Waiting for NetworkManager..."
-                sleep 1
-              done
-
-              echo "Attempting to connect to Wi-Fi: $SSID"
-              ${pkgs.networkmanager}/bin/nmcli device wifi connect "$SSID" password "$PASSWORD"
-            '';
-
-            serviceConfig = {
-              Type = "oneshot";
-              RemainAfterExit = true;
-            };
-          };
 
           system.stateVersion = lib.mkDefault "24.11";
 
