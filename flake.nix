@@ -31,6 +31,16 @@
       url = "github:nix-community/impermanence";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     secrets = {
       url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow";
       inputs.nixpkgs.follows = "nixpkgs";

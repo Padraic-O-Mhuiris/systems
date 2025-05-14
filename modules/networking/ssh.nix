@@ -1,10 +1,19 @@
 {vars, ...}: let
   # TODO Add to vars
-  SSH_PORT = 2222;
+  SSH_PORT = 22;
 in {
-  users.users.${vars.PRIMARY_USER.NAME}.openssh.authorizedKeys.keys = [
-    vars.PRIMARY_USER.SSH_PUBLIC_KEY
-  ];
+  users.users = {
+    ${vars.PRIMARY_USER.NAME} = {
+      openssh.authorizedKeys.keys = [
+        vars.PRIMARY_USER.SSH_PUBLIC_KEY
+      ];
+    };
+    root = {
+      openssh.authorizedKeys.keys = [
+        vars.PRIMARY_USER.SSH_PUBLIC_KEY
+      ];
+    };
+  };
 
   networking.firewall.allowedTCPPorts = [SSH_PORT];
 
@@ -25,7 +34,6 @@ in {
       ];
 
       settings = {
-        PermitRootLogin = "no";
         PasswordAuthentication = false;
         AllowTcpForwarding = true;
         AllowAgentForwarding = true;

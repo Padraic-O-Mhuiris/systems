@@ -4,8 +4,40 @@
       inputs.nixos-anywhere.packages.${pkgs.system}.default;
   in {
     packages.bootstrap = pkgs.writeShellScriptBin "bootstrap" ''
+      set -euo pipefail
       HOST=$1
       URL=$2
+      PORT=$3
+
+      usage() {
+        echo "Usage: $0 --host <hostname> --url <ip|hostname> [--port <port>]"
+        exit 1
+      }
+
+      PORT="22"
+
+      # Parse arguments
+      while [[ $# -gt 0 ]]; do
+        case "$1" in
+          --host)
+            HOST="$2"
+            shift 2
+            ;;
+          --url)
+            URL="$2"
+            shift 2
+            ;;
+          --port)
+            PORT="$2"
+            shift 2
+            ;;
+          *)
+            usage
+            ;;
+        esac
+      done
+
+      [[ -z "''${HOST:-}" || -z "''${URL:-}" ]] && usage
 
       temp=$(mktemp -d)
 
@@ -29,6 +61,7 @@
         --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/$HOST) \
         --flake ".#$HOST" \
         --phases 'kexec,disko,install,reboot' \
+        --ssh-port $PORT \
         --debug \
         $URL
     '';

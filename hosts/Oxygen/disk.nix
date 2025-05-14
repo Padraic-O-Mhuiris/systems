@@ -21,7 +21,7 @@
           settings.allowDiscards = true;
           content = {
             type = "lvm_pv";
-            vg = "pool";
+            vg = name;
           };
         };
       };
@@ -37,7 +37,7 @@
         {
           inherit (partition) boot;
         }
-        // (partition.luks "crypted-nvme");
+        // (partition.luks "vg-nvme");
     };
   };
 
@@ -46,7 +46,7 @@
     device = "/dev/disk/by-id/ata-Samsung_SSD_860_EVO_2TB_S4X1NJ0NB04835M";
     content = {
       type = "gpt";
-      partitions = partition.luks "crypted-sda";
+      partitions = partition.luks "vg-sda";
     };
   };
 
@@ -70,7 +70,7 @@
     };
 
     home = {
-      size = "500G";
+      size = "100%";
       content = {
         type = "filesystem";
         format = "ext4";
@@ -102,13 +102,19 @@ in {
             "mode=0755"
             "uid=0"
             "gid=0"
-            "size=250M"
+            "size=2G"
           ];
         };
       };
-      lvm_vg.pool = {
-        type = "lvm_vg";
-        lvs = {inherit (volumes) swap persist home nix;};
+      lvm_vg = {
+        "vg-nvme" = {
+          type = "lvm_vg";
+          lvs = {inherit (volumes) persist swap home;};
+        };
+        "vg-sda" = {
+          type = "lvm_vg";
+          lvs = {inherit (volumes) nix;};
+        };
       };
     };
   };
