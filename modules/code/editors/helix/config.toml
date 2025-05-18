@@ -1,0 +1,17 @@
+theme = "ayu_dark"
+
+[editor]
+bufferline = "multiple"
+line-number = "relative"
+mouse = false
+
+[editor.soft-wrap]
+enable = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false

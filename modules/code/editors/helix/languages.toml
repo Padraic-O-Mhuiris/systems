@@ -1,0 +1,38 @@
+[[language]]
+name = "nix"
+auto-format = true
+# formatter = { command = "nixfmt" }
+
+[[language]]
+name = "beancount"
+auto-format = true
+formatter = { command = "bean-format" }
+
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "lua-format" }
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "black", args = ["--quiet", "-"] }
+
+[[language]]
+name = "markdown"
+auto-format = true
+formatter = { command = "mdformat", args = ["-"] }
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter = { command = "cargo +nightly fmt" }
+
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "gofmt" }
+# [[language]]
+# name = "toml"
+# auto-format = true
