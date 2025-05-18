@@ -18,6 +18,7 @@
     ../../modules/networking/firewall.nix
     ../../modules/networking/dns.nix
     ../../modules/security/sudo.nix
+    ../../modules/security/gpg.nix
     ../../modules/apps/firefox.nix
     ../../modules/graphical/wm/hyprland.nix
     ../../modules/code/editors/helix
