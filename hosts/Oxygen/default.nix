@@ -17,6 +17,7 @@
     ../../modules/networking/ssh.nix
     ../../modules/networking/firewall.nix
     ../../modules/networking/dns.nix
+    ../../modules/networking/wait-online.nix
     ../../modules/security/sudo.nix
     ../../modules/security/gpg.nix
     ../../modules/apps/firefox.nix
