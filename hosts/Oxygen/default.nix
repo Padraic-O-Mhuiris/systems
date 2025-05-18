@@ -20,6 +20,8 @@
     ../../modules/security/sudo.nix
     ../../modules/apps/firefox.nix
     ../../modules/graphical/wm/hyprland.nix
+    ../../modules/code/editors/helix
+    ../../modules/code/git.nix
   ];
 
   facter.reportPath = ./facter.json;
