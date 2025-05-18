@@ -9,9 +9,8 @@ in {
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
     fonts.fontconfig.enable = true;
 
-    home.packages = with pkgs; [
+    home.packages = [
       berkeley-mono
-      nerdfonts
     ];
   };
 }
