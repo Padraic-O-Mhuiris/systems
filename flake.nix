@@ -1,10 +1,5 @@
 {
-  description = "systems";
-
-  nixConfig = {
-    extra-substituters = ["https://cache.clan.lol"];
-    extra-trusted-public-keys = ["cache.clan.lol-1:3KztgSAB5R1M+Dz7vzkBGzXdodizbgLXGXKXlcQLA28="];
-  };
+  description = "Description for the project";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
@@ -43,12 +38,6 @@
 
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    clan = {
-      url = "git+https://git.clan.lol/clan/clan-core?ref=main&shallow=1";
-      inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
