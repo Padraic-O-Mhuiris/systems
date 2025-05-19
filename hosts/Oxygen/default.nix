@@ -23,8 +23,9 @@
     ../../modules/apps/firefox.nix
     ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/fonts.nix
-    ../../modules/code/editors/helix
-    ../../modules/code/git.nix
+    ../../modules/editors/helix
+    ../../modules/terminal/wezterm
+    ../../modules/git.nix
   ];
 
   facter.reportPath = ./facter.json;
