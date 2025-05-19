@@ -161,7 +161,7 @@
     home = {
       homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
       preferXdgDirectories = true;
-      inherit (osConfig.system) stateVersion;
+      inherit (pkgs.system) stateVersion;
     };
 
     programs.zsh = {
