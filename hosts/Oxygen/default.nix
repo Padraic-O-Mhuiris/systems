@@ -152,35 +152,42 @@
     };
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {
-    config,
-    osConfig,
-    ...
-  }: {
-    imports = [inputs.secrets.homeModules.default];
-    home = {
-      homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
-      preferXdgDirectories = true;
-      inherit (osConfig.system) stateVersion;
-    };
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = false;
+    backupFileExtension = "backup";
+    verbose = true;
 
-    programs.zsh = {
-      enable = true;
-      dotDir = ".config/zsh";
-      autosuggestion.enable = true;
-      enableCompletion = true;
-      syntaxHighlighting.enable = true;
-      enableVteIntegration = true;
-      autocd = true;
-      historySubstringSearch.enable = true;
-      history = {
-        expireDuplicatesFirst = true;
-        extended = true;
-        ignoreDups = true;
-        ignorePatterns = [];
-        ignoreSpace = true;
-        save = 100000;
-        share = true;
+    users.${vars.PRIMARY_USER.NAME} = {
+      config,
+      osConfig,
+      ...
+    }: {
+      imports = [inputs.secrets.homeModules.default];
+      home = {
+        homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
+        preferXdgDirectories = true;
+        inherit (osConfig.system) stateVersion;
+      };
+
+      programs.zsh = {
+        enable = true;
+        dotDir = ".config/zsh";
+        autosuggestion.enable = true;
+        enableCompletion = true;
+        syntaxHighlighting.enable = true;
+        enableVteIntegration = true;
+        autocd = true;
+        historySubstringSearch.enable = true;
+        history = {
+          expireDuplicatesFirst = true;
+          extended = true;
+          ignoreDups = true;
+          ignorePatterns = [];
+          ignoreSpace = true;
+          save = 100000;
+          share = true;
+        };
       };
     };
 
