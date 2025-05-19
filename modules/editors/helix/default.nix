@@ -5,15 +5,17 @@
   ...
 }: {
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
-    xdg.configFile = {
+    xdg.configFile = let
+      helixSrcPath = "$HOME/systems/modules/editors/helix";
+    in {
       "helix/config.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/padraic/code/nix/padraic.nix/home/editors/helix/config.toml"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config.toml"
       );
       "helix/languages.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/padraic/code/nix/padraic.nix/home/editors/helix/languages.toml"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/languages.toml"
       );
       "helix/ignore".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "/home/padraic/code/nix/padraic.nix/home/editors/helix/ignore"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/ignore"
       );
     };
 
