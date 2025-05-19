@@ -26,7 +26,7 @@
       wofi
     ];
     home.sessionVariables = {
-      LAUNCHER = "${lib.getExe config.programs.wofi.package}/bin/wofi --show drun -I";
+      LAUNCHER = "${lib.getExe config.programs.wofi.package} --show drun -I";
       NIXOS_OZONE_WL = "1";
     };
 
@@ -44,7 +44,7 @@
             "$mod SHIFT, E, exec, pkill Hyprland"
             "$mod, q, killactive,"
             "$mod, f, fullscreen,"
-            "$mod, d, exec, wofi"
+            "$mod, d, exec, ${config.home.sessionVariables.LAUNCHER}"
             "$mod, x, exec, ${config.home.sessionVariables.TERMINAL}"
           ]
           ++ (
