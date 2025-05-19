@@ -17,16 +17,21 @@
     defaultSession = "hyprland";
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {
+    config,
+    lib,
+    ...
+  }: {
     home.packages = with pkgs; [
       wofi
     ];
-
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
-    programs.kitty.enable = true; # required for the default Hyprland config
+    home.sessionVariables = {
+      "LAUNCHER" = "${lib.getExe config.programs.wofi.package}/bin/wofi --show drun -I";
+      NIXOS_OZONE_WL = "1";
+    };
 
     wayland.windowManager.hyprland = {
-      enable = true; # enable Hyprland
+      enable = true;
 
       settings = {
         "$mod" = "SUPER";
@@ -36,14 +41,13 @@
         };
         bind =
           [
-            "$mod, F, exec, firefox"
-            "$mod, D, exec, wofi --show drun"
-            "$mod, Return, exec, kitty" # Super+Enter to launch kitty
-            "$mod, T, exec, kitty" # Alternative: Super+T to launch kitty
+            "$mod SHIFT, E, exec, pkill Hyprland"
+            "$mod, q, killactive,"
+            "$mod, f, fullscreen,"
+            "$mod, d, exec, ${config.home.sessionVariables.LAUNCHER}"
+            "$mod, x, exec, hdrop ${config.home.sessionVariables.TERMINAL}"
           ]
           ++ (
-            # workspaces
-            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
             builtins.concatLists (builtins.genList (
                 i: let
                   ws = i + 1;
