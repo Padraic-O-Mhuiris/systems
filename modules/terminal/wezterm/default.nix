@@ -9,6 +9,6 @@
       TERMINAL = lib.getExe pkgs.wezterm;
     };
 
-    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "$HOME/systems/modules/terminal/wezterm/wezterm.lua";
+    xdg.configFile."wezterm/wezterm.lua".source = config.lib.file.mkOutOfStoreSymlink "/home/${vars.PRIMARY_USER.NAME}/systems/modules/terminal/wezterm/wezterm.lua";
   };
 }

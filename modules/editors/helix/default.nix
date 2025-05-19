@@ -6,7 +6,7 @@
 }: {
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
     xdg.configFile = let
-      helixSrcPath = "$HOME/systems/modules/editors/helix";
+      helixSrcPath = "/home/${vars.PRIMARY_USER.NAME}/systems/modules/editors/helix";
     in {
       "helix/config.toml".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config.toml"
