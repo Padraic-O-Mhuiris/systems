@@ -35,34 +35,35 @@
           nix.extraOptions = "experimental-features = nix-command flakes";
 
           networking = {
-          #   hostName = "iso";
+            #   hostName = "iso";
             networkmanager = {
               enable = true;
-          #     ensureProfiles = {
-          #       home-wifi = {
-          #         connection = {
-          #           id = vars.WIFI.SSID;
-          #           type = "wifi";
-          #         };
-          #         ipv4 = {
-          #           method = "auto";
-          #         };
-          #         ipv6 = {
-          #           addr-gen-mode = "default";
-          #           method = "auto";
-          #         };
-          #         wifi = {
-          #           mode = "infrastructure";
-          #           ssid = vars.WIFI.SSID;
-          #         };
-          #         wifi-security = {
-          #           auth-alg = "open";
-          #           key-mgmt = "wpa-psk";
-          #           psk = vars.WIFI.SSID;
-          #         };
-          #       };
-          #     };
-          #   };
+              #     ensureProfiles = {
+              #       home-wifi = {
+              #         connection = {
+              #           id = vars.WIFI.SSID;
+              #           type = "wifi";
+              #         };
+              #         ipv4 = {
+              #           method = "auto";
+              #         };
+              #         ipv6 = {
+              #           addr-gen-mode = "default";
+              #           method = "auto";
+              #         };
+              #         wifi = {
+              #           mode = "infrastructure";
+              #           ssid = vars.WIFI.SSID;
+              #         };
+              #         wifi-security = {
+              #           auth-alg = "open";
+              #           key-mgmt = "wpa-psk";
+              #           psk = vars.WIFI.SSID;
+              #         };
+              #       };
+              #     };
+              #   };
+            };
             wireless.enable = false;
           };
 
