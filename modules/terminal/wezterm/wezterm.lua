@@ -14,6 +14,10 @@ local workspace = wezterm.plugin.require(
 
 local config = wezterm.config_builder()
 
+if os.getenv("WEZTERM_CLASS") then
+    config.window_class = os.getenv("WEZTERM_CLASS")
+end
+
 config.font = wezterm.font_with_fallback({"Berkeley Mono"})
 config.font_size = 18
 config.freetype_load_flags = "NO_HINTING"

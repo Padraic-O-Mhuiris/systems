@@ -25,6 +25,7 @@
     ../../modules/graphical/fonts.nix
     ../../modules/editors/helix
     ../../modules/terminal/wezterm
+    ../../modules/terminal/shell/zsh
     ../../modules/git.nix
   ];
 
@@ -59,6 +60,7 @@
     htop
     git
     rsync
+    btop
   ];
 
   services.xserver = {
@@ -174,42 +176,13 @@
         };
       };
 
-      programs.zsh = {
-        enable = true;
-        dotDir = ".config/zsh";
-        autosuggestion.enable = true;
-        enableCompletion = true;
-        syntaxHighlighting.enable = true;
-        enableVteIntegration = true;
-        autocd = true;
-        historySubstringSearch.enable = true;
-        history = {
-          expireDuplicatesFirst = true;
-          extended = true;
-          ignoreDups = true;
-          ignorePatterns = [];
-          ignoreSpace = true;
-          save = 100000;
-          share = true;
-        };
+      wayland.windowManager.hyprland.settings = {
+        monitor = [
+          "HDMI-A-1, 1920x1080@60, 0x0, 1"
+          "DP-1, 5120x1440@60, 1920x0, 1"
+        ];
       };
     };
-
-    # services.xserver = {
-    #   enable = true;
-
-    #   # TODO Add an assertion such that a home-manager xsession is defined if this configuration is included
-    #   desktopManager.session = [
-    #     {
-    #       name = "home-manager";
-    #       start = ''
-    #         ${pkgs.runtimeShell} $HOME/.hm-xsession &
-    #         waitPID=$!
-    #       '';
-    #     }
-    #   ];
-    # };
-    # services.displayManager.defaultSession = "home-manager";
 
     # programs.atuin = {
     #   enable = true;

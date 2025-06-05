@@ -5,6 +5,8 @@
     lib,
     ...
   }: {
+    home.packages = with pkgs; [wezterm];
+
     home.sessionVariables = {
       TERMINAL = lib.getExe pkgs.wezterm;
     };
