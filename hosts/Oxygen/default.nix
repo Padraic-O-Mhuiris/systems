@@ -112,7 +112,7 @@
     # pin the registry to avoid downloading and evaling a new nixpkgs version every time
     registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
 
-    package = pkgs.nixVersions.nix_2_23;
+    package = pkgs.nixVersions.nix_2_29;
 
     # set the path for channels compat
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
