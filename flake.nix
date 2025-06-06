@@ -31,9 +31,8 @@
       url = "github:nix-community/impermanence";
     };
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
+    niri = {
+      url = "github:sodiboo/niri-flake";
     };
 
     nur = {

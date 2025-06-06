@@ -21,7 +21,8 @@
     ../../modules/security/sudo.nix
     ../../modules/security/gpg.nix
     ../../modules/apps/firefox.nix
-    ../../modules/graphical/wm/hyprland.nix
+    # ../../modules/graphical/wm/hyprland.nix
+    ../../modules/graphical/wm/niri
     ../../modules/graphical/fonts.nix
     ../../modules/editors/helix
     ../../modules/terminal/wezterm
@@ -148,6 +149,11 @@
   };
 
   services.displayManager = {
+    defaultSession = "niri";
+    sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
     autoLogin = {
       enable = true;
       user = vars.PRIMARY_USER.NAME;
