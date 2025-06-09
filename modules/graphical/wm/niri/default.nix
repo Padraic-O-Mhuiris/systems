@@ -34,34 +34,115 @@
     programs.waybar = {
       enable = true;
       settings = {
-        main = {
+        mainBar = {
           layer = "top";
           position = "top";
           height = 30;
-          modules-left = ["hyprland/workspaces"];
-          modules-center = ["hyprland/window"];
-          modules-right = ["network" "battery" "clock" "tray"];
+          spacing = 4;
 
-          # Module configuration
-          "hyprland/workspaces" = {
-            format = "{name}";
-            on-click = "activate";
+          modules-left = [
+            # "custom/niri-workspaces"
+          ];
+          modules-center = ["clock"];
+          modules-right = ["pulseaudio" "network" "battery" "tray"];
+
+          clock = {
+            timezone = "Dublin/Ireland";
+            tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+            format-alt = "{:%Y-%m-%d}";
           };
-          "clock" = {
-            format = "{:%H:%M}";
-            tooltip-format = "{:%Y-%m-%d | %H:%M}";
-          };
-          "battery" = {
+
+          battery = {
+            states = {
+              warning = 30;
+              critical = 15;
+            };
             format = "{capacity}% {icon}";
+            format-charging = "{capacity}% ";
+            format-plugged = "{capacity}% ";
+            format-alt = "{time} {icon}";
             format-icons = ["" "" "" "" ""];
           };
-          "network" = {
+
+          network = {
             format-wifi = "{essid} ({signalStrength}%) ";
             format-ethernet = "{ipaddr}/{cidr} ";
-            format-disconnected = "Disconnected ";
+            tooltip-format = "{ifname} via {gwaddr} ";
+            format-linked = "{ifname} (No IP) ";
+            format-disconnected = "Disconnected ⚠";
+            format-alt = "{ifname}: {ipaddr}/{cidr}";
+          };
+
+          pulseaudio = {
+            format = "{volume}% {icon} {format_source}";
+            format-bluetooth = "{volume}% {icon} {format_source}";
+            format-bluetooth-muted = " {icon} {format_source}";
+            format-muted = " {format_source}";
+            format-source = "{volume}% ";
+            format-source-muted = "";
+            format-icons = {
+              headphone = "";
+              hands-free = "";
+              headset = "";
+              phone = "";
+              portable = "";
+              car = "";
+              default = ["" "" ""];
+            };
+            on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+          };
+
+          tray = {
+            spacing = 10;
           };
         };
       };
+
+      # Optional: Add basic styling
+      style = ''
+        * {
+          border: none;
+          border-radius: 0;
+          font-family: "JetBrains Mono", monospace;
+          font-size: 13px;
+          min-height: 0;
+        }
+
+        window#waybar {
+          background-color: rgba(43, 48, 59, 0.8);
+          border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+          color: #ffffff;
+        }
+
+        #workspaces button {
+          padding: 0 5px;
+          background-color: transparent;
+          color: #ffffff;
+        }
+
+        #workspaces button.focused {
+          background-color: rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 -3px #ffffff;
+        }
+
+        #clock,
+        #battery,
+        #cpu,
+        #memory,
+        #disk,
+        #temperature,
+        #backlight,
+        #network,
+        #pulseaudio,
+        #custom-media,
+        #tray,
+        #mode,
+        #idle_inhibitor,
+        #mpd {
+          padding: 0 10px;
+          color: #ffffff;
+        }
+      '';
     };
 
     programs.niri.settings = {

@@ -28,6 +28,9 @@
     ../../modules/terminal/wezterm
     ../../modules/terminal/shell/zsh
     ../../modules/git.nix
+
+    ../../modules/peripherals/audio.nix
+    ../../modules/peripherals/bluetooth.nix
   ];
 
   facter.reportPath = ./facter.json;
@@ -62,6 +65,7 @@
     git
     rsync
     btop
+    jq
   ];
 
   services.xserver = {
