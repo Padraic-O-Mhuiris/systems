@@ -20,7 +20,11 @@
     ../../modules/networking/wait-online.nix
     ../../modules/security/sudo.nix
     ../../modules/security/gpg.nix
+
     ../../modules/apps/firefox.nix
+    ../../modules/apps/spotify.nix
+    ../../modules/apps/steam.nix
+
     # ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/wm/niri
     ../../modules/graphical/fonts.nix

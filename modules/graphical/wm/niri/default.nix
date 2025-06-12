@@ -154,6 +154,10 @@
       ];
       prefer-no-csd = true;
 
+      environment = {
+        "DISPLAY" = ":0";
+      };
+
       cursor = {
         theme = "default";
         size = 24;

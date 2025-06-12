@@ -392,6 +392,21 @@
         "type": "github"
       }
     },
+    "repo-clone": {
+      "locked": {
+        "lastModified": 1722509718,
+        "narHash": "sha256-VkdEMyhUl5RwyOsGsBzpA0WgDAWzEkngCrgiJAkQdr0=",
+        "ref": "refs/heads/main",
+        "rev": "b227fc74a6c24c8586ac0cee2e49400f3572957a",
+        "revCount": 43,
+        "type": "git",
+        "url": "https://git.zynh.me/Zynh0722/repo-clone"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.zynh.me/Zynh0722/repo-clone"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -403,6 +418,7 @@
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",
+        "repo-clone": "repo-clone",
         "secrets": "secrets"
       }
     },

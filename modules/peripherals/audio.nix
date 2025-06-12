@@ -14,5 +14,5 @@
   };
 
   # Must set to false as conflicts with pipewire
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 }

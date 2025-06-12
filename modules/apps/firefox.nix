@@ -65,7 +65,7 @@
   };
 
   search = {
-    default = "Google";
+    default = "google";
     force = true;
     engines = {
       "Nix Packages" = {
@@ -124,14 +124,16 @@
     };
   };
 
-  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    ublock-origin
-    metamask
-    bitwarden
-    old-reddit-redirect
-    i-dont-care-about-cookies
-    reddit-enhancement-suite
-  ];
+  extensions = {
+    packages = with pkgs.nur.repos.rycee.firefox-addons; [
+      ublock-origin
+      metamask
+      bitwarden
+      old-reddit-redirect
+      i-dont-care-about-cookies
+      reddit-enhancement-suite
+    ];
+  };
 
   settings = {
     "browser.aboutConfig.showWarning" = false;

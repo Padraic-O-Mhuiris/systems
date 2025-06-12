@@ -40,7 +40,7 @@
       enableScDaemon = true;
       grabKeyboardAndMouse = true;
       defaultCacheTtl = 3600;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentry.package = pkgs.pinentry-gnome3;
       extraConfig = ''
         allow-loopback-pinentry
       '';
