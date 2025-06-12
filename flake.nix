@@ -40,11 +40,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    repo-clone = {
-      url = "git+https://git.zynh.me/Zynh0722/repo-clone";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     secrets = {
       url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow";
       inputs.nixpkgs.follows = "nixpkgs";

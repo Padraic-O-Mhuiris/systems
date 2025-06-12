@@ -179,7 +179,10 @@
       osConfig,
       ...
     }: {
-      imports = [inputs.secrets.homeModules.default];
+      imports = [
+        inputs.secrets.homeModules.default
+      ];
+
       home = {
         homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
         preferXdgDirectories = true;
