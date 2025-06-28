@@ -392,21 +392,6 @@
         "type": "github"
       }
     },
-    "repo-clone": {
-      "locked": {
-        "lastModified": 1722509718,
-        "narHash": "sha256-VkdEMyhUl5RwyOsGsBzpA0WgDAWzEkngCrgiJAkQdr0=",
-        "ref": "refs/heads/main",
-        "rev": "b227fc74a6c24c8586ac0cee2e49400f3572957a",
-        "revCount": 43,
-        "type": "git",
-        "url": "https://git.zynh.me/Zynh0722/repo-clone"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.zynh.me/Zynh0722/repo-clone"
-      }
-    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -427,15 +412,14 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "repo-clone": "repo-clone",
         "sops": "sops"
       },
       "locked": {
-        "lastModified": 1749738473,
-        "narHash": "sha256-QJbKFXO3fpiaRBBxT1pAsiv9Ks0IcDKRqR9YwJ1pHsU=",
+        "lastModified": 1751117745,
+        "narHash": "sha256-ZegTvguJ+k+PhM+JmOWhR9cMdFC+CMjDPcwe0CWUCyE=",
         "ref": "refs/heads/master",
-        "rev": "1b2b2f69e7d7be41842773c6e5367eb560944034",
-        "revCount": 62,
+        "rev": "b2a26dad069a97ae70ccfc82523cbb413d47a4c7",
+        "revCount": 63,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
       },
