@@ -17,7 +17,6 @@
     modules = [
       "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      inputs.secrets.nixosModules.default
       (
         {
           pkgs,
@@ -25,6 +24,31 @@
           vars,
           ...
         }: {
+          nixpkgs.config.allowBroken = true;
+          boot.supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
+          boot.kernelPackages = pkgs.linuxPackages_latest;
+          boot.kernelModules = [
+            "brcmfmac"
+            "brcmutil"
+            "iwlmvm"
+            "iwlwifi"
+            "mmc_core"
+            "mt76_usb"
+            "mt76"
+            "mt76x0_common"
+            "mt76x02_lib"
+            "mt76x02_usb"
+            "mt76x0u"
+            "r8188eu"
+            "rtl_usb"
+            "rtl8192c_common"
+            "rtl8192cu"
+            "rtlwifi"
+          ];
+          hardware.bluetooth.enable = false;
+          hardware.enableAllFirmware = true;
+          hardware.enableRedistributableFirmware = true;
+
           nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
           nixpkgs.config.allowUnfree = true;
 
@@ -35,35 +59,8 @@
           nix.extraOptions = "experimental-features = nix-command flakes";
 
           networking = {
-            #   hostName = "iso";
-            networkmanager = {
-              enable = true;
-              #     ensureProfiles = {
-              #       home-wifi = {
-              #         connection = {
-              #           id = vars.WIFI.SSID;
-              #           type = "wifi";
-              #         };
-              #         ipv4 = {
-              #           method = "auto";
-              #         };
-              #         ipv6 = {
-              #           addr-gen-mode = "default";
-              #           method = "auto";
-              #         };
-              #         wifi = {
-              #           mode = "infrastructure";
-              #           ssid = vars.WIFI.SSID;
-              #         };
-              #         wifi-security = {
-              #           auth-alg = "open";
-              #           key-mgmt = "wpa-psk";
-              #           psk = vars.WIFI.SSID;
-              #         };
-              #       };
-              #     };
-              #   };
-            };
+            hostName = "iso";
+            networkmanager.enable = true;
             wireless.enable = false;
           };
 
@@ -84,13 +81,19 @@
             rsync
           ];
 
-          users.extraUsers.root.openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
-          ];
+          users.users.root = {
+            initialPassword = "root";
+            openssh.authorizedKeys.keys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
+            ];
+          };
+
+          security.sudo.wheelNeedsPassword = false;
+          services.getty.autologinUser = lib.mkForce "root";
 
           systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
-          system.stateVersion = lib.mkDefault "24.11";
+          system.stateVersion = lib.mkDefault "25.05";
 
           isoImage.squashfsCompression = "gzip -Xcompression-level 1";
         }
