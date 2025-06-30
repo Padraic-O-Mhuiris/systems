@@ -200,54 +200,6 @@
         ];
       };
     };
-
-    # programs.atuin = {
-    #   enable = true;
-    #   enableZshIntegration = true;
-    #   settings = {
-    #     daemon.enabled = true;
-    #     update_check = false;
-    #     sync_address = "https://api.atuin.sh"; # TODO Change
-    #     sync_frequency = "15m";
-    #     sync.records = true;
-    #     dialect = "uk";
-    #     key_path = config.sops.secrets.atuin_key.path;
-    #   };
-    # };
-
-    # sops.secrets.atuin_key = {};
-    # systemd.user.services.atuin-daemon = {
-    #   Unit = {
-    #     Description = "Atuin daemon";
-    #     Requires = ["atuin-daemon.socket"];
-    #   };
-    #   Install = {
-    #     Also = ["atuin-daemon.socket"];
-    #     WantedBy = ["default.target"];
-    #   };
-    #   Service = {
-    #     ExecStart = "${lib.getExe pkgs.atuin} daemon";
-    #     Environment = ["ATUIN_LOG=info"];
-    #     Restart = "on-failure";
-    #     RestartSteps = 3;
-    #     RestartMaxDelaySec = 6;
-    #   };
-    # };
-
-    # systemd.user.sockets.atuin-daemon = let
-    #   socket_dir =
-    #     if lib.versionAtLeast pkgs.atuin.version "18.4.0"
-    #     then "%t"
-    #     else "%D/atuin";
-    # in {
-    #   Unit = {Description = "Atuin daemon socket";};
-    #   Install = {WantedBy = ["sockets.target"];};
-    #   Socket = {
-    #     ListenStream = "${socket_dir}/atuin.sock";
-    #     SocketMode = "0600";
-    #     RemoveOnStop = true;
-    #   };
-    # };
   };
 
   nixpkgs.hostPlatform = "x86_64-linux";
