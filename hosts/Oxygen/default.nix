@@ -193,6 +193,25 @@
         };
       };
 
+      xdg = {
+        enable = true;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+          download = "${config.home.homeDirectory}/downloads";
+          extraConfig = {
+            XDG_CODE_DIR = "${config.home.homeDirectory}/code";
+          };
+          desktop = null;
+          documents = null;
+          pictures = null;
+          publicShare = null;
+          templates = null;
+          videos = null;
+          music = null;
+        };
+      };
+
       wayland.windowManager.hyprland.settings = {
         monitor = [
           "HDMI-A-1, 1920x1080@60, 0x0, 1"
