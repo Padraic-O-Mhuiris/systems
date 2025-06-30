@@ -6,6 +6,8 @@
   environment.systemPackages = with pkgs; [
     yubikey-personalization
     yubikey-manager
+    usbutils
+    lsof
   ];
 
   # Allows for smartcard detection
@@ -31,6 +33,13 @@
           trust = 5;
         }
       ];
+      scdaemonSettings = {
+        pcsc-driver = "${pkgs.pcsclite.lib}/lib/libpcsclite.so";
+        disable-ccid = true;
+        card-timeout = "10";
+        debug-level = "basic";
+        log-file = "/tmp/scdaemon.log";
+      };
     };
 
     services.gpg-agent = {
@@ -51,4 +60,6 @@
 
     systemd.user.sessionVariables.GNUPGHOME = "${config.xdg.dataHome}/gnupg";
   };
+
+  users.users.${vars.PRIMARY_USER.NAME}.extraGroups = ["pcscd"];
 }
