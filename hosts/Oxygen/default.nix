@@ -203,7 +203,7 @@
             XDG_CODE_DIR = "${config.home.homeDirectory}/code";
           };
           desktop = null;
-          documents = null;
+          documents = "documents";
           pictures = null;
           publicShare = null;
           templates = null;
