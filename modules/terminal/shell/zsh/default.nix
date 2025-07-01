@@ -1,14 +1,14 @@
 {vars, ...}: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {
-    config,
-    pkgs,
-    lib,
-    ...
-  }: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;
       nix-direnv.enable = true;
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableZshIntegration = true;
     };
 
     programs.starship = {

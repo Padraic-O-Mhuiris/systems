@@ -22,8 +22,10 @@
     ../../modules/security/gpg.nix
 
     ../../modules/apps/firefox.nix
+    ../../modules/apps/zen-browser.nix
     ../../modules/apps/spotify.nix
     ../../modules/apps/steam.nix
+    ../../modules/apps/slack.nix
 
     # ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/wm/niri
@@ -70,6 +72,9 @@
     rsync
     btop
     jq
+    wget
+    unzip
+    bc
   ];
 
   services.xserver = {

@@ -1,7 +1,6 @@
 {
   inputs,
   vars,
-  # config,
   pkgs,
   ...
 }: let
@@ -15,7 +14,6 @@
       BlockAboutSupport = true;
       Bookmarks = [];
       CaptivePortal = false;
-      # DefaultDownloadDirectory = config.xdg.userDirs.download;
       DisableAppUpdate = true;
       DisableFirefoxAccounts = true;
       DisableFirefoxStudies = true;
@@ -106,21 +104,21 @@
         icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         definedAliases = ["@no"];
       };
-      "HomeManager Options" = {
-        urls = [
-          {
-            template = "https://mipmip.github.io/home-manager-option-search/";
-            params = [
-              {
-                name = "query";
-                value = "{searchTerms}";
-              }
-            ];
-          }
-        ];
-        icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-        definedAliases = ["@nho"];
-      };
+      # "HomeManager Options" = {
+      #   urls = [
+      #     {
+      #       template = "https://mipmip.github.io/home-manager-option-search/";
+      #       params = [
+      #         {
+      #           name = "query";
+      #           value = "{searchTerms}";
+      #         }
+      #       ];
+      #     }
+      #   ];
+      #   icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+      #   definedAliases = ["@nho"];
+      # };
     };
   };
 
