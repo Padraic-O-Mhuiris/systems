@@ -18,6 +18,8 @@
     ../../modules/networking/firewall.nix
     ../../modules/networking/dns.nix
     ../../modules/networking/wait-online.nix
+    ../../modules/networking/tailscale.nix
+
     ../../modules/security/sudo.nix
     ../../modules/security/gpg.nix
 
