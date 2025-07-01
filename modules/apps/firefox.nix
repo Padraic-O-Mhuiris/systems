@@ -163,6 +163,6 @@ in {
       };
     };
 
-    home.sessionVariables."BROWSER" = pkgs.lib.getExe package;
+    # home.sessionVariables."BROWSER" = pkgs.lib.getExe package;
   };
 }

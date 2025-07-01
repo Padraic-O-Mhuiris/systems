@@ -3,10 +3,16 @@
   vars,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {pkgs, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {
+    pkgs,
+    config,
+    lib,
+    ...
+  }: {
     imports = [
       inputs.zen-browser.homeModules.beta
     ];
+    home.sessionVariables."BROWSER" = lib.mkForce (pkgs.lib.getExe config.programs.zen-browser.package);
 
     programs.zen-browser = {
       enable = true;

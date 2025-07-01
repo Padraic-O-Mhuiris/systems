@@ -39,6 +39,8 @@
     ../../modules/peripherals/bluetooth.nix
   ];
 
+  programs.nix-ld.enable = true;
+
   facter.reportPath = ./facter.json;
   fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {

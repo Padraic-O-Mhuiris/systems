@@ -98,11 +98,21 @@ in {
           fsType = "tmpfs";
           mountpoint = "/";
           mountOptions = [
-            # If not included root ("/") will be 777 and ssh will not work under strict mode
             "mode=0755"
             "uid=0"
             "gid=0"
             "size=2G"
+          ];
+        };
+        tmp = {
+          fsType = "tmpfs";
+          mountpoint = "/tmp";
+          mountOptions = [
+            "mode=1777"
+            "size=16G"
+            "nodev"
+            "nosuid"
+            "exec"
           ];
         };
       };
