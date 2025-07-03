@@ -7,6 +7,9 @@
   imports = [
     inputs.niri.nixosModules.niri
     ./waybar.nix
+    ./swaylock.nix
+    ./mako.nix
+    # ./wezterm-toggle.nix
   ];
 
   niri-flake.cache.enable = true;
@@ -45,9 +48,13 @@
     programs.niri.settings = {
       animations.enable = false;
       hotkey-overlay.skip-at-startup = true;
+
       spawn-at-startup = [
         {command = ["xwayland-satellite"];}
         {command = ["waybar"];}
+        {
+          command = ["niri" "msg" "action" "focus-workspace-down"];
+        }
       ];
       prefer-no-csd = true;
 
@@ -96,7 +103,7 @@
           # display.color = "rgb(${nix-colors.lib-core.conversions.hexToRGBString " " defaults.colorScheme.palette.base0D} / 50%)";
         };
 
-        default-column-width.proportion = 1.0;
+        default-column-width.proportion = 0.5;
         preset-column-widths = [
           {proportion = 0.25;}
           {proportion = 0.50;}
@@ -104,8 +111,8 @@
           {proportion = 1.0;}
         ];
 
-        center-focused-column = "always";
-        always-center-single-column = true;
+        # center-focused-column = "always";
+        # always-center-single-column = true;
       };
 
       input = {
@@ -178,10 +185,8 @@
           action = spawn "${config.home.sessionVariables.LAUNCHER}";
           repeat = false;
         };
-        "Mod+X" = {
-          action = spawn "${config.home.sessionVariables.TERMINAL}";
-          repeat = false;
-        };
+
+        "Mod+Alt+L".action = spawn "swaylock";
 
         "Mod+Shift+E".action = quit;
 
