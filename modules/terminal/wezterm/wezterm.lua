@@ -19,12 +19,12 @@ if os.getenv("WEZTERM_CLASS") then
 end
 
 config.font = wezterm.font_with_fallback({"Berkeley Mono"})
-config.font_size = 18
+config.font_size = 13
 config.freetype_load_flags = "NO_HINTING"
 config.freetype_load_target = "Normal"
 config.front_end = "WebGpu"
 
-config.max_fps = 144
+config.max_fps = 60
 config.line_height = 1
 config.cell_width = 1
 
@@ -37,11 +37,13 @@ config.color_scheme = "Ayu Dark (Gogh)"
 
 config.window_frame = {
     font = wezterm.font_with_fallback({"Berkeley Mono"}),
-    font_size = 12.0
+    font_size = 10.0
 }
 
 config.window_padding = {left = 30, right = 30, top = 20, bottom = 10}
 config.window_close_confirmation = "NeverPrompt"
+
+config.adjust_window_size_when_changing_font_size = false
 
 config.leader = {key = "a", mods = "CTRL", timeout_milliseconds = 1000}
 config.launch_menu = {}

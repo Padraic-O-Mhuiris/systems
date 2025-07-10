@@ -69,7 +69,7 @@
       };
 
       overview = {
-        zoom = 0.7;
+        zoom = 0.5;
         # backdrop-color = "#${defaults.colorScheme.palette.base02}";
         # TODO: implement and submit PR to niri-flake
         # workspace-shadow = false;

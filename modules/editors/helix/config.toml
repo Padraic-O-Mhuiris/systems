@@ -5,6 +5,9 @@ bufferline = "multiple"
 line-number = "relative"
 mouse = false
 
+[editor.smart-tab]
+enable = true
+
 [editor.soft-wrap]
 enable = true
 
