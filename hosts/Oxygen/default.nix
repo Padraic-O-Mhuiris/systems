@@ -64,6 +64,8 @@
     ];
   };
 
+  networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
+
   hardware = {
     # opengl = {
     #   enable = true;
