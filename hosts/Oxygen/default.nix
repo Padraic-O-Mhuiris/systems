@@ -1,15 +1,10 @@
-{
-  inputs,
-  vars,
-  ...
-}: {
+{vars, ...}: {
   imports = [
-    inputs.nixos-facter-modules.nixosModules.facter
-
     ./disk.nix
 
     ../../modules/common/home-manager.nix
     ../../modules/common/nix
+    ../../modules/common/facter.nix
     ../../modules/common/boot.nix
     ../../modules/common/secrets.nix
     ../../modules/common/pkgs.nix
@@ -50,8 +45,6 @@
 
     ../../modules/users/primary.nix
   ];
-
-  facter.reportPath = ./facter.json;
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
 

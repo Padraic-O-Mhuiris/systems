@@ -5,9 +5,12 @@
 }: let
   inherit (self) lib;
 
+  root = ../.;
+
   specialArgs = {
     inherit inputs;
     inherit lib;
+    inherit root;
   };
 
   common = [];
