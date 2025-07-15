@@ -51,8 +51,6 @@
     ../../modules/users/primary.nix
   ];
 
-  programs.nix-ld.enable = true;
-
   facter.reportPath = ./facter.json;
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";

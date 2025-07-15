@@ -9,6 +9,8 @@
     config.allowUnfree = lib.mkDefault true;
   };
 
+  programs.nix-ld.enable = true;
+
   nix = {
     # pin the registry to avoid downloading and evaling a new nixpkgs version every time
     registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
