@@ -5,13 +5,13 @@
 }: {
   imports = [
     inputs.nixos-facter-modules.nixosModules.facter
-    inputs.secrets.nixosModules.default
 
     ./disk.nix
 
     ../../modules/common/home-manager.nix
     ../../modules/common/nix
     ../../modules/common/boot.nix
+    ../../modules/common/secrets.nix
     ../../modules/common/pkgs.nix
     ../../modules/common/impermanence.nix
 
@@ -77,18 +77,12 @@
     };
   };
 
-  home-manager = {
-    users.${vars.PRIMARY_USER.NAME} = _: {
-      imports = [
-        inputs.secrets.homeModules.default
+  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        "HDMI-A-1, 1920x1080@60, 0x0, 1"
+        "DP-1, 5120x1440@60, 1920x0, 1"
       ];
-
-      wayland.windowManager.hyprland.settings = {
-        monitor = [
-          "HDMI-A-1, 1920x1080@60, 0x0, 1"
-          "DP-1, 5120x1440@60, 1920x0, 1"
-        ];
-      };
     };
   };
 
