@@ -32,6 +32,7 @@
 
     # ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/wm/niri
+    ../../modules/graphical/nvidia.nix
     ../../modules/graphical/fonts.nix
 
     ../../modules/editors/git
@@ -68,31 +69,6 @@
   };
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
-
-  hardware = {
-    # opengl = {
-    #   enable = true;
-    #   driSupport32Bit = true;
-    # };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
-
-    nvidia = {
-      open = false;
-      # package = config.boot.kernelPackages.nvidiaPackages.stable;
-      modesetting.enable = true;
-      prime = {
-        sync.enable = true;
-        nvidiaBusId = "PCI:9:0:0";
-        amdgpuBusId = "PCI:0:2:0";
-      };
-      forceFullCompositionPipeline = true;
-    };
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
