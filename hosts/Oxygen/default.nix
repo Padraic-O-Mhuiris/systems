@@ -33,7 +33,10 @@
     # ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/wm/niri
     ../../modules/graphical/fonts.nix
+
+    ../../modules/editors/git
     ../../modules/editors/helix
+
     ../../modules/terminal/wezterm
     ../../modules/terminal/shell/zsh
     ../../modules/git.nix
