@@ -132,36 +132,6 @@
         };
       };
 
-      outputs = {
-        "DP-1" = {
-          enable = true;
-          scale = 1.0;
-          mode = {
-            height = 1440;
-            width = 5120;
-            refresh = 59.977;
-          };
-          position = {
-            x = 1920;
-            y = 0;
-          };
-          focus-at-startup = true;
-        };
-        "HDMI-A-1" = {
-          enable = true;
-          scale = 1;
-          mode = {
-            height = 1080;
-            width = 1920;
-            refresh = 60.0;
-          };
-          position = {
-            x = 0;
-            y = 0;
-          };
-        };
-      };
-
       binds = let
         inherit
           (config.lib.niri.actions)
