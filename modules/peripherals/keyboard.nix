@@ -1,8 +1,4 @@
-{
-  vars,
-  lib,
-  ...
-}: {
+{lib, ...}: {
   services.xserver = {
     xkb = {
       options = "ctrl:swapcaps";
@@ -10,6 +6,4 @@
     };
   };
   console.useXkbConfig = true;
-
-  users.users."${vars.PRIMARY_USER.NAME}".extraGroups = ["input"];
 }

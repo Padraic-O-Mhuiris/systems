@@ -20,6 +20,7 @@
 
       extraGroups = [
         "wheel"
+        "input"
         "networkmanager"
         "audio"
         "pipewire"
