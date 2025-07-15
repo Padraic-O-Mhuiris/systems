@@ -44,6 +44,8 @@
     ../../modules/peripherals/audio.nix
     ../../modules/peripherals/bluetooth.nix
     ../../modules/peripherals/keyboard.nix
+
+    ../../modules/users/primary.nix
   ];
 
   programs.nix-ld.enable = true;
@@ -93,31 +95,7 @@
     autologinOnce = true;
   };
 
-  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
-    neededForUsers = true;
-  };
-
   programs.zsh.enable = true;
-
-  users = {
-    mutableUsers = false;
-    users."${vars.PRIMARY_USER.NAME}" = {
-      isNormalUser = true;
-      createHome = true;
-      shell = pkgs.zsh;
-
-      hashedPasswordFile = config.sops.secrets."${vars.PRIMARY_USER.NAME}_password".path;
-      group = "users";
-
-      extraGroups = [
-        "wheel"
-        "networkmanager"
-        "audio"
-        "pipewire"
-        "video"
-      ];
-    };
-  };
 
   nixpkgs = {
     config.allowUnfree = lib.mkDefault true;
