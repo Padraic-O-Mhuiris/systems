@@ -95,8 +95,6 @@
     autologinOnce = true;
   };
 
-  programs.zsh.enable = true;
-
   nixpkgs = {
     config.allowUnfree = lib.mkDefault true;
   };
