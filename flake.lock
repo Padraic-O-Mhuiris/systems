@@ -441,11 +441,12 @@
         "narHash": "sha256-KweNBoNS6OvzvCTSNEu6e6Ny1QEcIErQFA3W8GPBf2g=",
         "ref": "refs/heads/master",
         "rev": "14804b451e8387198ab9e38e249eee7eb3c3f120",
-        "revCount": 71,
+        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
       },
       "original": {
+        "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
       }

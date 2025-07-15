@@ -46,7 +46,7 @@
     };
 
     secrets = {
-      url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow";
+      url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
