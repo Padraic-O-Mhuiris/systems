@@ -26,7 +26,8 @@
     # ../../modules/apps/firefox.nix
     ../../modules/apps/zen-browser.nix
     ../../modules/apps/spotify.nix
-    # ../../modules/apps/steam.nix
+    ../../modules/apps/obsidian.nix
+    ../../modules/apps/steam.nix
     ../../modules/apps/slack.nix
 
     # ../../modules/graphical/wm/hyprland.nix
@@ -63,6 +64,31 @@
     ];
   };
 
+  hardware = {
+    # opengl = {
+    #   enable = true;
+    #   driSupport32Bit = true;
+    # };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
+    nvidia = {
+      open = false;
+      # package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
+      prime = {
+        sync.enable = true;
+        nvidiaBusId = "PCI:9:0:0";
+        amdgpuBusId = "PCI:0:2:0";
+      };
+      forceFullCompositionPipeline = true;
+    };
+  };
+
+  services.xserver.videoDrivers = ["nvidia"];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -79,6 +105,8 @@
     wget
     unzip
     bc
+    nautilus
+    pciutils
   ];
 
   services.xserver = {
@@ -164,6 +192,8 @@
       ];
     };
   };
+
+  security.pam.services.sddm.enableGnomeKeyring = true;
 
   services.displayManager = {
     defaultSession = "niri";
