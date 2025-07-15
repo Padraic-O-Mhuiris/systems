@@ -12,6 +12,8 @@
     # ./wezterm-toggle.nix
   ];
 
+  services.displayManager.defaultSession = "niri";
+
   niri-flake.cache.enable = true;
   programs.niri.enable = true;
   nixpkgs.overlays = [inputs.niri.overlays.niri];
