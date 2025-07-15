@@ -29,6 +29,7 @@
 
     # ../../modules/graphical/wm/hyprland.nix
     ../../modules/graphical/wm/niri
+    ../../modules/graphical/displayManager.nix
     ../../modules/graphical/nvidia.nix
     ../../modules/graphical/fonts.nix
 
@@ -58,10 +59,6 @@
 
   services.displayManager = {
     defaultSession = "niri";
-    sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
     autoLogin = {
       enable = true;
       user = vars.PRIMARY_USER.NAME;
