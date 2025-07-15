@@ -42,6 +42,7 @@
 
     ../../modules/terminal/wezterm
     ../../modules/terminal/shell/zsh
+    ../../modules/terminal/shell/aliases.nix
 
     ../../modules/peripherals/audio.nix
     ../../modules/peripherals/bluetooth.nix
@@ -161,11 +162,7 @@
     backupFileExtension = "backup";
     verbose = true;
 
-    users.${vars.PRIMARY_USER.NAME} = {
-      config,
-      osConfig,
-      ...
-    }: {
+    users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
       imports = [
         inputs.secrets.homeModules.default
       ];
@@ -173,10 +170,6 @@
       home = {
         homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
         preferXdgDirectories = true;
-        shellAliases = {
-          # TODO Create default filesystem location for this nixos repository
-          "nr" = "sudo nixos-rebuild --flake $HOME/systems#${osConfig.networking.hostName} switch --show-trace --verbose";
-        };
       };
 
       xdg = {
