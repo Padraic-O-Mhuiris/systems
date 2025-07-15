@@ -1,8 +1,5 @@
 {
   inputs,
-  lib,
-  pkgs,
-  config,
   vars,
   ...
 }: {
@@ -15,6 +12,7 @@
 
     ../../modules/common/home-manager.nix
     ../../modules/common/nix
+    ../../modules/common/pkgs.nix
 
     ../../modules/networking/wifi.nix
     ../../modules/networking/ssh.nix
@@ -79,20 +77,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    htop
-    git
-    rsync
-    btop
-    jq
-    wget
-    unzip
-    bc
-    nautilus
-    pciutils
-  ];
 
   services.getty = {
     autologinUser = vars.PRIMARY_USER.NAME;
