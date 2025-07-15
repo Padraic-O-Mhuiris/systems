@@ -5,7 +5,6 @@
 }: {
   imports = [
     inputs.nixos-facter-modules.nixosModules.facter
-    inputs.impermanence.nixosModules.impermanence
     inputs.secrets.nixosModules.default
 
     ./disk.nix
@@ -13,6 +12,7 @@
     ../../modules/common/home-manager.nix
     ../../modules/common/nix
     ../../modules/common/pkgs.nix
+    ../../modules/common/impermanence.nix
 
     ../../modules/networking/wifi.nix
     ../../modules/networking/ssh.nix
@@ -53,31 +53,13 @@
   programs.nix-ld.enable = true;
 
   facter.reportPath = ./facter.json;
-  fileSystems."/persist".neededForBoot = true;
-
-  environment.persistence."/persist" = {
-    enable = true;
-    hideMounts = true;
-    directories = [
-      "/var/log"
-      "/var/lib/bluetooth"
-      "/var/lib/nixos"
-      "/var/lib/sudo"
-      "/var/lib/systemd/coredump"
-      "/etc/NetworkManager/system-connections"
-    ];
-    files = [
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/machine-id"
-    ];
-  };
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Relevant if using tty
   services.getty = {
     autologinUser = vars.PRIMARY_USER.NAME;
     autologinOnce = true;
