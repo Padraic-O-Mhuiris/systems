@@ -11,6 +11,7 @@
 
     ../../modules/common/home-manager.nix
     ../../modules/common/nix
+    ../../modules/common/boot.nix
     ../../modules/common/pkgs.nix
     ../../modules/common/impermanence.nix
 
@@ -55,9 +56,6 @@
   facter.reportPath = ./facter.json;
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Relevant if using tty
   services.getty = {
