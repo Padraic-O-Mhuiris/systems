@@ -6,6 +6,7 @@
     ../../modules/common/nix
     ../../modules/common/facter.nix
     ../../modules/common/boot.nix
+    ../../modules/common/login.nix
     ../../modules/common/secrets.nix
     ../../modules/common/pkgs.nix
     ../../modules/common/impermanence.nix
@@ -49,21 +50,7 @@
 
   networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
 
-  # Relevant if using tty
-  services.getty = {
-    autologinUser = vars.PRIMARY_USER.NAME;
-    autologinOnce = true;
-  };
-
-  security.pam.services.sddm.enableGnomeKeyring = true;
-
-  services.displayManager = {
-    defaultSession = "niri";
-    autoLogin = {
-      enable = true;
-      user = vars.PRIMARY_USER.NAME;
-    };
-  };
+  services.displayManager.defaultSession = "niri";
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     wayland.windowManager.hyprland.settings = {
