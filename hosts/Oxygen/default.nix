@@ -10,9 +10,11 @@
     inputs.nixos-facter-modules.nixosModules.facter
     inputs.impermanence.nixosModules.impermanence
     inputs.secrets.nixosModules.default
-    inputs.home-manager.nixosModules.home-manager
 
     ./disk.nix
+
+    ../../modules/common/home-manager.nix
+
     ../../modules/networking/wifi.nix
     ../../modules/networking/ssh.nix
     ../../modules/networking/firewall.nix
@@ -171,7 +173,6 @@
       home = {
         homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
         preferXdgDirectories = true;
-        inherit (osConfig.system) stateVersion;
         shellAliases = {
           # TODO Create default filesystem location for this nixos repository
           "nr" = "sudo nixos-rebuild --flake $HOME/systems#${osConfig.networking.hostName} switch --show-trace --verbose";
