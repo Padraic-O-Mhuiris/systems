@@ -1,4 +1,8 @@
-{vars, ...}: let
+{
+  vars,
+  pkgs,
+  ...
+}: let
   # TODO Add to vars
   SSH_PORT = 22;
 in {
@@ -8,6 +12,7 @@ in {
         vars.PRIMARY_USER.SSH_PUBLIC_KEY
       ];
     };
+    # TODO Perhaps access to root should be always avoided
     root = {
       openssh.authorizedKeys.keys = [
         vars.PRIMARY_USER.SSH_PUBLIC_KEY
@@ -54,6 +59,8 @@ in {
     };
   };
 
+  systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
+
   programs.ssh = {
     extraConfig = ''
       Host mac02.numtide.com
@@ -81,29 +88,17 @@ in {
     };
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     services.ssh-agent.enable = true;
 
     programs.ssh = {
       enable = true;
       matchBlocks = {
-        #   "Oxygen" = {
-        #     host = "oxygen.tail684cf.ts.net";
-        #     user = config.home.username;
-        #   };
-        #   "Hydrogen" = {
-        #     host = "hydrogen.tail684cf.ts.net";
-        #     user = config.home.username;
-        #   };
         "mac02.numtide.com" = {
           host = "mac02.numtide.com";
           user = "customer";
         };
       };
-
-      # extraConfig = ''
-      #   StreamLocalBindUnlink yes
-      # '';
     };
   };
 }

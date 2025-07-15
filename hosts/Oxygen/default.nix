@@ -50,6 +50,7 @@
 
   facter.reportPath = ./facter.json;
   fileSystems."/persist".neededForBoot = true;
+
   environment.persistence."/persist" = {
     enable = true;
     hideMounts = true;
@@ -72,9 +73,6 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  services.openssh.enable = true;
-  systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
   environment.systemPackages = with pkgs; [
     vim
