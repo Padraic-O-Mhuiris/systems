@@ -8,5 +8,5 @@
     inputs.nixos-facter-modules.nixosModules.facter
   ];
 
-  facter.reportPath = root + "host/${config.networking.hostName}" + ./facter.json;
+  facter.reportPath = root + "/hosts/${config.networking.hostName}/facter.json";
 }

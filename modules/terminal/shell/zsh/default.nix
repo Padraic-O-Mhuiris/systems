@@ -1,5 +1,9 @@
 {vars, ...}: {
+  programs.zsh.enable = true;
+
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+    programs.command-not-found.enable = true;
+
     programs.direnv = {
       enable = true;
       enableZshIntegration = true;

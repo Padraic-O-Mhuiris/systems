@@ -28,7 +28,7 @@
     };
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
     home = {
       homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
       preferXdgDirectories = true;

@@ -12,9 +12,11 @@
     useUserPackages = false;
     backupFileExtension = "backup";
     verbose = true;
-  };
 
-  users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: {
-    inherit (osConfig.system) stateVersion;
+    users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: {
+      home = {
+        inherit (osConfig.system) stateVersion;
+      };
+    };
   };
 }

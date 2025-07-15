@@ -34,7 +34,7 @@
     ../../modules/graphical/nvidia.nix
     ../../modules/graphical/fonts.nix
 
-    ../../modules/editors/git
+    ../../modules/editors/git.nix
     ../../modules/editors/helix
 
     ../../modules/terminal/wezterm
@@ -48,7 +48,7 @@
     ../../modules/users/primary.nix
   ];
 
-  networking.ensureProfiles."home".ipv4.address = "192.168.0.50/24";
+  networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.50/24";
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     programs.niri.settings = {
@@ -91,7 +91,7 @@
     };
   };
 
-  time.timeZone = "Europe/Dublin";
+  time.timeZone = "/Dublin";
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.05";

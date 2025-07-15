@@ -1,5 +1,5 @@
 {vars, ...}: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {osConfig}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: {
     home = {
       shellAliases = {
         # TODO Create default filesystem location for this nixos repository
