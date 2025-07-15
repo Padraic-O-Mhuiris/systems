@@ -44,6 +44,7 @@
 
     ../../modules/peripherals/audio.nix
     ../../modules/peripherals/bluetooth.nix
+    ../../modules/peripherals/keyboard.nix
   ];
 
   programs.nix-ld.enable = true;
@@ -88,14 +89,6 @@
     pciutils
   ];
 
-  services.xserver = {
-    xkb = {
-      options = "ctrl:swapcaps";
-      layout = lib.mkDefault "gb";
-    };
-  };
-  console.useXkbConfig = true;
-
   services.getty = {
     autologinUser = vars.PRIMARY_USER.NAME;
     autologinOnce = true;
@@ -119,7 +112,6 @@
 
       extraGroups = [
         "wheel"
-        "input"
         "networkmanager"
         "audio"
         "pipewire"
