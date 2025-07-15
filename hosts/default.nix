@@ -20,5 +20,9 @@ in {
       inherit specialArgs;
       modules = [./Oxygen] ++ common;
     };
+    Hydrogen = lib.nixosSystem {
+      inherit specialArgs;
+      modules = [./Hydrogen] ++ common;
+    };
   };
 }
