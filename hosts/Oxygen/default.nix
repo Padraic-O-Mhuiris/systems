@@ -38,6 +38,7 @@
     ../../modules/editors/helix
 
     ../../modules/terminal/wezterm
+    ../../modules/terminal/ghostty
     ../../modules/terminal/shell/zsh
     ../../modules/terminal/shell/aliases.nix
 
