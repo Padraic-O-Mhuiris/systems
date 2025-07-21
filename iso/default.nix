@@ -21,7 +21,6 @@
         {
           pkgs,
           lib,
-          vars,
           ...
         }: {
           nixpkgs.config.allowBroken = true;
@@ -101,14 +100,7 @@
     ];
   };
 in {
-  perSystem = {
-    config,
-    self',
-    inputs',
-    pkgs,
-    system,
-    ...
-  }: {
+  perSystem = _: {
     packages.iso = iso.config.system.build.isoImage;
   };
 }
