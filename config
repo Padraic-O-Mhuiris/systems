@@ -1,6 +1,10 @@
-# command = bash -l -c nu
 font-size = 12
-# font-family = JetBrains Mono
+
+font-family = "Berkely Mono Regular"
+font-family-bold = "Berkely Mono Bold"
+font-family-italic = "Berkely Mono Italic"
+font-family-bold-italic = "Berkely Mono Bold Italic"
+
 background-opacity = 0.95
 background-blur-radius = 20
 macos-non-native-fullscreen = visible-menu
