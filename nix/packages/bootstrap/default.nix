@@ -1,6 +1,6 @@
 {inputs, ...}: {
   perSystem = {pkgs, ...}: let
-    inherit (import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {lib = inputs.nixpkgs.lib;}.config.ids) gids;
+    inherit ((import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {lib = inputs.nixpkgs.lib;}).config.ids) gids;
 
     nixos-anywhere =
       inputs.nixos-anywhere.packages.${pkgs.system}.default;
@@ -78,7 +78,7 @@
         --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/$HOST) \
         --flake ".#$HOST" \
         --phases 'kexec,disko,install,reboot' \
-        --chown /home/${vars.PRIMARY_USER.NAME}/.ssh "${toString vars.PRIMARY_USER.UID}:${toString gids.users}" \
+        --chown /home/${vars.PRIMARY_USER.NAME}/.ssh ${toString vars.PRIMARY_USER.UID}:${toString gids.users} \
         --ssh-port $PORT \
         --debug \
         $URL
