@@ -23,7 +23,6 @@
     ../modules/common/pkgs.nix
     ../modules/common/impermanence.nix
 
-    ../modules/networking/wifi.nix
     ../modules/networking/ssh.nix
     ../modules/networking/firewall.nix
     ../modules/networking/dns.nix
@@ -68,6 +67,9 @@ in {
     Hydrogen = lib.nixosSystem {
       inherit specialArgs;
       modules = [./Hydrogen] ++ common;
+    };
+    Lithium = lib.nixosSystem {
+      modules = [./Lithium];
     };
   };
 }
