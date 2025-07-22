@@ -1,5 +1,10 @@
-{vars, ...}: {
+{
+  inputs,
+  vars,
+  ...
+}: {
   imports = [
+    inputs.secrets.nixosModules.wifi-home
     ./disk.nix
     ../../modules/terminal/shell/atuin.nix
   ];

@@ -15,6 +15,7 @@
     };
 
     modules = [
+      inputs.secrets.nixosModules.wifi-home
       "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
       "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
       (
@@ -24,6 +25,7 @@
           ...
         }: {
           nixpkgs.config.allowBroken = true;
+
           boot.supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
           boot.kernelPackages = pkgs.linuxPackages_latest;
           boot.kernelModules = [
@@ -59,7 +61,7 @@
 
           networking = {
             hostName = "iso";
-            networkmanager.enable = true;
+            networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.2/24";
             wireless.enable = false;
           };
 
