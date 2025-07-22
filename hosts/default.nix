@@ -14,6 +14,8 @@
   };
 
   common = [
+    inputs.secrets.nixosModules.wifi-home
+
     ../modules/common/home-manager.nix
     ../modules/common/nix
     ../modules/common/facter.nix
@@ -69,7 +71,14 @@ in {
       modules = [./Hydrogen] ++ common;
     };
     Lithium = lib.nixosSystem {
-      modules = [./Lithium];
+      inherit specialArgs;
+      modules = [
+        ./Lithium
+      ];
     };
   };
+
+  # perSystem = _: {
+  #   packages.Lithium = self.nixosConfigurations.Lithium.config.system.build.isoImage;
+  # };
 }

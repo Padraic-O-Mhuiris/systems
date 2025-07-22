@@ -1,8 +1,15 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
 }: {
+  imports = [
+    inputs.secrets.nixosModules.wifi-home
+    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+    "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
+  ];
+
   nixpkgs.config.allowBroken = true;
 
   boot.supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
@@ -61,9 +68,9 @@
     rsync
   ];
 
-  users.users.root = {
-    initialPassword = "root";
-    openssh.authorizedKeys.keys = [
+  users = {
+    mutableUsers = false;
+    users.root.openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFlro/QUDlDpaA1AQxdWIqBg9HSFJf9Cb7CPdsh0JN7"
     ];
   };
@@ -77,5 +84,5 @@
 
   system.stateVersion = "25.05";
 
-  isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+  # isoImage.squashfsCompression = "gzip -Xcompression-level 1";
 }
