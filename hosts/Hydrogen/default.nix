@@ -40,6 +40,7 @@
     ../../modules/terminal/wezterm
     ../../modules/terminal/shell/zsh
     ../../modules/terminal/shell/aliases.nix
+    ../../modules/terminal/shell/atuin.nix
 
     ../../modules/peripherals/audio.nix
     ../../modules/peripherals/bluetooth.nix
