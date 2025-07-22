@@ -56,7 +56,6 @@
       debug = true;
       imports = [
         ./nix
-        ./iso
         ./hosts
       ];
       systems = ["x86_64-linux"];
