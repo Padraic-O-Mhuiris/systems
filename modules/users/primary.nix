@@ -11,13 +11,10 @@
   users = {
     mutableUsers = false;
     users."${vars.PRIMARY_USER.NAME}" = {
+      uid = vars.PRIMARY_USER.UID;
       isNormalUser = true;
-      createHome = true;
       shell = pkgs.zsh;
-
       hashedPasswordFile = config.sops.secrets."${vars.PRIMARY_USER.NAME}_password".path;
-      group = "users";
-
       extraGroups = [
         "wheel"
         "input"

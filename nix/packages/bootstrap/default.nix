@@ -1,7 +1,10 @@
 {inputs, ...}: {
   perSystem = {pkgs, ...}: let
+    inherit (import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {lib = inputs.nixpkgs.lib;}.config.ids) gids;
+
     nixos-anywhere =
       inputs.nixos-anywhere.packages.${pkgs.system}.default;
+
     vars = inputs.secrets.vars;
   in {
     packages.bootstrap = pkgs.writeShellScriptBin "bootstrap" ''
@@ -58,7 +61,6 @@
       chmod 0600 "$temp/persist/etc/ssh/ssh_host_ed25519_key"
       chmod 0644 "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
-
       install -d -m755 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh"
 
       chown ${vars.PRIMARY_USER.NAME}:users "$temp/home/${vars.PRIMARY_USER.NAME}"
@@ -70,12 +72,13 @@
       chmod 0600 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519"
       chmod 0644 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519.pub"
 
-
       ${nixos-anywhere}/bin/nixos-anywhere \
         --extra-files "$temp" \
         --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/$HOST) \
         --flake ".#$HOST" \
         --phases 'kexec,disko,install,reboot' \
+        --chown /home/${vars.PRIMARY_USER.NAME}/ssh/id_ed25519 "${toString vars.PRIMARY_USER.UID}:${toString gids.users}" \
+        --chown /home/${vars.PRIMARY_USER.NAME}/ssh/id_ed25519.pub "${toString vars.PRIMARY_USER.UID}:${toString gids.users}" \
         --ssh-port $PORT \
         --debug \
         $URL
