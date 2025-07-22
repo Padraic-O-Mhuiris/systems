@@ -52,6 +52,7 @@
     ../modules/terminal/wezterm
     ../modules/terminal/ghostty
     ../modules/terminal/shell/zsh
+    ../modules/terminal/shell/atuin.nix
     ../modules/terminal/shell/aliases.nix
 
     ../modules/peripherals/audio.nix

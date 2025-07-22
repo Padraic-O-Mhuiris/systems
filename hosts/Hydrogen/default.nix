@@ -1,7 +1,6 @@
 {vars, ...}: {
   imports = [
     ./disk.nix
-    # ../../modules/terminal/shell/atuin.nix
   ];
 
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.51/24";
