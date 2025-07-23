@@ -14,8 +14,6 @@
   };
 
   common = [
-    inputs.secrets.nixosModules.wifi-home
-
     ../modules/common/home-manager.nix
     ../modules/common/nix
     ../modules/common/facter.nix
@@ -30,6 +28,7 @@
     ../modules/networking/dns.nix
     ../modules/networking/wait-online.nix
     ../modules/networking/tailscale.nix
+    ../modules/networking/wifi.nix
 
     ../modules/security/sudo.nix
     ../modules/security/gpg.nix
