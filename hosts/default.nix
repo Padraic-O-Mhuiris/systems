@@ -43,6 +43,7 @@
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix
     ../modules/graphical/nvidia.nix
+    ../modules/graphical/temperature.nix
     ../modules/graphical/fonts.nix
 
     ../modules/editors/git.nix
