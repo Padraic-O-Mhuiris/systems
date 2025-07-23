@@ -66,7 +66,6 @@
 
       cursor = {
         theme = "default";
-        size = 24;
         hide-when-typing = true;
       };
 

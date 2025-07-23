@@ -7,7 +7,20 @@
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     programs.niri.settings = {
-      outputs = {};
+      cursor = {
+        size = 36;
+      };
+      outputs = {
+        "eDP-1" = {
+          enable = true;
+          scale = 1.75;
+          mode = {
+            height = 2400;
+            width = 3840;
+            refresh = 59.994;
+          };
+        };
+      };
     };
   };
 

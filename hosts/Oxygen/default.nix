@@ -7,6 +7,9 @@
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     programs.niri.settings = {
+      cursor = {
+        size = 24;
+      };
       outputs = {
         "DP-1" = {
           enable = true;
