@@ -8,6 +8,10 @@ in {
     services.gammastep = {
       inherit (ireland) latitude longitude;
       enable = true;
+      tray = true;
+      temperature = {
+        night = 2500;
+      };
       provider = "manual";
     };
   };
