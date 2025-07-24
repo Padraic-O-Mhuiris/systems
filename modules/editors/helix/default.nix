@@ -9,15 +9,20 @@
       helixSrcPath = "/home/${vars.PRIMARY_USER.NAME}/systems/modules/editors/helix";
     in {
       "helix/config.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config.toml"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/helix/config.toml"
       );
       "helix/languages.toml".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/languages.toml"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/helix/languages.toml"
       );
       "helix/ignore".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/ignore"
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/helix/ignore"
+      );
+      "dprint/config.json".source = lib.mkForce (
+        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/dprint/config.json"
       );
     };
+
+    home.packages = with pkgs; [dprint];
 
     programs.helix = {
       enable = true;
@@ -33,14 +38,17 @@
         pyright
         lazygit
         luaformatter
-        marksman
-        mdformat
+
         nixfmt-rfc-style
         lldb_18
         taplo
         gopls
         golangci-lint-langserver
         golangci-lint
+
+        # markdown
+        marksman
+        dprint
       ];
     };
   };

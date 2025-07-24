@@ -21,7 +21,7 @@ formatter = { command = "black", args = ["--quiet", "-"] }
 [[language]]
 name = "markdown"
 auto-format = true
-formatter = { command = "mdformat", args = ["-"] }
+formatter = { command = "dprint", args = ["fmt", "--stdin", "md", "--config", "~/.config/dprint/config.json"]}
 
 [[language]]
 name = "rust"
