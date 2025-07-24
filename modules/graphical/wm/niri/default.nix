@@ -43,6 +43,8 @@
     pkgs,
     ...
   }: {
+    home.packages = with pkgs; [brightnessctl gammastep];
+
     home.sessionVariables = {
       LAUNCHER = "${lib.getExe pkgs.fuzzel}";
     };

@@ -3,6 +3,7 @@
   vars,
   ...
 }: {
+  # TODO This does not work on Oxygen monitors
   environment.systemPackages = with pkgs; [
     ddcutil
     wlr-randr
