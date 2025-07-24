@@ -22,8 +22,6 @@
       );
     };
 
-    home.packages = with pkgs; [dprint];
-
     programs.helix = {
       enable = true;
       defaultEditor = true;
