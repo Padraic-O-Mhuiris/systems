@@ -20,6 +20,7 @@ formatter = { command = "black", args = ["--quiet", "-"] }
 
 [[language]]
 name = "markdown"
+language-servers = ["marksman", "mpls", "ltex-ls-plus"]
 auto-format = true
 formatter = { command = "dprint", args = ["fmt", "--stdin", "md", "--config", "~/.config/dprint/config.json"]}
 
@@ -46,3 +47,14 @@ command = [
   "--show-stats=false",
   "--issues-exit-code=1",
 ]
+
+[language-server.ltex-ls-plus.config]
+ltex.diagnosticSeverity = "warning"
+ltex.ltex-ls.logLevel = "warning"
+ltex.disabledRules = {  "en-GB" = ["PROFANITY"] }
+ltex.dictionary = { "en-GB" = ["builtin"] }
+
+
+[language-server.mpls]
+command = "mpls"
+args = ["--dark-mode", "--enable-emoji"]

@@ -46,7 +46,9 @@
 
         # markdown
         marksman
+        ltex-ls-plus
         dprint
+        mpls
       ];
     };
   };
