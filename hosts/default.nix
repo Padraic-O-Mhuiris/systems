@@ -83,7 +83,7 @@ in {
     };
   };
 
-  # perSystem = _: {
-  #   packages.Lithium = self.nixosConfigurations.Lithium.config.system.build.isoImage;
-  # };
+  perSystem = _: {
+    packages.Lithium = self.nixosConfigurations.Lithium.config.system.build.isoImage;
+  };
 }
