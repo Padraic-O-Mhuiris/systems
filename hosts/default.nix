@@ -63,7 +63,12 @@ in {
   flake.nixosConfigurations = {
     Oxygen = lib.nixosSystem {
       inherit specialArgs;
-      modules = [./Oxygen] ++ common;
+      modules =
+        [
+          ./Oxygen
+          ../modules/peripherals/monitors.nix
+        ]
+        ++ common;
     };
     Hydrogen = lib.nixosSystem {
       inherit specialArgs;

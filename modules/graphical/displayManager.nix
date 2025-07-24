@@ -1,9 +1,4 @@
-{
-  pkgs,
-  vars,
-  ...
-}: {
-  environment.systemPackages = with pkgs; [gammastep brightnessctl];
+{vars, ...}: {
   services.displayManager = {
     sddm = {
       enable = true;
