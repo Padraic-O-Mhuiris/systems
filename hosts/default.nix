@@ -79,15 +79,21 @@ in {
         ]
         ++ common;
     };
-    Lithium = lib.nixosSystem {
+    Carbon = lib.nixosSystem {
       inherit specialArgs;
       modules = [
-        ./Lithium
+        ./Carbon
       ];
     };
   };
 
   perSystem = _: {
-    packages.Lithium = self.nixosConfigurations.Lithium.config.system.build.isoImage;
+    packages.Lithium =
+      (lib.nixosSystem {
+        inherit specialArgs;
+        modules = [
+          ./Lithium
+        ];
+      }).config.system.build.isoImage;
   };
 }
