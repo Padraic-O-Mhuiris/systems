@@ -43,7 +43,6 @@
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix
     ../modules/graphical/nvidia.nix
-    ../modules/graphical/temperature.nix
     ../modules/graphical/fonts.nix
 
     ../modules/editors/git.nix
@@ -69,7 +68,12 @@ in {
     };
     Hydrogen = lib.nixosSystem {
       inherit specialArgs;
-      modules = [./Hydrogen] ++ common;
+      modules =
+        [
+          ./Hydrogen
+          ../modules/graphical/temperature.nix
+        ]
+        ++ common;
     };
     Lithium = lib.nixosSystem {
       inherit specialArgs;
