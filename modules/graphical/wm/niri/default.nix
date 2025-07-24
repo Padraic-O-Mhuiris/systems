@@ -27,12 +27,6 @@
     pkgs.xdg-desktop-portal-gtk
   ];
 
-  # We don't want gnome-keyring to be spawned
-  services.gnome.gnome-keyring.enable = lib.mkForce false;
-
-  # We don't want pam to setup keyring as this is enabled
-  environment.variables.XDG_RUNTIME_DIR = "/run/user/${vars.PRIMARY_USER.UID}";
-
   environment.variables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
     wl-clipboard
