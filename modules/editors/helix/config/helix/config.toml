@@ -4,6 +4,11 @@ theme = "ayu_dark"
 bufferline = "multiple"
 line-number = "relative"
 mouse = false
+auto-pairs = true
+auto-completion = true
+auto-format = true
+# preview-completion-insert = true
+# completion-replace = true
 
 [editor.smart-tab]
 enable = true
@@ -18,3 +23,24 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[editor.statusline]
+left = ["mode", "spinner"]
+center = ["file-name"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-progress-messages = true
+auto-signature-help = true
+# display-inlay-hints = true
+# display-color-swatches = true
+display-signature-help-docs = true
+snippets = true
+goto-reference-include-declaration = true
