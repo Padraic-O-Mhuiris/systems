@@ -9,6 +9,8 @@
     config.allowUnfree = lib.mkDefault true;
   };
 
+  environment.systemPackages = with pkgs; [nix-fast-build];
+
   programs.nix-ld.enable = true;
 
   nix = {
