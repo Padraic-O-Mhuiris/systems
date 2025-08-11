@@ -3,9 +3,7 @@
   inputs,
   ...
 }: let
-  inherit (self) lib;
-
-  root = ../.;
+  inherit (self) lib root;
 
   specialArgs = {
     inherit inputs;
@@ -60,6 +58,7 @@
     ../modules/users/primary.nix
   ];
 in {
+  imports = [./Carbon];
   flake.nixosConfigurations = {
     Oxygen = lib.nixosSystem {
       inherit specialArgs;
@@ -78,12 +77,6 @@ in {
           ../modules/graphical/temperature.nix
         ]
         ++ common;
-    };
-    Carbon = lib.nixosSystem {
-      inherit specialArgs;
-      modules = [
-        ./Carbon
-      ];
     };
   };
 

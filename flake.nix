@@ -27,6 +27,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    devshell.url = "github:numtide/devshell";
+
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -48,6 +50,10 @@
     secrets = {
       url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    terranix = {
+      url = "github:terranix/terranix";
     };
   };
 
