@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = with pkgs; [pavucontrol];
+  environment.systemPackages = with pkgs; [pavucontrol pulseaudio alsa-utils];
 
   security.rtkit.enable = true;
 
@@ -8,7 +8,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     socketActivation = true;
-    systemWide = true;
+    systemWide = false;
     pulse.enable = true;
     wireplumber.enable = true;
   };

@@ -32,6 +32,7 @@
     wayland-utils
     libsecret
     cage
+    wlr-randr
     gamescope
     xwayland-satellite-unstable
     swaybg

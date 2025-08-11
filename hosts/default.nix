@@ -35,6 +35,7 @@
     ../modules/apps/spotify.nix
     ../modules/apps/obsidian.nix
     ../modules/apps/steam.nix
+    ../modules/apps/qbittorrent.nix
     ../modules/apps/slack.nix
 
     ../modules/graphical/wm/niri
