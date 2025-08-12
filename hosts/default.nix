@@ -37,6 +37,7 @@
     ../modules/apps/steam.nix
     ../modules/apps/qbittorrent.nix
     ../modules/apps/slack.nix
+    ../modules/apps/nemo.nix
 
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix

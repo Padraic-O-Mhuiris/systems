@@ -10,7 +10,6 @@
     wget
     unzip
     bc
-    nautilus
     pciutils
   ];
 }
