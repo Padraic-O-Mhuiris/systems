@@ -11,5 +11,8 @@
     unzip
     bc
     pciutils
+    ripgrep
+    fzf
+    entr
   ];
 }

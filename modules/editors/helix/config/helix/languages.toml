@@ -6,7 +6,8 @@ auto-format = true
 [[language]]
 name = "beancount"
 auto-format = true
-formatter = { command = "bean-format" }
+formatter = { command = "bean-format", args = ["-"]}
+file-types = ["beancount", "bean"]
 
 [[language]]
 name = "lua"
