@@ -56,6 +56,7 @@
     ../modules/peripherals/audio.nix
     ../modules/peripherals/bluetooth.nix
     ../modules/peripherals/keyboard.nix
+    ../modules/peripherals/usb.nix
 
     ../modules/users/primary.nix
   ];
