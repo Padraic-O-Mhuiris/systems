@@ -13,7 +13,6 @@
           git
           hcloud
           just
-          terraform
         ]
         ++ [
           inputs'.nixos-anywhere.packages.default
