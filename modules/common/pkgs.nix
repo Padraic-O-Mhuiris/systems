@@ -14,5 +14,6 @@
     ripgrep
     fzf
     entr
+    ffmpeg
   ];
 }
