@@ -14,6 +14,8 @@
     ripgrep
     fzf
     entr
+    # TODO Move elsewhere maybe
     ffmpeg
+    img2pdf
   ];
 }
