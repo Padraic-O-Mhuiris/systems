@@ -39,6 +39,7 @@
     ../modules/apps/slack.nix
     ../modules/apps/nemo.nix
     ../modules/apps/telegram.nix
+    ../modules/apps/libreoffice.nix
 
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix
