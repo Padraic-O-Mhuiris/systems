@@ -4,12 +4,6 @@ auto-format = true
 # formatter = { command = "nixfmt" }
 
 [[language]]
-name = "beancount"
-auto-format = true
-formatter = { command = "bean-format", args = ["-"]}
-file-types = ["beancount", "bean"]
-
-[[language]]
 name = "lua"
 auto-format = true
 formatter = { command = "lua-format" }
