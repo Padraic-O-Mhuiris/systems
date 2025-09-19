@@ -41,6 +41,8 @@
     ../modules/apps/telegram.nix
     ../modules/apps/libreoffice.nix
 
+    ../modules/services/llm
+
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix
     ../modules/graphical/nvidia.nix

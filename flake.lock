@@ -508,10 +508,10 @@
         "sops": "sops"
       },
       "locked": {
-        "lastModified": 1753444018,
-        "narHash": "sha256-ef8RznN/8ejmY1kJr7l66dLkmg/XXbY/bEbbRw9rXhM=",
+        "lastModified": 1758304012,
+        "narHash": "sha256-F/J86I7HLIjRy6C+634ksDK0gJW59LLTcT8pYzJa7z4=",
         "ref": "refs/heads/master",
-        "rev": "76cfdf6fa31d2b8e494908d9cf5f59418449a53c",
+        "rev": "82bb7ba7a5acad9dde8c2cf2fa566779b0f48bca",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
