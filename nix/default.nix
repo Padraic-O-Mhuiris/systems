@@ -10,6 +10,7 @@
   };
   imports = [
     ./formatter.nix
+    ./checks.nix
     ./shell.nix
     ./packages
     ./lib
