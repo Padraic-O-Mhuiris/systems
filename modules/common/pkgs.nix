@@ -18,5 +18,6 @@
     # TODO Move elsewhere maybe
     ffmpeg
     img2pdf
+    psmisc
   ];
 }
