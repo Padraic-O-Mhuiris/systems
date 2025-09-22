@@ -40,9 +40,11 @@
     "rtlwifi"
     ];
   };
-  hardware.bluetooth.enable = false;
-  hardware.enableAllFirmware = true;
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    bluetooth.enable = false;
+    enableAllFirmware = true;
+    enableRedistributableFirmware = true;
+  };
 
 
   nix.settings.experimental-features = [
