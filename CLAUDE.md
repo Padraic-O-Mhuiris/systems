@@ -1,0 +1,73 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+This is a NixOS configuration repository using Nix flakes to manage multiple machines and their configurations. The repository manages personal NixOS installations across various machines with modular configuration architecture.
+
+## Build System and Commands
+
+### Flake Commands
+- `nix flake update` - Update all flake inputs
+- `nix flake update secrets` - Update only the secrets input
+- `just update-secrets` - Update secrets flake input and commit changes
+
+### Host Building and Deployment
+- `nix build .#nixosConfigurations.<HOST>.config.system.build.toplevel` - Build a host configuration
+- `nix run .#packages.x86_64-linux.bootstrap -- --host <HOST> --url root@<IP>` - Bootstrap installation on new machine
+- `nixos-rebuild switch --flake .#<HOST_DERIVATION> --target-host <USER>@<TARGET_HOST> --build-host <USER>@<BUILD_HOST> --use-remote-sudo` - Remote rebuild
+
+### Live USB
+- `nix build .#packages.x86_64-linux.Lithium` - Build Lithium live USB ISO image
+
+### Development Environment
+- `nix develop` - Enter development shell (configured in nix/shell.nix)
+- `nix fmt` - Format Nix files using the configured formatter
+
+## Architecture
+
+### Core Structure
+- **flake.nix**: Main entry point defining inputs and outputs using flake-parts
+- **hosts/**: Individual machine configurations (Hydrogen, Oxygen, Carbon, Lithium)
+- **modules/**: Reusable NixOS modules organized by category
+- **nix/**: Build system configuration, packages, and utilities
+
+### Host Types
+- **Lithium**: Live USB/bootstrap environment for new installations
+- **Hydrogen/Oxygen**: Personal desktop/laptop machines with full configurations
+- **Carbon**: Server/infrastructure host
+
+### Module Organization
+Modules are categorized by functionality:
+- **ai/**: AI tools and services configuration
+- **apps/**: Application configurations (browsers, productivity tools)
+- **common/**: Core system configuration (nix, boot, secrets, impermanence)
+- **editors/**: Development tools (git, helix)
+- **graphical/**: Display managers, window managers (niri), fonts, nvidia
+- **networking/**: SSH, firewall, DNS, tailscale, wifi
+- **peripherals/**: Audio, bluetooth, keyboard, monitors, USB
+- **security/**: sudo, GPG configuration
+- **services/**: System services
+- **terminal/**: Terminal emulators (wezterm, ghostty) and shell (zsh)
+- **users/**: User account configuration
+
+### Key Technologies
+- **nixos-anywhere**: Remote NixOS installation
+- **disko**: Disk partitioning and formatting
+- **home-manager**: User environment management
+- **impermanence**: Stateless system configuration
+- **sops-nix**: Secrets management (via private secrets flake)
+- **niri**: Wayland compositor
+- **Pass**: Password store for secrets during bootstrap
+
+### Secrets Management
+- Private secrets flake referenced as git submodule
+- SSH keys and disk encryption keys managed via `pass`
+- Age keys stored in `/persist/etc/ssh/` for sops decryption
+- Bootstrap script handles SSH key deployment during installation
+
+### Impermanence Strategy
+- Root filesystem is ephemeral (wiped on boot)
+- Persistent data stored in `/persist/` directory
+- Home directories and system state selectively persisted
