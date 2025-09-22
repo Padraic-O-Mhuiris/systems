@@ -79,3 +79,14 @@ When creating git commits:
 - Do NOT include co-author attributions or references to Claude/AI tools
 - Follow the existing commit message style in the repository
 - Keep commit messages focused on what was changed and why
+
+## Context Management
+
+When working on tasks, proactively update this CLAUDE.md file with new context that becomes apparent:
+- Add project priorities and current focus areas
+- Document architectural decisions and patterns discovered
+- Update build/deployment procedures as they evolve
+- Include planning preferences and workflow patterns
+- Record status of ongoing projects (like Carbon deployment)
+
+This ensures context persists across sessions and improves future collaboration.
