@@ -15,17 +15,16 @@
         enable = true;
         enableZshIntegration = true;
       };
-    };
 
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        add_newline = false;
+      starship = {
+        enable = true;
+        enableZshIntegration = true;
+        settings = {
+          add_newline = false;
+        };
       };
-    };
 
-    programs.zsh = {
+      zsh = {
       enable = true;
       dotDir = ".config/zsh";
       autosuggestion.enable = true;
@@ -61,6 +60,7 @@
           "extract"
         ];
       };
+    };
     };
   };
 }
