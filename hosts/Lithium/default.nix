@@ -51,14 +51,19 @@
     wireless.enable = false;
   };
 
-  services.openssh.enable = true;
+  services = {
+    openssh.enable = true;
 
-  services.xserver = {
-    xkb = {
-      options = "ctrl:swapcaps";
-      layout = lib.mkDefault "gb";
+    xserver = {
+      xkb = {
+        options = "ctrl:swapcaps";
+        layout = lib.mkDefault "gb";
+      };
     };
+
+    getty.autologinUser = lib.mkForce "root";
   };
+
   console.useXkbConfig = true;
 
   environment.systemPackages = with pkgs; [
@@ -76,7 +81,6 @@
   };
 
   security.sudo.wheelNeedsPassword = false;
-  services.getty.autologinUser = lib.mkForce "root";
 
   systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
 
