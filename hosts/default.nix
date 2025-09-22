@@ -12,6 +12,8 @@
   };
 
   common = [
+    ../modules/ai
+
     ../modules/common/home-manager.nix
     ../modules/common/nix
     ../modules/common/facter.nix
@@ -40,8 +42,6 @@
     ../modules/apps/nemo.nix
     ../modules/apps/telegram.nix
     ../modules/apps/libreoffice.nix
-
-    ../modules/services/llm
 
     ../modules/graphical/wm/niri
     ../modules/graphical/displayManager.nix
