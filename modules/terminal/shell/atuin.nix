@@ -1,10 +1,5 @@
 {vars, ...}: {
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
-    sops.secrets = {
-      atuin_session = {};
-      atuin_key = {};
-    };
-
     programs.atuin = {
       enable = true;
       daemon.enable = true;

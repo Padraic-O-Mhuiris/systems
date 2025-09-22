@@ -4,10 +4,6 @@
   vars,
   ...
 }: {
-  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
-    neededForUsers = true;
-  };
-
   users = {
     mutableUsers = false;
     users."${vars.PRIMARY_USER.NAME}" = {

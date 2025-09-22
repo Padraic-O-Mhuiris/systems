@@ -18,7 +18,6 @@
     ../modules/common/nix
     ../modules/common/facter.nix
     ../modules/common/boot.nix
-    ../modules/common/secrets.nix
     ../modules/common/pkgs.nix
     ../modules/common/impermanence.nix
 

@@ -1,11 +1,24 @@
-{vars, ...}: {
+{vars, inputs, config, ...}: {
   imports = [
     ./disk.nix
+    inputs.secrets.nixosModules.default
   ];
+
+  # Host-specific secrets configuration
+  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
+    neededForUsers = true;
+  };
 
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.51/24";
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+    imports = [
+      inputs.secrets.homeModules.default
+    ];
+    sops.secrets = {
+      atuin_session = {};
+      atuin_key = {};
+    };
     programs.niri.settings = {
       cursor = {
         size = 36;
