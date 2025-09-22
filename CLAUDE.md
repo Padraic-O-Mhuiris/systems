@@ -99,4 +99,9 @@ When working on tasks, proactively update this CLAUDE.md file with new context t
 - Include planning preferences and workflow patterns
 - Record status of ongoing projects (like Carbon deployment)
 
+Additionally, maintain TODO.md for project tracking:
+- Update project statuses as work progresses
+- Add new projects and ideas as they emerge
+- Move completed items to the completed section
+
 This ensures context persists across sessions and improves future collaboration.
