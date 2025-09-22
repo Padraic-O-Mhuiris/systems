@@ -18,9 +18,10 @@
     hostPlatform = lib.mkDefault "x86_64-linux";
   };
 
-  boot.supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [
+  boot = {
+    supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
+    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [
     "brcmfmac"
     "brcmutil"
     "iwlmvm"
@@ -37,7 +38,8 @@
     "rtl8192c_common"
     "rtl8192cu"
     "rtlwifi"
-  ];
+    ];
+  };
   hardware.bluetooth.enable = false;
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
