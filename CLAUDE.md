@@ -103,5 +103,7 @@ Additionally, maintain TODO.md for project tracking:
 - Update project statuses as work progresses
 - Add new projects and ideas as they emerge
 - Move completed items to the completed section
+- Sync TodoWrite progress to TODO.md using: ✅ (completed), 🔄 (in-progress), ⏳ (pending)
+- When resuming projects, recreate TodoWrite from TODO.md progress items
 
 This ensures context persists across sessions and improves future collaboration.
