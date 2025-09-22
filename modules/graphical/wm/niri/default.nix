@@ -19,12 +19,14 @@
   nixpkgs.overlays = [inputs.niri.overlays.niri];
   programs.niri.package = pkgs.niri-unstable;
 
-  xdg.portal.enable = true;
-  xdg.portal.wlr.enable = true;
-  xdg.portal.extraPortals = [
-    pkgs.xdg-desktop-portal-wlr
-    pkgs.xdg-desktop-portal-gtk
-  ];
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+    ];
+  };
 
   environment.variables.NIXOS_OZONE_WL = "1";
   environment.systemPackages = with pkgs; [
