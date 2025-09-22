@@ -2,17 +2,19 @@
   programs.zsh.enable = true;
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
-    programs.command-not-found.enable = true;
+    programs = {
+      command-not-found.enable = true;
 
-    programs.direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
+      direnv = {
+        enable = true;
+        enableZshIntegration = true;
+        nix-direnv.enable = true;
+      };
 
-    programs.zoxide = {
-      enable = true;
-      enableZshIntegration = true;
+      zoxide = {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
 
     programs.starship = {
