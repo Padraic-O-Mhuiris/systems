@@ -82,6 +82,14 @@ When creating git commits:
 - Make commits for incremental changes as work progresses
 - Use discretion to group related small changes into logical commits
 
+## Workflow Guidelines
+
+For collaboration approach:
+- **Small itemized changes**: Make direct commits without asking
+- **Larger projects/sub-projects**: Present suggestions and await guidance before implementation
+- **When unsure**: Always prompt for clarification rather than assuming scope
+- Use the TodoWrite tool for multi-step projects to track progress and enable review
+
 ## Context Management
 
 When working on tasks, proactively update this CLAUDE.md file with new context that becomes apparent:
