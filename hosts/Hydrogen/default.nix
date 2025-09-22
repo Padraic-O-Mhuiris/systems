@@ -1,4 +1,4 @@
-{vars, inputs, config, ...}: {
+{vars, inputs, ...}: {
   imports = [
     ./disk.nix
     inputs.secrets.nixosModules.default
