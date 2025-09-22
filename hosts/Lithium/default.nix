@@ -10,7 +10,13 @@
     "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
   ];
 
-  nixpkgs.config.allowBroken = true;
+  nixpkgs = {
+    config = {
+      allowBroken = true;
+      allowUnfree = true;
+    };
+    hostPlatform = lib.mkDefault "x86_64-linux";
+  };
 
   boot.supportedFilesystems = lib.mkForce ["btrfs" "reiserfs" "vfat" "f2fs" "xfs" "ntfs" "cifs"];
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -36,8 +42,6 @@
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
     "nix-command"
