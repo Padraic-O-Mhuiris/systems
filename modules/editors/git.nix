@@ -3,7 +3,7 @@
   vars,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {...}: {
     home.packages = with pkgs; [lazygit];
 
     home.shellAliases."lg" = "${pkgs.lazygit}/bin/lazygit";
