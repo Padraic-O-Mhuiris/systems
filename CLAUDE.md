@@ -71,3 +71,11 @@ Modules are categorized by functionality:
 - Root filesystem is ephemeral (wiped on boot)
 - Persistent data stored in `/persist/` directory
 - Home directories and system state selectively persisted
+
+## Commit Guidelines
+
+When creating git commits:
+- Use concise, descriptive commit messages that summarize the changes
+- Do NOT include co-author attributions or references to Claude/AI tools
+- Follow the existing commit message style in the repository
+- Keep commit messages focused on what was changed and why
