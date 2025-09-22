@@ -1,11 +1,11 @@
 {inputs, ...}: {
   perSystem = {pkgs, ...}: let
-    inherit ((import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {lib = inputs.nixpkgs.lib;}).config.ids) gids;
+    inherit ((import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {inherit (inputs.nixpkgs) lib;}).config.ids) gids;
 
     nixos-anywhere =
       inputs.nixos-anywhere.packages.${pkgs.system}.default;
 
-    vars = inputs.secrets.vars;
+    inherit (inputs.secrets) vars;
   in {
     packages.bootstrap = pkgs.writeShellScriptBin "bootstrap" ''
       set -euo pipefail
