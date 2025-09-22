@@ -3,13 +3,15 @@
 ## Active Projects
 
 ### Carbon Deployment
-- **Status**: Planning phase
+- **Status**: Research phase
 - **Description**: Deploy Carbon as Kubernetes cluster on Hetzner Cloud
 - **Current State**: Terraform config exists but commented out in `hosts/Carbon/default.nix`
-- **Next Steps**:
-  - Uncomment and configure Terraform infrastructure
-  - Add Carbon to nixosConfigurations in `hosts/default.nix`
-  - Create proper NixOS configuration for server role
+- **Progress**:
+  - ✅ Research Carbon Kubernetes deployment options
+  - 🔄 Uncomment Terraform configuration in hosts/Carbon/default.nix
+  - ⏳ Add Carbon to nixosConfigurations
+  - ⏳ Test Terraform plan generation
+  - ⏳ Update TODO.md with deployment progress
 
 ## Completed Projects
 
