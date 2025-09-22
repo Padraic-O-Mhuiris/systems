@@ -79,6 +79,8 @@ When creating git commits:
 - Do NOT include co-author attributions or references to Claude/AI tools
 - Follow the existing commit message style in the repository
 - Keep commit messages focused on what was changed and why
+- Make commits for incremental changes as work progresses
+- Use discretion to group related small changes into logical commits
 
 ## Context Management
 
