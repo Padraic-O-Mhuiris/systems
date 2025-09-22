@@ -65,7 +65,6 @@
     ../modules/users/primary.nix
   ];
 in {
-  imports = [./Carbon];
   flake.nixosConfigurations = {
     Oxygen = lib.nixosSystem {
       inherit specialArgs;
