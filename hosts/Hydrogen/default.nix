@@ -1,4 +1,8 @@
-{vars, inputs, ...}: {
+{
+  vars,
+  inputs,
+  ...
+}: {
   imports = [
     ./disk.nix
     inputs.secrets.nixosModules.default
@@ -11,14 +15,18 @@
 
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.51/24";
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
     imports = [
       inputs.secrets.homeModules.default
     ];
     sops.secrets = {
       atuin_session = {};
       atuin_key = {};
+      anthropic_api_key = {};
     };
+    programs.zsh.initContent = ''
+      export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
+    '';
     programs.niri.settings = {
       cursor = {
         size = 36;
