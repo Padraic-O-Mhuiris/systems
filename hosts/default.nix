@@ -56,6 +56,8 @@
     ../modules/terminal/shell/atuin.nix
     ../modules/terminal/shell/aliases.nix
 
+    ../modules/virtualisation
+
     ../modules/peripherals/audio.nix
     ../modules/peripherals/bluetooth.nix
     ../modules/peripherals/keyboard.nix
