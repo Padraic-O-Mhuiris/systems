@@ -20,7 +20,7 @@
   environment.variables.XDG_RUNTIME_DIR = "/run/user/${toString vars.PRIMARY_USER.UID}";
   environment.systemPackages = [pkgs.libsecret];
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     imports = [
       inputs.secrets.homeModules.default
     ];
@@ -29,9 +29,6 @@
       atuin_key = {};
       anthropic_api_key = {};
     };
-    programs.zsh.initContent = ''
-      export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
-    '';
     programs.niri.settings = {
       cursor = {
         size = 24;

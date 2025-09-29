@@ -15,7 +15,7 @@
 
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.51/24";
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     imports = [
       inputs.secrets.homeModules.default
     ];
@@ -24,9 +24,6 @@
       atuin_key = {};
       anthropic_api_key = {};
     };
-    programs.zsh.initContent = ''
-      export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_api_key.path})"
-    '';
     programs.niri.settings = {
       cursor = {
         size = 36;
