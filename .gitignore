@@ -4,3 +4,7 @@ result
 *.qcow2
 
 nix/packages/berkeley-mono/berkeley-mono.zip
+
+modules/ai/claude/shell-snapshots
+modules/ai/claude/plugins
+modules/ai/claude/todos
