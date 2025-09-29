@@ -52,10 +52,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-ai-tools = {
-      url = "github:numtide/nix-ai-tools";
-    };
-
     terranix = {
       url = "github:terranix/terranix";
     };

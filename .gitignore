@@ -9,3 +9,4 @@ modules/ai/claude/shell-snapshots
 modules/ai/claude/plugins
 modules/ai/claude/todos
 modules/ai/claude/projects
+modules/ai/claude/*.jsonl

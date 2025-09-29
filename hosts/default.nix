@@ -9,6 +9,7 @@
     inherit inputs;
     inherit lib;
     inherit root;
+    systemPkgs = self.packages;
   };
 
   common = [
