@@ -10,11 +10,17 @@
     powerOnBoot = true;
     package = pkgs.bluez5-experimental;
     settings = {
-      General.Enable = "Source,Sink,Media,Socket";
+      General = {
+        # Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+        KernelExperimental = true;
+      };
       Policy.AutoEnable = "true";
     };
   };
   services.blueman.enable = true;
+
+  boot.kernelModules = ["btusb" "btintel"];
 
   environment.systemPackages = with pkgs; [
     bluez5-experimental
