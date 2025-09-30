@@ -9,7 +9,7 @@
     inherit inputs;
     inherit lib;
     inherit root;
-    systemPkgs = self.packages;
+    system = {inherit (self) homeManagerModules nixosModules packages;};
   };
 
   common = [
