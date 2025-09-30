@@ -11,6 +11,6 @@
     #   TERMINAL = lib.getExe pkgs.ghostty;
     # };
 
-    xdg.configFile."ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "/home/${vars.PRIMARY_USER.NAME}/systems/modules/terminal/ghostty/config";
+    xdg.configFile."ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/terminal/ghostty/config";
   };
 }

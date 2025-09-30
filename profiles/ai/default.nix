@@ -9,7 +9,7 @@
     lib,
     ...
   }: let
-    claudeDirPath = "/home/${vars.PRIMARY_USER.NAME}/systems/modules/ai/claude";
+    claudeDirPath = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/ai/claude";
     inherit (systemPkgs.${pkgs.system}) claude-code cc;
   in {
     home.file.".claude" = {

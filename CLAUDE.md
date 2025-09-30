@@ -37,7 +37,7 @@ This is a mature, principal-level NixOS configuration repository demonstrating e
 ### Core Structure
 - **flake.nix**: Main entry point using flake-parts for composable configuration
 - **hosts/**: Machine-specific configurations with shared abstraction layer
-- **modules/**: Categorized reusable NixOS modules with clean interfaces
+- **profiles/**: Categorized reusable NixOS profiles with clean interfaces
 - **nix/**: Build system, packages, and development utilities
 - **docs/**: Comprehensive documentation including security practices
 
@@ -46,7 +46,7 @@ This is a mature, principal-level NixOS configuration repository demonstrating e
 - **Hydrogen/Oxygen**: Personal desktop/laptop configurations
 - **Carbon**: Server/infrastructure host (deployment in progress)
 
-### Module Categories
+### Profile Categories
 - **ai/**: AI tools and services (claude-code, agents)
 - **apps/**: Application configurations (browsers, productivity)
 - **common/**: Core system foundation (nix, boot, secrets, impermanence)

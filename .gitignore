@@ -5,8 +5,8 @@ result
 
 nix/packages/berkeley-mono/berkeley-mono.zip
 
-modules/ai/claude/shell-snapshots
-modules/ai/claude/plugins
-modules/ai/claude/todos
-modules/ai/claude/projects
-modules/ai/claude/*.jsonl
+profiles/ai/claude/shell-snapshots
+profiles/ai/claude/plugins
+profiles/ai/claude/todos
+profiles/ai/claude/projects
+profiles/ai/claude/*.jsonl

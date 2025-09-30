@@ -13,58 +13,58 @@
   };
 
   common = [
-    ../modules/ai
+    ../profiles/ai
 
-    ../modules/common/home-manager.nix
-    ../modules/common/nix
-    ../modules/common/facter.nix
-    ../modules/common/boot.nix
-    ../modules/common/pkgs.nix
-    ../modules/common/impermanence.nix
+    ../profiles/common/home-manager.nix
+    ../profiles/common/nix
+    ../profiles/common/facter.nix
+    ../profiles/common/boot.nix
+    ../profiles/common/pkgs.nix
+    ../profiles/common/impermanence.nix
 
-    ../modules/networking/ssh.nix
-    ../modules/networking/firewall.nix
-    ../modules/networking/dns.nix
-    ../modules/networking/wait-online.nix
-    ../modules/networking/tailscale.nix
-    ../modules/networking/wifi.nix
+    ../profiles/networking/ssh.nix
+    ../profiles/networking/firewall.nix
+    ../profiles/networking/dns.nix
+    ../profiles/networking/wait-online.nix
+    ../profiles/networking/tailscale.nix
+    ../profiles/networking/wifi.nix
 
-    ../modules/security/sudo.nix
-    ../modules/security/gpg.nix
+    ../profiles/security/sudo.nix
+    ../profiles/security/gpg.nix
 
-    # ../modules/apps/firefox.nix
-    ../modules/apps/zen-browser.nix
-    ../modules/apps/spotify.nix
-    ../modules/apps/obsidian.nix
-    ../modules/apps/steam.nix
-    ../modules/apps/qbittorrent.nix
-    ../modules/apps/slack.nix
-    ../modules/apps/nemo.nix
-    ../modules/apps/telegram.nix
-    ../modules/apps/libreoffice.nix
+    # ../profiles/apps/firefox.nix
+    ../profiles/apps/zen-browser.nix
+    ../profiles/apps/spotify.nix
+    ../profiles/apps/obsidian.nix
+    ../profiles/apps/steam.nix
+    ../profiles/apps/qbittorrent.nix
+    ../profiles/apps/slack.nix
+    ../profiles/apps/nemo.nix
+    ../profiles/apps/telegram.nix
+    ../profiles/apps/libreoffice.nix
 
-    ../modules/graphical/wm/niri
-    ../modules/graphical/displayManager.nix
-    ../modules/graphical/nvidia.nix
-    ../modules/graphical/fonts.nix
+    ../profiles/graphical/wm/niri
+    ../profiles/graphical/displayManager.nix
+    ../profiles/graphical/nvidia.nix
+    ../profiles/graphical/fonts.nix
 
-    ../modules/editors/git.nix
-    ../modules/editors/helix
+    ../profiles/editors/git.nix
+    ../profiles/editors/helix
 
-    ../modules/terminal/wezterm
-    ../modules/terminal/ghostty
-    ../modules/terminal/shell/zsh
-    ../modules/terminal/shell/atuin.nix
-    ../modules/terminal/shell/aliases.nix
+    ../profiles/terminal/wezterm
+    ../profiles/terminal/ghostty
+    ../profiles/terminal/shell/zsh
+    ../profiles/terminal/shell/atuin.nix
+    ../profiles/terminal/shell/aliases.nix
 
-    ../modules/virtualisation
+    ../profiles/virtualisation
 
-    ../modules/peripherals/audio.nix
-    ../modules/peripherals/bluetooth.nix
-    ../modules/peripherals/keyboard.nix
-    ../modules/peripherals/usb.nix
+    ../profiles/peripherals/audio.nix
+    ../profiles/peripherals/bluetooth.nix
+    ../profiles/peripherals/keyboard.nix
+    ../profiles/peripherals/usb.nix
 
-    ../modules/users/primary.nix
+    ../profiles/users/primary.nix
   ];
 in {
   flake.nixosConfigurations = {
@@ -73,7 +73,7 @@ in {
       modules =
         [
           ./Oxygen
-          ../modules/peripherals/monitors.nix
+          ../profiles/peripherals/monitors.nix
         ]
         ++ common;
     };
@@ -82,7 +82,7 @@ in {
       modules =
         [
           ./Hydrogen
-          ../modules/graphical/temperature.nix
+          ../profiles/graphical/temperature.nix
         ]
         ++ common;
     };

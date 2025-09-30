@@ -14,8 +14,8 @@ This document describes the secrets management approach used in this NixOS confi
 ```
 Main Repository (this repo)
 ├── flake.nix                    # References secrets flake input
-├── modules/common/secrets.nix   # Imports secrets modules
-└── modules/*/                   # Individual modules using secrets
+├── profiles/common/secrets.nix   # Imports secrets modules
+└── profiles/*/                   # Individual profiles using secrets
 
 External Secrets Repository (.secrets)
 ├── nixosModules/               # NixOS-level secrets
@@ -54,7 +54,7 @@ git commit -m "bump flake input secrets"
 
 ### Using Secrets in Modules
 
-#### NixOS Level (modules/common/secrets.nix)
+#### NixOS Level (profiles/common/secrets.nix)
 ```nix
 {
   imports = [
@@ -74,7 +74,7 @@ home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
 
 #### Individual Module Usage
 ```nix
-# Example from modules/users/primary.nix
+# Example from profiles/users/primary.nix
 sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
   # Configuration for user password
 };
