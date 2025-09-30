@@ -19,7 +19,7 @@ if os.getenv("WEZTERM_CLASS") then
 end
 
 config.font = wezterm.font_with_fallback({"Berkeley Mono"})
-config.font_size = 13
+config.font_size = 12
 config.freetype_load_flags = "NO_HINTING"
 config.freetype_load_target = "Normal"
 config.front_end = "WebGpu"
@@ -72,7 +72,12 @@ config.keys = {
         key = '-',
         mods = 'LEADER',
         action = wezterm.action.SplitVertical {domain = 'CurrentPaneDomain'}
-    }, {key = 's', mods = 'ALT', action = workspace_switcher.switch_workspace()}
+    },
+    {key = 's', mods = 'ALT', action = workspace_switcher.switch_workspace()}, {
+        key = "Enter",
+        mods = "SHIFT",
+        action = wezterm.action {SendString = "\x1b\r"}
+    }
 }
 
 return config
