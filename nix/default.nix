@@ -14,5 +14,6 @@
     ./shell.nix
     ./packages
     ./lib
+    ./modules
   ];
 }
