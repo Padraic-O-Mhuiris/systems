@@ -17,6 +17,7 @@
         ++ [
           inputs'.nixos-anywhere.packages.default
           inputs'.terranix.packages.default
+          inputs'.nixidy.packages.default
         ];
     };
   };

@@ -37,6 +37,10 @@
       url = "github:sodiboo/niri-flake";
     };
 
+    nixidy = {
+      url = "github:arnarg/nixidy";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,6 +67,7 @@
       imports = [
         ./nix
         ./hosts
+        ./clusters
       ];
       systems = ["x86_64-linux"];
     };
