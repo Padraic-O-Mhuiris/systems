@@ -76,6 +76,18 @@ Run `nix flake check` before committing to validate:
 - statix linting rules
 - System build verification
 
+## CLAUDE.md Hierarchy
+
+This project uses hierarchical context files for specialized documentation:
+
+- `./CLAUDE.md` - Root context (this file)
+- `./profiles/CLAUDE.md` - Profile system architecture and usage patterns
+- `./profiles/graphical/CLAUDE.md` - Display, window managers, and hardware acceleration
+- `./profiles/terminal/CLAUDE.md` - Shell, terminal emulators, and modern CLI tools
+- `./profiles/ai/CLAUDE.md` - Claude Code integration with sandboxed execution
+- `./hosts/CLAUDE.md` - Host-specific configurations and deployment workflows
+- `./nix/CLAUDE.md` - Custom modules, development tooling, and build infrastructure
+
 ## Claude Code Integration
 
 This repository includes a custom home-manager module for Claude Code with:
