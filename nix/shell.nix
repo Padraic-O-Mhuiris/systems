@@ -9,6 +9,13 @@
     devshells.default = {
       packages = with pkgs;
         [
+          curl
+          kubectl
+          podman
+          # kubernetes-helm
+          kind
+          k9s
+
           alejandra
           git
           hcloud

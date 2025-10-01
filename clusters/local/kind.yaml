@@ -1,0 +1,32 @@
+# kind-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+  extraMounts:
+  - hostPath: /home/padraic/systems/clusters/local/state/worker-1
+    containerPath: /state/worker-1
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8081
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+- role: worker
+  extraMounts:
+  - hostPath: /home/padraic/systems/clusters/local/state/worker-2
+    containerPath: /state/worker-2
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8082
+    listenAddress: "127.0.0.1"
+    protocol: TCP
+- role: worker
+  extraMounts:
+  - hostPath: /home/padraic/systems/clusters/local/state/worker-3
+    containerPath: /state/worker-3
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 8083
+    listenAddress: "127.0.0.1"
+    protocol: TCP
