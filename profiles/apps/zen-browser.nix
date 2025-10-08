@@ -14,6 +14,7 @@
     ];
     home.sessionVariables."BROWSER" = lib.mkForce (pkgs.lib.getExe config.programs.zen-browser.package);
 
+    # NOTE: For performance issues this is a weird fix https://old.reddit.com/r/zen_browser/comments/1ij60zu/sluggish_performance_with_zen_browser/mdfu496/?share_id=FbnBmNCky-2uIsl5NJYDw
     programs.zen-browser = {
       enable = true;
       nativeMessagingHosts = [pkgs.firefoxpwa];
