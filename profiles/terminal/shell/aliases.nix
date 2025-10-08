@@ -1,9 +1,18 @@
-{vars, ...}: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: {
+{
+  vars,
+  pkgs,
+  ...
+}: {
+  home-manager.users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: let
+    flakePath = "$HOME/systems";
+    host = osConfig.networking.hostName;
+  in {
     home = {
+      packages = with pkgs; [nh];
+
       shellAliases = {
-        # TODO Create default filesystem location for this nixos repository
-        "nr" = "sudo nixos-rebuild --flake $HOME/systems#${osConfig.networking.hostName} switch --show-trace --verbose";
+        nr = "${pkgs.nh}/bin/nh os switch ${flakePath} -H ${host} --verbose";
+        nrd = "sudo nixos-rebuild --flake ${flakePath}#${host} switch --show-trace --verbose --print-build-logs";
       };
     };
   };
