@@ -44,6 +44,8 @@
         golangci-lint-langserver
         golangci-lint
 
+        shfmt
+
         # markdown
         marksman
         ltex-ls-plus

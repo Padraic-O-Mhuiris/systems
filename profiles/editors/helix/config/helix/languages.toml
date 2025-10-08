@@ -25,6 +25,11 @@ auto-format = true
 formatter = { command = "cargo +nightly fmt" }
 
 [[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt" }
+
+[[language]]
 name = "go"
 auto-format = true
 formatter = { command = "gofmt" }
