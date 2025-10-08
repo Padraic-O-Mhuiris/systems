@@ -21,6 +21,10 @@
   services.blueman.enable = true;
 
   boot.kernelModules = ["btusb" "btintel"];
+  boot.kernelParams = [
+    "btusb.enable_autosuspend=0"
+    "bluetooth.disable_ertm=1"
+  ];
 
   environment.systemPackages = with pkgs; [
     bluez5-experimental

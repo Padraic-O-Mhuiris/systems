@@ -14,6 +14,10 @@
     neededForUsers = true;
   };
 
+  # Bluetooth issues
+  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [pkgs.linux-firmware];
+
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.50/24";
 
   # gnome-keyring can spawn popups on program launch like spotify.
