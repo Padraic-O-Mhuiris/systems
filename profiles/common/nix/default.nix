@@ -9,15 +9,14 @@
     config.allowUnfree = lib.mkDefault true;
   };
 
-  environment.systemPackages = with pkgs; [nix-fast-build nh];
+  environment.systemPackages = with pkgs; [nix-fast-build nh nix-health];
 
   programs.nix-ld.enable = true;
 
   nix = {
     # pin the registry to avoid downloading and evaling a new nixpkgs version every time
     registry = lib.mapAttrs (_: v: {flake = v;}) inputs;
-
-    package = pkgs.nixVersions.latest;
+    package = pkgs.nixVersions.nix_2_30;
 
     # set the path for channels compat
     nixPath = lib.mapAttrsToList (key: _: "${key}=flake:${key}") config.nix.registry;
