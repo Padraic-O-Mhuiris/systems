@@ -9,7 +9,7 @@
     config.allowUnfree = lib.mkDefault true;
   };
 
-  environment.systemPackages = with pkgs; [nix-fast-build nh nix-health];
+  environment.systemPackages = with pkgs; [nix-fast-build nh];
 
   programs.nix-ld.enable = true;
 
