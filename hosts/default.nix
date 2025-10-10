@@ -33,6 +33,7 @@
     ../profiles/security/gpg.nix
 
     ../profiles/browsers/firefox.nix
+    ../profiles/browsers/google-chrome.nix
     ../profiles/browsers/zen-browser.nix
     ../profiles/browsers/floorp.nix
 
