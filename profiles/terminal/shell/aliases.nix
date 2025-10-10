@@ -11,7 +11,7 @@
       packages = with pkgs; [nh];
 
       shellAliases = {
-        nr = "${pkgs.nh}/bin/nh os switch ${flakePath} -H ${host} --verbose";
+        nr = "${pkgs.nh}/bin/nh os switch ${flakePath} -H ${host}";
         nrd = "sudo nixos-rebuild --flake ${flakePath}#${host} switch --show-trace --verbose --print-build-logs";
       };
     };

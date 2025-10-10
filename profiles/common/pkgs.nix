@@ -12,6 +12,7 @@
     bc
     pciutils
     ripgrep
+    dig
     fzf
     entr
     zip
