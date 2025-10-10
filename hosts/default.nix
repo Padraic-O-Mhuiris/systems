@@ -34,6 +34,7 @@
 
     ../profiles/browsers/firefox.nix
     ../profiles/browsers/zen-browser.nix
+    ../profiles/browsers/floorp.nix
 
     ../profiles/apps/spotify.nix
     ../profiles/apps/obsidian.nix
