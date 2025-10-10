@@ -32,8 +32,9 @@
     ../profiles/security/sudo.nix
     ../profiles/security/gpg.nix
 
-    # ../profiles/apps/firefox.nix
-    ../profiles/apps/zen-browser.nix
+    ../profiles/browsers/firefox.nix
+    ../profiles/browsers/zen-browser.nix
+
     ../profiles/apps/spotify.nix
     ../profiles/apps/obsidian.nix
     ../profiles/apps/steam.nix
