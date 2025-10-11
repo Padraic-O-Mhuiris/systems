@@ -109,6 +109,9 @@
       "browser.safebrowsing.provider.google.gethashURL" = "htps://safebrowsing.google.com/safebrowsing/gethash?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2";
       "browser.safebrowsing.provider.google.updateURL" = "htps://safebrowsing.google.com/safebrowsing/downloads?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2&key=%GOOGLE_SAFEBROWSING_API_KEY%";
 
+      # Enable userChrome.css
+      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
       "accessibility.force_disabled" = 1;
       "browser.shell.checkDefaultBrowser" = false;
       "browser.tabs.firefox-view" = false;
@@ -161,6 +164,13 @@
       # Causes screen to reshape
       "privacy.resistFingerprinting.letterboxing" = false;
     };
+
+    userChrome = ''
+      /* Hide tab bar */
+      #TabsToolbar {
+        visibility: collapse !important;
+      }
+    '';
   in {
     home.sessionVariables."BROWSER" = pkgs.lib.getExe config.programs.librewolf.package;
 
@@ -173,7 +183,7 @@
         id = 1;
         isDefault = false;
         name = "work";
-        inherit settings;
+        inherit settings userChrome;
         extensions = {
           force = true;
           packages = extensionPackages;
@@ -191,7 +201,7 @@
           force = true;
           packages = extensionPackages;
         };
-        inherit settings
+        inherit settings userChrome;
       };
     };
   };
