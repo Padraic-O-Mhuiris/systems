@@ -34,7 +34,7 @@
 
     # ../profiles/browsers/firefox.nix
     # ../profiles/browsers/google-chrome.nix
-    ../profiles/browsers/zen-browser.nix
+    # ../profiles/browsers/zen-browser.nix
     ../profiles/browsers/librewolf.nix
     # ../profiles/browsers/floorp.nix
 
