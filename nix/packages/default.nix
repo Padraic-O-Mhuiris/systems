@@ -1,3 +1,3 @@
 _: {
-  imports = [./bootstrap];
+  imports = [./bootstrap ./claude-code];
 }

@@ -20,6 +20,8 @@
           git
           hcloud
           just
+
+          nodejs
         ]
         ++ [
           inputs'.nixos-anywhere.packages.default
