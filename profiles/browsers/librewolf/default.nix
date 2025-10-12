@@ -34,15 +34,17 @@
     # Deploy userChrome.js scripts and loader utilities to profile directories
     # NOTE: config.js and config-prefs.js are injected into the LibreWolf installation
     # via package.nix, NOT into the profile
-    home.file = {
+    home.file = let
+      # Symlink to allow live editing of scripts without rebuilding
+      JSsrcPath = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/browsers/librewolf/userchrome/scripts";
+    in {
       # Main profile - utils loader and scripts
       ".librewolf/${config.home.username}/chrome/utils" = {
         source = ./userchrome/utils;
         recursive = true;
       };
       ".librewolf/${config.home.username}/chrome/JS" = {
-        source = ./userchrome/scripts;
-        recursive = true;
+        source = config.lib.file.mkOutOfStoreSymlink JSsrcPath;
       };
 
       # Work profile - utils loader and scripts
@@ -51,7 +53,7 @@
         recursive = true;
       };
       ".librewolf/work/chrome/JS" = {
-        source = ./userchrome/scripts;
+        source = config.lib.file.mkOutOfStoreSymlink JSsrcPath;
         recursive = true;
       };
     };
