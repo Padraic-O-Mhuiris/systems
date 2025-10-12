@@ -22,7 +22,7 @@
         force = true;
         packages = import ./extensions.nix {inherit (pkgs.nur.repos.rycee) firefox-addons;};
       };
-      settings = import ./settings.nix;
+      settings = import ./settings.nix {inherit pkgs;};
       userChrome = ''
       '';
     };

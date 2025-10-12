@@ -1,4 +1,4 @@
-{
+{pkgs}: {
   # https://librewolf.net/docs/settings/#enable-google-safe-browsing
   "browser.safebrowsing.malware.enabled" = true;
   "browser.safebrowsing.phishing.enabled" = true;
