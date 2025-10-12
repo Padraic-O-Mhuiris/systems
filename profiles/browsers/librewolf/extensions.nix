@@ -5,12 +5,12 @@ with firefox-addons; [
   # This add-on stops websites from blocking copy and paste for password fields and other input fields.
   don-t-fuck-with-paste
   # Create userscripts easily
-  greasemonkey
+  violentmonkey
   # Rewrites urls to open-source, free alternatives
   libredirect
   # Redirects third-party cdn requests to localstorage
   localcdn
-  #
+  # Disklike button on youtube
   return-youtube-dislikes
   # community listed sponsoring blocking
   sponsorblock
@@ -48,10 +48,6 @@ with firefox-addons; [
   # Price charts on Amazon
   keepa
 
-  # TODO Get a link archiver
-
-  # command launcher
-  omnisearch
   # Watch/listen streams in vlc
   open-in-vlc
   # Github improvements
@@ -63,9 +59,6 @@ with firefox-addons; [
 
   # vim motions
   vimium
-
-  # Website history
-  web-archives
   # block canvas
   canvasblocker
   # always use theatre mode for youtube

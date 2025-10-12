@@ -8,8 +8,16 @@
   "browser.safebrowsing.provider.google.gethashURL" = "htps://safebrowsing.google.com/safebrowsing/gethash?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2";
   "browser.safebrowsing.provider.google.updateURL" = "htps://safebrowsing.google.com/safebrowsing/downloads?client=SAFEBROWSING_ID&appver=%MAJOR_VERSION%&pver=2.2&key=%GOOGLE_SAFEBROWSING_API_KEY%";
 
+  # userscripts
+  "general.config.obscure_value" = 0;
+  "general.config.filename" = "config.js";
+  "general.config.sandbox_enabled" = false;
+  "devtools.chrome.enabled" = true;
+
   # Enable userChrome.css
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+  # Defer to system filepicker
+  "widget.use-xdg-desktop-portal.file-picker" = 1;
 
   "accessibility.force_disabled" = 1;
   "browser.shell.checkDefaultBrowser" = false;

@@ -17,6 +17,8 @@
     pkgs,
     ...
   }: let
+    # Custom LibreWolf package with userChrome.js support
+    customLibrewolfPkg = import ./package.nix {inherit pkgs;};
     shared = {
       extensions = {
         force = true;
@@ -29,15 +31,41 @@
   in {
     home.sessionVariables."BROWSER" = pkgs.lib.getExe config.programs.librewolf.package;
 
+    # Deploy userChrome.js scripts and loader utilities to profile directories
+    # NOTE: config.js and config-prefs.js are injected into the LibreWolf installation
+    # via package.nix, NOT into the profile
+    home.file = {
+      # Main profile - utils loader and scripts
+      ".librewolf/${config.home.username}/chrome/utils" = {
+        source = ./userchrome/utils;
+        recursive = true;
+      };
+      ".librewolf/${config.home.username}/chrome/JS" = {
+        source = ./userchrome/scripts;
+        recursive = true;
+      };
+
+      # Work profile - utils loader and scripts
+      ".librewolf/work/chrome/utils" = {
+        source = ./userchrome/utils;
+        recursive = true;
+      };
+      ".librewolf/work/chrome/JS" = {
+        source = ./userchrome/scripts;
+        recursive = true;
+      };
+    };
+
     programs.librewolf = {
       enable = true;
+      package = customLibrewolfPkg;
       languagePacks = ["en-GB" "en-US" "ga-IE"];
       policies = {
         Bookmarks = [];
         BlockAboutAddons = false;
         BlockAboutConfig = true;
         BlockAboutProfiles = false;
-        BlockAboutSupport = true;
+        BlockAboutSupport = false;
       };
       profiles."${config.home.username}" =
         {
