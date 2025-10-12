@@ -1,4 +1,5 @@
 {
+  lib,
   vars,
   inputs,
   ...
@@ -27,6 +28,9 @@
     programs.niri.settings = {
       cursor = {
         size = 36;
+      };
+      layout = {
+        default-column-width.proportion = lib.mkForce 1.0; # Full-width on laptop
       };
       outputs = {
         "eDP-1" = {
