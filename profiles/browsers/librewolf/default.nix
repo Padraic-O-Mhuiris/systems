@@ -21,7 +21,7 @@
     customLibrewolfPkg = import ./package.nix {inherit pkgs;};
     shared = {
       extensions = {
-        force = true;
+        force = false;
         packages = import ./extensions.nix {inherit (pkgs.nur.repos.rycee) firefox-addons;};
       };
       settings = import ./settings.nix {inherit pkgs;};

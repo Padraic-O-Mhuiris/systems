@@ -70,4 +70,8 @@
 
   # Causes screen to reshape
   "privacy.resistFingerprinting.letterboxing" = false;
+
+  # Extension permissions
+  # Allow extensions to run on all sites (removes restrictions)
+  "extensions.webextensions.restrictedDomains" = "";
 }
