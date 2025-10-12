@@ -35,7 +35,7 @@
     # ../profiles/browsers/firefox.nix
     # ../profiles/browsers/google-chrome.nix
     # ../profiles/browsers/zen-browser.nix
-    ../profiles/browsers/librewolf.nix
+    ../profiles/browsers/librewolf
     # ../profiles/browsers/floorp.nix
 
     ../profiles/apps/spotify.nix
