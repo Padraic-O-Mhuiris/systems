@@ -14,6 +14,7 @@
       userEmail = vars.PRIMARY_USER.EMAIL;
       userName = vars.PRIMARY_USER.FULL_NAME;
       signing.key = vars.PRIMARY_USER.GPG_ID;
+      ignores = [".direnv"];
     };
   };
 }
