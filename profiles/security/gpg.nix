@@ -1,3 +1,4 @@
+# TODO: https://joinemm.dev/blog/yubikey-nixos-guide
 {
   pkgs,
   vars,
@@ -17,7 +18,6 @@
       yubikey-personalization
       libu2f-host
     ];
-    yubikey-agent.enable = true;
   };
 
   hardware.gpgSmartcards.enable = true;
