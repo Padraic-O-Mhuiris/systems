@@ -40,9 +40,6 @@
         nixfmt-rfc-style
         lldb_18
         taplo
-        gopls
-        golangci-lint-langserver
-        golangci-lint
 
         shfmt
 
