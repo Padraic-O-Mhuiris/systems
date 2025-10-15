@@ -24,10 +24,10 @@
       data-root = "/home/${vars.PRIMARY_USER.NAME}/.local/state/docker-data";
     };
     # Use the rootless mode - run Docker daemon as non-root user
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
+    # rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
   };
 
   users.users.${vars.PRIMARY_USER.NAME}.extraGroups = ["docker"];
