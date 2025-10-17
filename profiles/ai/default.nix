@@ -17,7 +17,7 @@
       package = system.packages.${pkgs.system}.claude-code;
       apiKeyPath = config.sops.secrets.anthropic_api_key.path;
       settings = {
-        model = "claude-sonnet-4-5-20250929";
+        model = "claude-haiku-4-5-20251001";
       };
 
       memory.source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigs}/.claude.md";
