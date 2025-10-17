@@ -462,7 +462,7 @@ in {
         ];
       };
     in
-      pkgs.runCommand "claude" {
+      pkgs.runCommand "cc" {
         buildInputs = [pkgs.makeWrapper];
       } ''
         mkdir -p $out/bin
