@@ -59,8 +59,6 @@ with firefox-addons; [
 
   # vim motions
   vimium
-  # block canvas
-  canvasblocker
   # always use theatre mode for youtube
   theater-mode-for-youtube
 ]
