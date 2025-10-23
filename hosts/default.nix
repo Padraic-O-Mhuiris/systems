@@ -52,7 +52,9 @@
     ../profiles/graphical/nvidia.nix
     ../profiles/graphical/fonts.nix
 
-    ../profiles/editors/git.nix
+    ../profiles/vcs/git.nix
+    ../profiles/vcs/jujutsu.nix
+
     ../profiles/editors/helix
 
     ../profiles/terminal/wezterm
