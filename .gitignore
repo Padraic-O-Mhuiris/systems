@@ -10,3 +10,6 @@ profiles/ai/claude/plugins
 profiles/ai/claude/todos
 profiles/ai/claude/projects
 profiles/ai/claude/*.jsonl
+
+# Hide git objects for claude code
+.git

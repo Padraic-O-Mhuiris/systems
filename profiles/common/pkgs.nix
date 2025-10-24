@@ -20,5 +20,6 @@
     ffmpeg
     img2pdf
     psmisc
+    imagemagick
   ];
 }
