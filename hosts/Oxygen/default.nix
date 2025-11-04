@@ -9,6 +9,9 @@
     inputs.secrets.nixosModules.default
   ];
 
+  networking.hosts = {
+    "127.0.0.1" = ["localhost" "obol.stack"];
+  };
   # Host-specific secrets configuration
   sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
     neededForUsers = true;
