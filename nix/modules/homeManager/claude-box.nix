@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.programs.cc;
+  cfg = config.programs.claude-box;
   jsonFormat = pkgs.formats.json {};
 in {
-  options.programs.cc = {
+  options.programs.claude-box = {
     enable = lib.mkEnableOption "Claude Code, Anthropic's official CLI";
 
     package = lib.mkPackageOption pkgs "claude-code" {nullable = true;};
@@ -293,7 +293,7 @@ in {
       }
     ];
 
-    programs.cc.finalPackage = let
+    programs.claude-box.finalPackage = let
       makeWrapperArgs = lib.flatten (
         lib.filter (x: x != []) [
           [
@@ -323,8 +323,8 @@ in {
           }
         else cfg.package;
 
-      closedClaude = pkgs.writeShellApplication {
-        name = "cc";
+      claude-box = pkgs.writeShellApplication {
+        name = "claude-box";
         text = ''
           set -euo pipefail
 
@@ -462,14 +462,14 @@ in {
         ];
       };
     in
-      pkgs.runCommand "cc" {
+      pkgs.runCommand "claude-box-wrapped" {
         buildInputs = [pkgs.makeWrapper];
       } ''
         mkdir -p $out/bin
-        cp ${lib.getExe closedClaude} $out/bin
-        chmod +x $out/bin/cc
-        patchShebangs $out/bin/cc
-        wrapProgram $out/bin/cc \
+        cp ${lib.getExe claude-box} $out/bin
+        chmod +x $out/bin/claude-box
+        patchShebangs $out/bin/claude-box
+        wrapProgram $out/bin/claude-box \
           --prefix PATH : ${
           pkgs.lib.makeBinPath [
             pkgs.bashInteractive

@@ -8,16 +8,16 @@
     pkgs,
     ...
   }: {
-    imports = [system.homeManagerModules.cc];
+    imports = [system.homeManagerModules.claude-box];
 
-    programs.cc = let
+    programs.claude-box = let
       claudeConfigs = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/ai/claude";
     in {
       enable = true;
       package = system.packages.${pkgs.system}.claude-code;
       apiKeyPath = config.sops.secrets.anthropic_api_key.path;
       settings = {
-        model = "claude-haiku-4-5-20251001";
+        model = "claude-sonnet-4-5-20250929";
         "permissions"."deny" = [
           "*(./.git/**)"
         ];
