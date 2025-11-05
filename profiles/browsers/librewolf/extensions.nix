@@ -5,7 +5,8 @@ with firefox-addons; [
   # This add-on stops websites from blocking copy and paste for password fields and other input fields.
   don-t-fuck-with-paste
   # Create userscripts easily
-  violentmonkey
+  # violentmonkey
+
   # Rewrites urls to open-source, free alternatives
   libredirect
   # Redirects third-party cdn requests to localstorage
@@ -29,8 +30,7 @@ with firefox-addons; [
   reddit-enhancement-suite
   # No cookies - community version
   istilldontcareaboutcookies
-  # Blocks hidden-trackers
-  privacy-badger
+
   # Changes colour of firefox theme to websites colour
   adaptive-tab-bar-colour
   # Use anonymous email forwarding
@@ -45,8 +45,6 @@ with firefox-addons; [
   github-file-icons
   # Enforce more performant video codec for youtube for <1440p quality
   h264ify
-  # Price charts on Amazon
-  keepa
 
   # Watch/listen streams in vlc
   open-in-vlc
@@ -58,7 +56,8 @@ with firefox-addons; [
   terms-of-service-didnt-read
 
   # vim motions
-  vimium
+  # vimium
+
   # always use theatre mode for youtube
   theater-mode-for-youtube
 ]

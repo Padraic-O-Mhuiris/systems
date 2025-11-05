@@ -25,6 +25,8 @@
 
   # Prevents clearing out cookie site data
   "privacy.sanitize.sanitizeOnShutdown" = false;
+  # Disable password manager
+  "signon.rememberSignons" = false;
   # Enables all user installed extensions
   "extensions.autoDisableScopes" = 0;
   # Don't show bookmarks bar
