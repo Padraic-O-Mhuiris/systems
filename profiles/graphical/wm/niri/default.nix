@@ -25,6 +25,7 @@
     extraPortals = [
       pkgs.xdg-desktop-portal-wlr
       pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
     ];
   };
 
@@ -32,6 +33,7 @@
   environment.systemPackages = with pkgs; [
     wl-clipboard
     wayland-utils
+    wayland-protocols
     libsecret
     cage
     wlr-randr
