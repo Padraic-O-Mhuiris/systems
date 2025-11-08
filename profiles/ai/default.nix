@@ -26,6 +26,9 @@
         python3
         nodejs
         kubectl
+
+        pdftk
+        qpdf
       ];
 
       memory.source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigs}/.claude.md";
