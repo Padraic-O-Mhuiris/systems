@@ -11,6 +11,7 @@ in {
 
     home.packages = [
       berkeley-mono
+      pkgs.iosevka
     ];
   };
 }
