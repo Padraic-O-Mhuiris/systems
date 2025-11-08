@@ -267,6 +267,23 @@ in {
         };
       };
     };
+
+    extraPackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [];
+      description = ''
+        Additional packages to include in the claude-box environment.
+        These packages will be available to Claude Code when running in the sandbox.
+      '';
+      example = lib.literalExpression ''
+        with pkgs; [
+          python3
+          nodejs
+          docker
+          kubectl
+        ]
+      '';
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -459,7 +476,7 @@ in {
           zsh
           # Nix is essential for nix run
           nix
-        ];
+        ] ++ cfg.extraPackages;
       };
     in
       pkgs.runCommand "claude-box-wrapped" {

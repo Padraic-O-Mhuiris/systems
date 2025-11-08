@@ -22,6 +22,11 @@
           "*(./.git/**)"
         ];
       };
+      extraPackages = with pkgs; [
+        python3
+        nodejs
+        kubectl
+      ];
 
       memory.source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigs}/.claude.md";
       agentsDir = config.lib.file.mkOutOfStoreSymlink "${claudeConfigs}/agents";
