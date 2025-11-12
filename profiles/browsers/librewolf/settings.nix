@@ -16,8 +16,13 @@
 
   # Enable userChrome.css
   "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-  # Defer to system filepicker
+  # Defer to system filepicker and enable screensharing portals
   "widget.use-xdg-desktop-portal.file-picker" = 1;
+  "widget.use-xdg-desktop-portal.mime-handler" = 1;
+
+  # Enable screensharing on Wayland - Firefox 142+ requires DMA-BUF for niri
+  "media.navigator.mediadatadecoder_vpx_enabled" = true;
+  "widget.dmabuf.force-enabled" = true;
 
   "accessibility.force_disabled" = 1;
   "browser.shell.checkDefaultBrowser" = false;
