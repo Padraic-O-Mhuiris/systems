@@ -22,7 +22,7 @@ formatter = { command = "dprint", args = ["fmt", "--stdin", "md", "--config", "~
 [[language]]
 name = "rust"
 auto-format = true
-formatter = { command = "cargo +nightly fmt" }
+formatter = { command = "rustfmt" }
 
 [[language]]
 name = "bash"
