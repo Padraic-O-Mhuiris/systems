@@ -37,6 +37,14 @@
   # Don't show bookmarks bar
   "browser.toolbars.bookmarks.visibility" = "never";
   "browser.newtabpage.enabled" = false;
+  # Disable ALL sponsored/recommended content on home page
+  "browser.newtabpage.activity-stream.showSponsored" = false;
+  "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+  "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+  "browser.newtabpage.activity-stream.feeds.snippets" = false;
+  "browser.newtabpage.activity-stream.feeds.topsites" = false;
+  "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+  "browser.startup.homepage" = "about:blank";
   "browser.quitShortcut.disabled" = true;
   "browser.search.suggest.enabled" = true;
   "general.autoScroll" = true;
