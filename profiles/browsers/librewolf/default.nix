@@ -26,6 +26,7 @@
       };
       settings = import ./settings.nix {inherit pkgs;};
       userChrome = ''
+        #fxa-toolbar-menu-button { display: none !important; }
       '';
     };
   in {

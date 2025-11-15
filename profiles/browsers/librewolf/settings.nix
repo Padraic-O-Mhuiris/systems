@@ -45,6 +45,12 @@
   "browser.newtabpage.activity-stream.feeds.topsites" = false;
   "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
   "browser.startup.homepage" = "about:blank";
+  # Disable Firefox Sync UI and accounts
+  "identity.fxaccounts.enabled" = false;
+  "identity.fxaccounts.toolbar.enabled" = false;
+  "identity.fxaccounts.commands.enabled" = false;
+  "identity.fxaccounts.autoconfig.uri" = "";
+  "browser.tabs.warnOnCloseOtherTabs" = false;
   "browser.quitShortcut.disabled" = true;
   "browser.search.suggest.enabled" = true;
   "general.autoScroll" = true;
