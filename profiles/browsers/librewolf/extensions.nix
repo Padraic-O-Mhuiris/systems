@@ -1,5 +1,7 @@
 {firefox-addons}:
 with firefox-addons; [
+  # Ad blocking
+  ublock-origin
   # Local sourced cookies
   cookies-txt
   # This add-on stops websites from blocking copy and paste for password fields and other input fields.
@@ -8,7 +10,7 @@ with firefox-addons; [
   # violentmonkey
 
   # Rewrites urls to open-source, free alternatives
-  libredirect
+  # libredirect
   # Redirects third-party cdn requests to localstorage
   localcdn
   # Disklike button on youtube
@@ -34,7 +36,7 @@ with firefox-addons; [
   # Changes colour of firefox theme to websites colour
   adaptive-tab-bar-colour
   # Use anonymous email forwarding
-  addy_io
+  # addy_io
 
   # Use windows instead of tabs
   # adsum-notabs

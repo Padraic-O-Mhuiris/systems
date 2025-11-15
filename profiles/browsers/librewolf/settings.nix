@@ -30,11 +30,17 @@
 
   # Prevents clearing out cookie site data
   "privacy.sanitize.sanitizeOnShutdown" = false;
-  # Disable password manager
+  # Disable password manager completely
   "signon.rememberSignons" = false;
+  "signon.autofillForms" = false;
+  "signon.generation.enabled" = false;
+  "signon.management.page.breach-alerts.enabled" = false;
+  "signon.showAutoCompleteFooter" = false;
+  "extensions.formautofill.addresses.enabled" = false;
+  "extensions.formautofill.creditCards.enabled" = false;
   # Enables all user installed extensions
   "extensions.autoDisableScopes" = 0;
-  # Don't show bookmarks bar
+  # Don't show bookmarks toolbar bar (but allow bookmarks menu button)
   "browser.toolbars.bookmarks.visibility" = "never";
   "browser.newtabpage.enabled" = false;
   # Disable ALL sponsored/recommended content on home page
@@ -95,4 +101,17 @@
   # Extension permissions
   # Allow extensions to run on all sites (removes restrictions)
   "extensions.webextensions.restrictedDomains" = "";
+
+  # Add library button and pin extensions
+  "browser.uiCustomization.state" = builtins.toJSON {
+    placements = {
+      nav-bar = [
+        "library-button"
+        "urlbar-container"
+        "ublock0_raymondhill_net-browser-action"
+        "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action"
+        "webextension_metamask_io-browser-action"
+      ];
+    };
+  };
 }

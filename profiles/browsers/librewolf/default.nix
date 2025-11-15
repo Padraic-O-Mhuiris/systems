@@ -26,7 +26,13 @@
       };
       settings = import ./settings.nix {inherit pkgs;};
       userChrome = ''
+        /* Hide Firefox Sync button */
         #fxa-toolbar-menu-button { display: none !important; }
+        /* Hide password manager menu items */
+        #appMenu-passwords-button { display: none !important; }
+        #PanelUI-passwords-button { display: none !important; }
+        /* Hide home button */
+        #home-button { display: none !important; }
       '';
     };
   in {
@@ -64,11 +70,33 @@
       package = customLibrewolfPkg;
       languagePacks = ["en-GB" "en-US" "ga-IE"];
       policies = {
-        Bookmarks = [];
+        Bookmarks = [
+          {
+            Title = "YouTube";
+            URL = "https://youtube.com";
+            Placement = "menu";
+          }
+          {
+            Title = "Gmail";
+            URL = "https://gmail.com";
+            Placement = "menu";
+          }
+          {
+            Title = "GitHub";
+            URL = "https://github.com";
+            Placement = "menu";
+          }
+          {
+            Title = "Lobsters";
+            URL = "https://lobste.rs";
+            Placement = "menu";
+          }
+        ];
         BlockAboutAddons = false;
         BlockAboutConfig = true;
         BlockAboutProfiles = false;
         BlockAboutSupport = false;
+        PasswordManagerEnabled = false;
       };
       profiles."${config.home.username}" =
         {
@@ -77,13 +105,13 @@
           name = config.home.username;
         }
         // shared;
-      profiles."work" =
-        {
-          id = 1;
-          isDefault = false;
-          name = "work";
-        }
-        // shared;
+      # profiles."work" =
+      #   {
+      #     id = 1;
+      #     isDefault = false;
+      #     name = "work";
+      #   }
+      #   // shared;
     };
   };
 }
