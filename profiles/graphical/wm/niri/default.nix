@@ -45,6 +45,8 @@
     gamescope
     xwayland-satellite-unstable
     swaybg
+
+    wf-recorder
   ];
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = {
