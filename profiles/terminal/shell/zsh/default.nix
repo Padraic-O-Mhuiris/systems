@@ -2,6 +2,10 @@
   programs.zsh.enable = true;
 
   home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+    home.sessionPath = [
+      "$HOME/.local/bin"
+    ];
+
     programs = {
       command-not-found.enable = true;
 
