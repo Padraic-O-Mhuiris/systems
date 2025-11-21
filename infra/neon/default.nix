@@ -2,14 +2,12 @@
   perSystem = {pkgs, ...}: let
     vars = inputs.secrets.infra.neon.vars;
 
-    hcloud = pkgs.writeShellScriptBin "hcloud" ''
-      set -euo pipefail
-      export HCLOUD_TOKEN=$(${pkgs.pass}/bin/pass show ${vars.PASSWORD_STORE_PATH.HCLOUD_TOKEN})
-      exec ${pkgs.hcloud}/bin/hcloud "$@"
-    '';
+    hcloud = import ./scripts/hcloud.nix {
+      inherit pkgs vars;
+    };
 
     generateFacterReport = import ./scripts/generateFacterReport.nix {
-      inherit pkgs vars;
+      inherit pkgs vars hcloud;
       secrets = inputs.secrets.vars;
     };
 

@@ -2,10 +2,11 @@
   pkgs,
   vars,
   secrets,
+  hcloud,
 }:
 pkgs.writeShellApplication {
   name = "generateFacterReport";
-  runtimeInputs = with pkgs; [hcloud jq openssh pass];
+  runtimeInputs = [hcloud] ++ (with pkgs; [jq openssh]);
   text = ''
     set -euo pipefail
 
@@ -20,9 +21,6 @@ pkgs.writeShellApplication {
     LOCATION="fsn1"
     IMAGE="ubuntu-24.04"
     OUTPUT_DIR="infra/neon/facter/hetzner"
-
-    HCLOUD_TOKEN=$(pass show ${vars.PASSWORD_STORE_PATH.HCLOUD_TOKEN})
-    export HCLOUD_TOKEN
 
     SSH_KEY_NAME="neon-primary"
     SSH_PUBLIC_KEY="${secrets.PRIMARY_USER.SSH_PUBLIC_KEY}"
