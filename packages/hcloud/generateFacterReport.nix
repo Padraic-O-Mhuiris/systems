@@ -51,23 +51,21 @@ pkgs.writeShellApplication {
 
     SERVER_IP=$(echo "$SERVER_INFO" | jq -r '.server.public_net.ipv4.ip')
 
-    SSH_OPTS="-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5"
-
     echo "Server created with IP: $SERVER_IP"
     echo "Waiting for SSH to be ready..."
 
     for _ in {1..30}; do
-      if ssh "$SSH_OPTS" root@"$SERVER_IP" "echo ready" 2>/dev/null; then
+      if ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=5 root@"$SERVER_IP" "echo ready" 2>/dev/null; then
         break
       fi
       sleep 2
     done
 
     echo "Installing Nix..."
-    ssh "$SSH_OPTS" root@"$SERVER_IP" "curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes"
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@"$SERVER_IP" "curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes"
 
     echo "Running nixos-facter..."
-    ssh "$SSH_OPTS" root@"$SERVER_IP" ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && nix run \
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@"$SERVER_IP" ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && nix run \
       --option experimental-features 'nix-command flakes' \
       --option extra-substituters https://numtide.cachix.org \
       --option extra-trusted-public-keys numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= \
