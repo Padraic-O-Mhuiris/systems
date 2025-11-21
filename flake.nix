@@ -65,6 +65,7 @@
         ./nix
         ./packages
         ./hosts
+        ./infra
       ];
       systems = ["x86_64-linux"];
     };
