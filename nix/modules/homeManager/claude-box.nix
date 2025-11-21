@@ -435,13 +435,13 @@ in {
           # Git repo root (or current dir) gets full write access (YOLO mode)
           bwrap_args+=(--bind "$repo_root" "$repo_root")
 
-          # Follow all symlinks recursively and mount their targets (read-only)
+          # Follow all symlinks recursively and mount their targets (read-write)
           # Skip symlinks to /nix/store since /nix is already mounted
           while IFS= read -r -d "" symlink; do
             if [[ -L "$symlink" ]]; then
               target="$(readlink -f "$symlink")"
               if [[ -e "$target" && "$target" != /nix/store/* ]]; then
-                bwrap_args+=(--ro-bind "$target" "$target")
+                bwrap_args+=(--bind "$target" "$target")
               fi
             fi
           done < <(find "$repo_root" -type l -print0)
