@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**Note**: User-level Claude Code instructions (`~/.claude/CLAUDE.md`) are managed declaratively via the NixOS module at `profiles/ai/claude/.claude.md`. Edit that file to modify global Claude behavior across all projects.
+
 ## Repository Overview
 
 This is a NixOS systems configuration repository using flake-parts for modular flake management. It manages multiple NixOS hosts with shared profiles, home-manager integration, automated deployment via nixos-anywhere, and cloud infrastructure resources.
@@ -33,6 +35,10 @@ The secrets repo provides:
 - **`vars.*`**: Obfuscated user info and paths (readable at eval time)
 - **`nixosModules.default` / `homeModules.default`**: SOPS integration for encrypted secrets
 - **Systemd services**: Automatic repo syncing and symlink management
+
+**Claude Code Access:** The secrets repository is accessible via symlink at `secrets/` with full read/write permissions within the sandbox environment.
+
+**Context Management:** When making significant changes to secrets repository structure, configurations, or architecture, update `secrets/.claude/CLAUDE.md` to reflect the new state. This ensures context accuracy for future sessions.
 
 **For detailed secrets architecture documentation, see:** [`secrets/.claude/CLAUDE.md`](../secrets/.claude/CLAUDE.md)
 

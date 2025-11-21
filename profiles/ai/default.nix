@@ -23,12 +23,24 @@
         ];
       };
       extraPackages = with pkgs; [
+        # Languages & runtimes
         python3
         nodejs
+
+        # Infrastructure
         kubectl
 
+        # PDF tools
         pdftk
         qpdf
+
+        # Modern CLI tools (mentioned in .claude.md preferences)
+        bat
+        eza
+        yq-go
+        fzf
+        delta
+        gh
       ];
 
       memory.source = config.lib.file.mkOutOfStoreSymlink "${claudeConfigs}/.claude.md";
