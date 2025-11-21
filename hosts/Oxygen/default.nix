@@ -9,9 +9,14 @@
     inputs.secrets.nixosModules.default
   ];
 
-  networking.hosts = {
-    "127.0.0.1" = ["localhost" "obol.stack"];
+  networking = {
+    hostName = "Oxygen";
+    hosts = {
+      "127.0.0.1" = ["localhost" "obol.stack"];
+    };
+    networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.50/24";
   };
+
   # Host-specific secrets configuration
   sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
     neededForUsers = true;
@@ -20,8 +25,6 @@
   # Bluetooth issues
   hardware.enableRedistributableFirmware = true;
   hardware.firmware = [pkgs.linux-firmware];
-
-  networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.50/24";
 
   # gnome-keyring can spawn popups on program launch like spotify.
   environment.variables.XDG_RUNTIME_DIR = "/run/user/${toString vars.PRIMARY_USER.UID}";
@@ -83,6 +86,4 @@
 
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.05";
-
-  networking.hostName = "Oxygen";
 }
