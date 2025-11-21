@@ -55,19 +55,15 @@
       url = "git+ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git?shallow=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    terranix = {
-      url = "github:terranix/terranix";
-    };
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
+    inputs.flake-parts.lib.mkFlake {inherit inputs;}
+    {
       debug = true;
       imports = [
         ./nix
         ./hosts
-        ./clusters
       ];
       systems = ["x86_64-linux"];
     };

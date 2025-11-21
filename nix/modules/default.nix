@@ -1,3 +1,6 @@
 _: {
-  imports = [./homeManager ./nixos];
+  imports = [
+    ./homeManager
+    ./nixos
+  ];
 }
