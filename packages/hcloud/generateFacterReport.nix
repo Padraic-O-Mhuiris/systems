@@ -20,12 +20,10 @@ pkgs.writeShellApplication {
     TEMP_SERVER_NAME="facter-probe-$$"
     LOCATION="fsn1"
     IMAGE="ubuntu-24.04"
-    OUTPUT_DIR="infra/neon/facter/hetzner"
+    OUTPUT_FILE="$SERVER_TYPE.json"
 
     SSH_KEY_NAME="neon-primary"
     SSH_PUBLIC_KEY="${secrets.PRIMARY_USER.SSH_PUBLIC_KEY}"
-
-    mkdir -p "$OUTPUT_DIR"
 
     cleanup() {
       if [ -n "''${TEMP_SERVER_NAME:-}" ]; then
@@ -58,24 +56,23 @@ pkgs.writeShellApplication {
     echo "Server created with IP: $SERVER_IP"
     echo "Waiting for SSH to be ready..."
 
-    for i in {1..30}; do
-      if ssh $SSH_OPTS root@$SERVER_IP "echo ready" 2>/dev/null; then
+    for _ in {1..30}; do
+      if ssh "$SSH_OPTS" root@"$SERVER_IP" "echo ready" 2>/dev/null; then
         break
       fi
       sleep 2
     done
 
     echo "Installing Nix..."
-    ssh $SSH_OPTS root@$SERVER_IP "curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes"
+    ssh "$SSH_OPTS" root@"$SERVER_IP" "curl -L https://nixos.org/nix/install | sh -s -- --daemon --yes"
 
     echo "Running nixos-facter..."
-    ssh $SSH_OPTS root@$SERVER_IP ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && nix run \
+    ssh "$SSH_OPTS" root@"$SERVER_IP" ". /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh && nix run \
       --option experimental-features 'nix-command flakes' \
       --option extra-substituters https://numtide.cachix.org \
       --option extra-trusted-public-keys numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= \
-      github:nix-community/nixos-facter -- -o /tmp/facter.json && cat /tmp/facter.json" > "$OUTPUT_DIR/$SERVER_TYPE.json"
+      github:nix-community/nixos-facter -- -o /tmp/facter.json && cat /tmp/facter.json" > "$OUTPUT_FILE"
 
-    echo "Hardware report saved to $OUTPUT_DIR/$SERVER_TYPE.json"
-    echo "Done! Report available at: $OUTPUT_DIR/$SERVER_TYPE.json"
+    echo "Hardware report saved to $OUTPUT_FILE"
   '';
 }
