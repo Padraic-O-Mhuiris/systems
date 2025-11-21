@@ -3,8 +3,6 @@
 result
 *.qcow2
 
-nix/packages/berkeley-mono/berkeley-mono.zip
-
 profiles/ai/claude/shell-snapshots
 profiles/ai/claude/plugins
 profiles/ai/claude/todos

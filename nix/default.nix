@@ -12,7 +12,6 @@
     ./formatter.nix
     ./checks.nix
     ./shell.nix
-    ./packages
     ./lib
     ./modules
   ];

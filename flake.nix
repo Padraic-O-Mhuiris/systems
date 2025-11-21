@@ -63,6 +63,7 @@
       debug = true;
       imports = [
         ./nix
+        ./packages
         ./hosts
       ];
       systems = ["x86_64-linux"];
