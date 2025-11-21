@@ -511,8 +511,8 @@ in {
 
           ".claude/CLAUDE.md" = lib.mkIf (cfg.memory.text != null || cfg.memory.source != null) (
             if cfg.memory.text != null
-            then {text = cfg.memory.text;}
-            else {source = cfg.memory.source;}
+            then {inherit (cfg.memory) text;}
+            else {inherit (cfg.memory) source;}
           );
 
           ".claude/agents" = lib.mkIf (cfg.agentsDir != null) {
