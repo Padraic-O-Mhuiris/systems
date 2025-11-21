@@ -2,6 +2,7 @@
 .pre-commit-config.yaml
 result
 *.qcow2
+secrets
 
 profiles/ai/claude/shell-snapshots
 profiles/ai/claude/plugins
