@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a NixOS systems configuration repository using flake-parts for modular flake management. It manages multiple NixOS hosts with shared profiles, home-manager integration, and automated deployment via nixos-anywhere.
+This is a NixOS systems configuration repository using flake-parts for modular flake management. It manages multiple NixOS hosts with shared profiles, home-manager integration, automated deployment via nixos-anywhere, and cloud infrastructure resources.
 
 ## Key Architecture
 
@@ -18,6 +18,9 @@ This is a NixOS systems configuration repository using flake-parts for modular f
   - Lithium: Live USB/bootstrap ISO image
 - **profiles/**: Reusable configuration modules organized by category
   - ai/, apps/, browsers/, common/, editors/, graphical/, networking/, peripherals/, security/, terminal/, users/, vcs/, virtualisation/
+- **infra/**: Cloud infrastructure resources (VPCs, clusters, storage)
+  - Each resource is a Nix package with passthru commands for lifecycle management
+  - Public configurations and deployment tooling live here
 
 ### Configuration Pattern
 Each host imports a common set of profiles from `hosts/default.nix` plus host-specific overrides. Profiles are composable NixOS modules that can be enabled/disabled by including them in the host's imports list.
@@ -32,6 +35,29 @@ The secrets repo provides:
 - **Systemd services**: Automatic repo syncing and symlink management
 
 **For detailed secrets architecture documentation, see:** [`secrets/.claude/CLAUDE.md`](../secrets/.claude/CLAUDE.md)
+
+### Infrastructure Architecture
+
+Cloud infrastructure is managed through `infra/` in this repository and `secrets/infra/` in the private secrets repository.
+
+**Public repo (`infra/<resource>/`):**
+- Nix packages with passthru commands (plan, deploy, rebuild, destroy, status, etc.)
+- Non-sensitive base configurations
+- Deployment scripts and tooling
+
+**Private repo (`secrets/infra/<resource>/`):**
+- NixOS configurations for infrastructure nodes
+- Kubernetes manifests with embedded secrets
+- Certificates, CA keys, kubeconfigs
+- Planning documents and architecture decisions
+
+**Pattern:** Each infrastructure resource exports a package with lifecycle commands accessible via `nix run .#<resource>.<command>`. The declarative configurations in both repos represent the desired state - deployment commands reconcile cloud resources with these declarations.
+
+**Current resources:**
+- **neon**: Personal VPC + Kubernetes cluster (planned)
+- **storage**: Backup and long-term storage infrastructure (future)
+
+**For infrastructure planning and architecture, see:** `secrets/infra/PLANNING.md`
 
 ### Special Features
 - **Impermanence**: Root filesystem erased on boot (profiles/common/impermanence.nix)
