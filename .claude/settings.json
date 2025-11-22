@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./secrets/**)",
+      "Edit(./secrets/**)"
+    ],
+    "deny": [
+      "*(./.git/**)"
+    ]
+  }
+}
