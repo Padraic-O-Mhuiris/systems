@@ -1,5 +1,5 @@
 {
-  description = "Description for the project";
+  description = "NixOS systems configuration: multi-host setup with flake-parts, profiles, Kubernetes infrastructure, and secrets management";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
