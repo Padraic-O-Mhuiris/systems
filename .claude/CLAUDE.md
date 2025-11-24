@@ -101,12 +101,63 @@ nix develop
 ```
 
 ### Deployment
+
+**Note:** This section covers **personal host deployment** (Hydrogen, Oxygen, Lithium). Infrastructure deployment (Neon cluster, Headscale, etc.) uses a separate process defined in `infra/` and will be implemented separately.
+
+#### Bootstrap Prerequisites (Dependency Chain)
+
+Before deploying a new host via `bootstrap`, the following must be set up in the secrets repository (in order of dependency):
+
+1. **Age Keys & SOPS Configuration**
+   - Admin age key configured in `secrets/.sops.yaml`
+   - Host age key derived from SSH host key (generated on first boot, but you can pre-generate)
+   - User age key for primary user (for secrets decryption post-boot)
+
+2. **Host SSH Keys** (in `pass` at `systems/ssh/<hostname>/`)
+   - `id_ed25519` (private key) - Used by NixOS for SOPS decryption at runtime
+   - `id_ed25519.pub` (public key)
+   - These can be generated with: `ssh-keygen -t ed25519 -f /tmp/host_key -N ""`
+
+3. **User SSH Keys** (in `pass` at `systems/users/<username>/ssh/`)
+   - `id_ed25519` (private key) - For user login and SOPS decryption of user secrets
+   - `id_ed25519.pub` (public key)
+
+4. **Disk Encryption Key** (in `pass` at `systems/disks/<hostname>`)
+   - Random 32-byte key for LUKS encryption (if using disko with encryption)
+   - Generate with: `head -c 32 /dev/urandom | base64`
+
+5. **Host SOPS Secrets File** (in `secrets/hosts/<hostname>.secrets.yaml`)
+   - Encrypted with admin key + host age key
+   - Contains host-specific secrets (user password, etc.)
+   - File must exist and be readable before bootstrap
+
+6. **User SOPS Secrets File** (in `secrets/users/<username>.secrets.yaml`)
+   - Encrypted with admin key + user age key
+   - Decrypted at runtime using user's SSH key
+   - Consumed by home-manager on user login
+
+**Workflow:**
 ```bash
-# Bootstrap new machine with nixos-anywhere (from dev shell)
+# 1. Generate and store SSH keys in pass
+ssh-keygen -t ed25519 -f /tmp/host_key -N "" && pass insert systems/ssh/<hostname>/id_ed25519 < /tmp/host_key
+
+# 2. Generate and store disk key
+head -c 32 /dev/urandom | base64 | pass insert systems/disks/<hostname>
+
+# 3. Create encrypted SOPS secrets files (admin + host key)
+sops secrets/hosts/<hostname>.secrets.yaml
+
+# 4. Create encrypted user secrets (admin + user key)
+sops secrets/users/<username>.secrets.yaml
+
+# 5. From systems repo dev shell, run bootstrap
 bootstrap --host <hostname> --url <target-ip> [--port <ssh-port>]
-# Requires: host SSH keys in pass at systems/ssh/<hostname>/
-# Requires: user SSH keys in pass at systems/users/<username>/ssh/
-# Requires: disk encryption key in pass at systems/disks/<hostname>
+```
+
+#### Bootstrap Command
+```bash
+# From dev shell (nix develop)
+bootstrap --host <hostname> --url <target-ip> [--port <ssh-port>]
 ```
 
 ### Secrets Management
@@ -127,14 +178,29 @@ just update-secrets
 - **profiles/users/primary.nix**: Primary user account configuration
 - **nix/modules/homeManager/claude-box.nix**: Full-featured home-manager module for Claude Code with sandboxing
 
-## Adding a New Host
+## Adding a New Host (Personal Hosts)
 
+This process applies to personal hosts (Hydrogen, Oxygen, Lithium). Infrastructure hosts are deployed via separate infrastructure-specific processes in `infra/`.
+
+**Configuration Setup:**
 1. Create `hosts/<HostName>/` directory
 2. Add `hosts/<HostName>/default.nix` with hardware config and host-specific settings
 3. Add `hosts/<HostName>/disk.nix` if using disko
 4. Add configuration to `hosts/default.nix` under `flake.nixosConfigurations`
-5. Add SOPS secrets for the host in the secrets repository
-6. Use `bootstrap` command to deploy
+
+**Secrets Setup (in secrets repository):**
+5. Follow the bootstrap dependency chain documented above in "Deployment" section
+   - Generate host/user SSH keys and store in `pass`
+   - Generate and store disk encryption key
+   - Create encrypted SOPS secrets files for host and user
+
+**Deploy:**
+6. Run `bootstrap --host <HostName> --url <ip>` from `nix develop` shell
+
+**Post-Bootstrap:**
+- On first boot, host age key is generated from SSH host key at `/persist/etc/ssh/ssh_host_ed25519_key`
+- User secrets are decrypted using user's SSH key from `pass`
+- Impermanence clears root filesystem but `/persist/` retains SSH keys for SOPS decryption
 
 ## Important Notes
 
