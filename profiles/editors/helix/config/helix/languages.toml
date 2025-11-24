@@ -16,8 +16,6 @@ formatter = { command = "black", args = ["--quiet", "-"] }
 [[language]]
 name = "markdown"
 language-servers = ["marksman", "mpls", "ltex-ls-plus"]
-auto-format = true
-formatter = { command = "dprint", args = ["fmt", "--stdin", "md", "--config", "~/.config/dprint/config.json"]}
 
 [[language]]
 name = "rust"

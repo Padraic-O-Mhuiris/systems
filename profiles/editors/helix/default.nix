@@ -17,9 +17,6 @@
       "helix/ignore".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/helix/ignore"
       );
-      "dprint/config.json".source = lib.mkForce (
-        config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/dprint/config.json"
-      );
     };
 
     programs.helix = {
@@ -46,7 +43,6 @@
         # markdown
         marksman
         ltex-ls-plus
-        dprint
         mpls
       ];
     };
