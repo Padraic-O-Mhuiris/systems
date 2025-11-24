@@ -66,7 +66,47 @@ Cloud infrastructure is managed through `infra/` in this repository and `secrets
 **For infrastructure planning and architecture, see:** `secrets/infra/PLANNING.md`
 
 ### Special Features
-- **Impermanence**: Root filesystem erased on boot (profiles/common/impermanence.nix)
+
+#### Impermanence + Secrets Integration
+
+This repository uses **impermanence** to erase the root filesystem on each boot, except for explicitly persisted directories. This requires careful coordination with SOPS-encrypted secrets:
+
+**What Gets Persisted:**
+- `/persist/` directory: Survives boot, contains SSH keys and other critical files
+- `/etc/ssh/ssh_host_*` keys: Symlinked from `/persist/etc/ssh/` (for SOPS age key derivation)
+- `~/.ssh/id_ed25519`: User SSH key in home directory (for user secrets decryption)
+- `/etc/nix/`: Nix configuration
+- Systemd state as configured in impermanence module
+
+**SOPS Decryption Dependency Chain:**
+1. **Host-level secrets** (sops-nix module):
+   - Requires SSH host key at `/persist/etc/ssh/ssh_host_ed25519_key`
+   - Age key derived from SSH host key fingerprint during NixOS evaluation
+   - Host secrets decrypted at system build time (before impermanence wipe)
+
+2. **User-level secrets** (home-manager sops module):
+   - Requires user SSH key at `~/.ssh/id_ed25519`
+   - User key must be in home directory BEFORE home-manager sops activation
+   - Bootstrap script copies user SSH key to `~/.ssh` during initial setup
+   - On subsequent boots, home-manager activation re-establishes symlinks to persisted config
+
+**Critical Persistence Checklist:**
+- ✅ `/persist/etc/ssh/ssh_host_ed25519_key` must persist (bootstrap copies from pass)
+- ✅ `~/.ssh/id_ed25519` must be available (from pass during bootstrap, regenerated on each activation)
+- ✅ SOPS decryption happens during NixOS evaluation, before filesystem wipe
+- ✅ No encrypted secrets stored in `/` (ephemeral) or `/home` (recreated each boot)
+- ✅ Symlinks to decrypted secrets in `/run/secrets/` are regenerated each boot
+
+**On Each Boot:**
+1. Impermanence wipes root filesystem
+2. NixOS evaluation derives SSH host age key from `/persist/etc/ssh/ssh_host_ed25519_key`
+3. SOPS decrypts host secrets for system configuration
+4. Home-manager runs, user SSH key already present in `~/.ssh` (via home.file)
+5. User secrets are decrypted and symlinked to `~/.config/sops/secrets/`
+
+---
+
+#### Other Special Features
 - **Disko**: Declarative disk partitioning for automated setup
 - **Claude Code Integration**: Custom home-manager module at nix/modules/homeManager/claude-box.nix provides sandboxed claude-code environment with bubblewrap isolation
 
