@@ -28,8 +28,6 @@
     ../profiles/networking/tailscale.nix
     ../profiles/networking/wifi.nix
 
-    ../profiles/security/sudo.nix
-
     # ../profiles/browsers/firefox.nix
     # ../profiles/browsers/google-chrome.nix
     # ../profiles/browsers/zen-browser.nix
