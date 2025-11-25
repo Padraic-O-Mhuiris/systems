@@ -59,11 +59,25 @@ Cloud infrastructure is managed through `infra/` in this repository and `secrets
 
 **Pattern:** Each infrastructure resource exports a package with lifecycle commands accessible via `nix run .#<resource>.<command>`. The declarative configurations in both repos represent the desired state - deployment commands reconcile cloud resources with these declarations.
 
-**Current resources:**
-- **neon**: Personal VPC + Kubernetes cluster (planned)
-- **storage**: Backup and long-term storage infrastructure (future)
+**Implementation Status:**
 
-**For infrastructure planning and architecture, see:** `secrets/infra/PLANNING.md`
+⚠️ **No infrastructure is currently implemented.** The structure is in place but deployments are not yet automated.
+
+**Planned resources:**
+- **helium**: Infrastructure component (priority: implementing first)
+  - 📋 Configuration stubs in `secrets/infra/helium/`
+  - 📋 Infrastructure package stub exists at `infra/` (not yet created)
+  - 📋 Requires: Design, implementation, Nix deployment framework integration
+
+- **neon**: Personal VPC + Kubernetes cluster
+  - 📋 Architecture designed in `secrets/architecture/README.md` (detailed specification)
+  - 📋 Infrastructure package stub exists at `infra/neon/` (empty shell, not functional)
+  - 📋 Requires: Nix deployment framework integration, hcloud CLI automation, secrets integration
+
+**For infrastructure planning and detailed architecture, see:**
+- Architecture specification: `secrets/architecture/README.md`
+- Planning & decisions: `secrets/infra/PLANNING.md` (if available)
+- Implementation status: See `infra/<resource>/default.nix` (currently stubs)
 
 ### Special Features
 
