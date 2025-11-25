@@ -28,7 +28,7 @@
         nodePackages.bash-language-server
         nodePackages.typescript-language-server
         lua-language-server
-        llvmPackages_17.clang-tools
+        llvmPackages_20.clang-tools
         ruff
         pyright
         lazygit
