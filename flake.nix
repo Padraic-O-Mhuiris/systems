@@ -2,7 +2,7 @@
   description = "NixOS systems configuration: multi-host setup with flake-parts, profiles, Kubernetes infrastructure, and secrets management";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -13,7 +13,7 @@
     };
 
     nixos-anywhere = {
-      url = "github:nix-community/nixos-anywhere/1.9.0";
+      url = "github:nix-community/nixos-anywhere/1.13.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,7 +23,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -39,11 +39,6 @@
 
     nixidy = {
       url = "github:arnarg/nixidy";
-    };
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nur = {
