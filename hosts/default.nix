@@ -22,7 +22,6 @@
     ../profiles/common/pkgs.nix
     ../profiles/common/impermanence.nix
 
-    ../profiles/networking/ssh.nix
     ../profiles/networking/firewall.nix
     ../profiles/networking/dns.nix
     ../profiles/networking/wait-online.nix
@@ -30,7 +29,6 @@
     ../profiles/networking/wifi.nix
 
     ../profiles/security/sudo.nix
-    ../profiles/security/gpg.nix
 
     # ../profiles/browsers/firefox.nix
     # ../profiles/browsers/google-chrome.nix
