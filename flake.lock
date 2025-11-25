@@ -483,16 +483,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1764020296,
-        "narHash": "sha256-6zddwDs2n+n01l+1TG6PlyokDdXzu/oBmEejcH5L5+A=",
+        "lastModified": 1763966396,
+        "narHash": "sha256-6eeL1YPcY1MV3DDStIDIdy/zZCDKgHdkCmsrLJFiZf0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a320ce8e6e2cc6b4397eef214d202a50a4583829",
+        "rev": "5ae3b07d8d6527c42f17c876e404993199144b6a",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-25.11",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -544,10 +544,10 @@
         "sops": "sops"
       },
       "locked": {
-        "lastModified": 1764112853,
-        "narHash": "sha256-+dIYOAz2DFj2O1UIbLqF0aaRSLf3Q7ubJlUlOqGJNfE=",
+        "lastModified": 1764113232,
+        "narHash": "sha256-/ZUJxn7QlnYaBFyOASm+BW/1C4ocOGpCnl3kcEH6t/g=",
         "ref": "refs/heads/master",
-        "rev": "9c6fc2bcc068fde4d8489a632b16abaf06cb443c",
+        "rev": "29d0674716b112229f7b9b9090bcee3acc9fbf9a",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/Padraic-O-Mhuiris/.secrets.git"
