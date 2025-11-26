@@ -11,10 +11,12 @@
     programs.git = {
       enable = true;
       signing.signByDefault = true;
-      userEmail = vars.PRIMARY_USER.EMAIL;
-      userName = vars.PRIMARY_USER.FULL_NAME;
       signing.key = vars.PRIMARY_USER.GPG_ID;
       ignores = [".direnv"];
+      settings.user = {
+        email = vars.PRIMARY_USER.EMAIL;
+        name = vars.PRIMARY_USER.FULL_NAME;
+      };
     };
   };
 }
