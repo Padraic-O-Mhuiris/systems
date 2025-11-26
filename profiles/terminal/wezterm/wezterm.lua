@@ -3,8 +3,8 @@ local wezterm = require "wezterm"
 -- local resurrect = wezterm.plugin.require(
 --                       "https://github.com/MLFlexer/resurrect.wezterm")
 
-local workspace_switcher = wezterm.plugin.require(
-                               "https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+-- local workspace_switcher = wezterm.plugin.require(
+--                                "https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 
 -- -- This should be better contextualised
 -- package.path = package.path ..
@@ -24,7 +24,7 @@ config.freetype_load_flags = "NO_HINTING"
 config.freetype_load_target = "Normal"
 config.front_end = "WebGpu"
 
-config.max_fps = 60
+config.max_fps = 120
 config.line_height = 1
 config.cell_width = 1
 
@@ -48,10 +48,10 @@ config.adjust_window_size_when_changing_font_size = false
 config.leader = {key = "a", mods = "CTRL", timeout_milliseconds = 1000}
 config.launch_menu = {}
 
-workspace_switcher.apply_to_config(config)
-workspace_switcher.switch_workspace({
-    extra_args = " | xargs -I {} sh -c '[ -d \"{}/.git\" ] && echo \"{}\"'"
-})
+-- workspace_switcher.apply_to_config(config)
+-- workspace_switcher.switch_workspace({
+--     extra_args = " | xargs -I {} sh -c '[ -d \"{}/.git\" ] && echo \"{}\"'"
+-- })
 
 config.default_workspace = "~"
 
