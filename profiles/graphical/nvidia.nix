@@ -1,4 +1,5 @@
-_: {
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.mesa-demos pkgs.gpu-viewer];
   hardware = {
     # opengl = {
     #   enable = true;
