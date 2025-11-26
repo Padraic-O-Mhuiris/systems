@@ -6,7 +6,7 @@ auto-format = true
 [[language]]
 name = "lua"
 auto-format = true
-formatter = { command = "lua-format" }
+formatter = { command = "stylua", args = ["-"] }
 
 [[language]]
 name = "python"

@@ -27,12 +27,13 @@
         nixd
         nodePackages.bash-language-server
         nodePackages.typescript-language-server
-        lua-language-server
         llvmPackages_20.clang-tools
         ruff
         pyright
         lazygit
-        luaformatter
+
+        stylua
+        lua-language-server
 
         nixfmt-rfc-style
         lldb_18
