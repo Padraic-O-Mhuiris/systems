@@ -36,6 +36,31 @@
           selection-background = "353749";
           selection-foreground = "cdd6f4";
         };
+        ayu-dark = {
+          background = "0f1419";
+          cursor-color = "f07178";
+          foreground = "e6e1cf";
+          palette = [
+            "0=#000000"
+            "1=#ff3333"
+            "2=#86b300"
+            "3=#f29718"
+            "4=#41a6d6"
+            "5=#a37acc"
+            "6=#4dbf99"
+            "7=#e8e8e8"
+            "8=#323232"
+            "9=#ff6565"
+            "10=#b8e835"
+            "11=#ffb454"
+            "12=#79d8ff"
+            "13=#d29fe5"
+            "14=#7ff8dc"
+            "15=#ffffff"
+          ];
+          selection-background = "333d4d";
+          selection-foreground = "e6e1cf";
+        };
       };
     };
 
