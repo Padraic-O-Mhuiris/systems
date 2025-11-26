@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [pkgs.mesa-demos pkgs.gpu-viewer];
+  environment.systemPackages = with pkgs; [mesa-demos vulkan-tools];
   hardware = {
     # opengl = {
     #   enable = true;
