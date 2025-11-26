@@ -1,11 +1,10 @@
 shell-integration = "zsh"
 
-theme = "catppuccin-macchiato"
+theme = "catppuccin-mocha"
 font-family = "Berkeley Mono"
 
 # Cursor preferences
 cursor-style = "block"
 cursor-style-blink = true
-shell-integration-features = "no-cursor" # 
 
 
