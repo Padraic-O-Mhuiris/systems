@@ -17,8 +17,12 @@
     pkgs,
     ...
   }: let
-    # Custom LibreWolf package with userChrome.js support
-    customLibrewolfPkg = import ./package.nix {inherit pkgs;};
+    # Custom LibreWolf package with userChrome.js support (using stable nixpkgs)
+    pkgs-stable = import inputs.nixpkgs-stable {
+      system = pkgs.system;
+      config.allowUnfree = true;
+    };
+    customLibrewolfPkg = import ./package.nix {inherit pkgs pkgs-stable;};
     shared = {
       extensions = {
         force = false;

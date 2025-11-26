@@ -1,7 +1,7 @@
 # Custom LibreWolf package with autoconfig support for userChrome.js script loader
 # Based on: https://github.com/xiaoxiaoflood/firefox-scripts
 # See: https://github.com/xiaoxiaoflood/firefox-scripts/issues/8#issuecomment-467619800
-{pkgs}: let
+{pkgs, pkgs-stable}: let
   autoconfigFiles = {
     # Main config file that loads the userChrome.js system
     config = ./userchrome/autoconfig/config.js;
@@ -9,9 +9,9 @@
     prefs = ./userchrome/autoconfig/config-prefs.js;
   };
 
-  # Standard wrapped LibreWolf
-  basePackage = pkgs.wrapFirefox pkgs.librewolf-unwrapped {
-    inherit (pkgs.librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
+  # Standard wrapped LibreWolf (using stable nixpkgs for cached binary)
+  basePackage = pkgs.wrapFirefox pkgs-stable.librewolf-unwrapped {
+    inherit (pkgs-stable.librewolf-unwrapped) extraPrefsFiles extraPoliciesFiles;
     wmClass = "LibreWolf";
     libName = "librewolf";
     nativeMessagingHosts = with pkgs; [keepassxc];
