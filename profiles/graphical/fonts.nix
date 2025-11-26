@@ -4,7 +4,7 @@
   vars,
   ...
 }: let
-  inherit (inputs.secrets.packages.${pkgs.system}) berkeley-mono;
+  inherit (inputs.secrets.packages.${pkgs.stdenv.hostPlatform.system}) berkeley-mono;
 in {
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     fonts.fontconfig.enable = true;

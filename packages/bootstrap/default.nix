@@ -3,7 +3,7 @@
     inherit ((import "${inputs.nixpkgs}/nixos/modules/misc/ids.nix" {inherit (inputs.nixpkgs) lib;}).config.ids) gids;
 
     nixos-anywhere =
-      inputs.nixos-anywhere.packages.${pkgs.system}.default;
+      inputs.nixos-anywhere.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
     inherit (inputs.secrets) vars;
   in {

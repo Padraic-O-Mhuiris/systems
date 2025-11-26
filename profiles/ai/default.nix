@@ -14,7 +14,7 @@
       claudeConfigs = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/ai/claude";
     in {
       enable = true;
-      package = system.packages.${pkgs.system}.claude-code;
+      package = system.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
       apiKeyPath = config.sops.secrets.anthropic_api_key.path;
       settings = {
         model = "claude-sonnet-4-5-20250929";

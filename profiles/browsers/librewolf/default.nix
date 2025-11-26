@@ -19,7 +19,7 @@
   }: let
     # Custom LibreWolf package with userChrome.js support (using stable nixpkgs)
     pkgs-stable = import inputs.nixpkgs-stable {
-      system = pkgs.system;
+      system = pkgs.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
     customLibrewolfPkg = import ./package.nix {inherit pkgs pkgs-stable;};
