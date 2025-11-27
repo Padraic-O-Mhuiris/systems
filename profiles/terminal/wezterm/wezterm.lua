@@ -1,8 +1,9 @@
 local wezterm = require("wezterm")
--- local resurrect = wezterm.plugin.require(
--- "https://github.com/MLFlexer/resurrect.wezterm")
+
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+
 local modules = require("modules")
 -- -- This should be better contextualised
 -- package.path = package.path ..
@@ -54,8 +55,131 @@ config.use_dead_keys = false
 config.scrollback_lines = 5000
 config.default_workspace = "~"
 
-workspace_switcher.apply_to_config(config)
-modules.bar.apply_to_config(config, bar)
 modules.keys.apply_to_config(config, workspace_switcher)
+
+tabline.setup({
+	options = {
+		icons_enabled = true,
+		theme = "Catppuccin Mocha",
+		tabs_enabled = true,
+		theme_overrides = {},
+		section_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+		component_separators = {
+			left = wezterm.nerdfonts.pl_left_soft_divider,
+			right = wezterm.nerdfonts.pl_right_soft_divider,
+		},
+		tab_separators = {
+			left = wezterm.nerdfonts.pl_left_hard_divider,
+			right = wezterm.nerdfonts.pl_right_hard_divider,
+		},
+	},
+	sections = {
+		tabline_a = { "mode" },
+		tabline_b = { "workspace" },
+		tabline_c = { " " },
+		tab_active = {
+			"index",
+			{ "parent", padding = 0 },
+			"/",
+			{ "cwd", padding = { left = 0, right = 1 } },
+			"|",
+			"process",
+			{
+				"zoomed",
+				padding = 0,
+			},
+		},
+		tab_inactive = { { "index", padding = 0 } },
+		tabline_x = { "ram", "cpu" },
+		tabline_y = { "datetime", "battery" },
+		tabline_z = { "domain" },
+	},
+	extensions = {
+		"smart_workspace_switcher",
+		"resurrect",
+	},
+})
+tabline.apply_to_config(config)
+
+resurrect.state_manager.periodic_save({
+	interval_seconds = 15 * 60,
+	save_workspaces = true,
+	save_windows = true,
+	save_tabs = true,
+})
+
+wezterm.on("resurrect.error", function(err)
+	wezterm.log_error("ERROR!")
+	wezterm.gui.gui_windows()[1]:toast_notification("resurrect", err, nil, 3000)
+end)
+
+-- TODO
+-- resurrect.state_manager.set_encryption({
+-- 	enable = false,
+-- 	private_key = wezterm.home_dir .. "/.age/resurrect.txt",
+-- 	public_key = "age1ddyj7qftw3z5ty84gyns25m0yc92e2amm3xur3udwh2262pa5afqe3elg7",
+-- })
+local colors = modules.colors
+
+-- wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
+
+workspace_switcher.apply_to_config(config)
+
+workspace_switcher.workspace_formatter = function(label)
+	return wezterm.format({
+		{ Attribute = { Italic = true } },
+		{ Foreground = { Color = colors.colors.ansi[3] } },
+		{ Background = { Color = colors.colors.background } },
+		{ Text = "󱂬 : " .. label },
+	})
+end
+
+local function basename(s)
+	return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
+wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(window, path, label)
+	window:gui_window():set_right_status(wezterm.format({
+		{ Attribute = { Intensity = "Bold" } },
+		{ Foreground = { Color = colors.colors.ansi[5] } },
+		{ Text = basename(path) .. "  " },
+	}))
+	local workspace_state = resurrect.workspace_state
+
+	workspace_state.restore_workspace(resurrect.state_manager.load_state(label, "workspace"), {
+		window = window,
+		relative = true,
+		restore_text = true,
+
+		resize_window = false,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	})
+end)
+
+wezterm.on("smart_workspace_switcher.workspace_switcher.chosen", function(window, path, label)
+	wezterm.log_info(window)
+	window:gui_window():set_right_status(wezterm.format({
+		{ Attribute = { Intensity = "Bold" } },
+		{ Foreground = { Color = colors.colors.ansi[5] } },
+		{ Text = basename(path) .. "  " },
+	}))
+end)
+
+wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(window, path, label)
+	wezterm.log_info(window)
+	local workspace_state = resurrect.workspace_state
+	resurrect.state_manager.save_state(workspace_state.get_workspace_state())
+	resurrect.state_manager.write_current_state(label, "workspace")
+end)
+
+wezterm.on("smart_workspace_switcher.workspace_switcher.start", function(window, _)
+	wezterm.log_info(window)
+end)
+wezterm.on("smart_workspace_switcher.workspace_switcher.canceled", function(window, _)
+	wezterm.log_info(window)
+end)
 
 return config
