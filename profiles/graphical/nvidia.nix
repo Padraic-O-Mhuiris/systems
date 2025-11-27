@@ -8,6 +8,10 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [
+        vulkan-loader
+        vulkan-validation-layers
+      ];
     };
 
     nvidia = {
@@ -19,7 +23,8 @@
         nvidiaBusId = "PCI:9:0:0";
         amdgpuBusId = "PCI:0:2:0";
       };
-      forceFullCompositionPipeline = true;
+      # Only needed for X11 screen tearing
+      forceFullCompositionPipeline = false;
     };
   };
 
