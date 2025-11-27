@@ -27,7 +27,7 @@ config.freetype_load_target = "Normal"
 config.front_end = "OpenGL"
 
 -- Reduce max_fps if GPU struggling (120 -> 60)
-config.max_fps = 60
+config.max_fps = 120
 config.line_height = 1
 config.cell_width = 1
 
