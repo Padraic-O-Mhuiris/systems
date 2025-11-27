@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   root,
   ...
 }: {
@@ -9,4 +10,6 @@
   ];
 
   facter.reportPath = root + "/hosts/${config.networking.hostName}/facter.json";
+
+  environment.systemPackages = with pkgs; [dmidecode lshw];
 }
