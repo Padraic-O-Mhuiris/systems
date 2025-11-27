@@ -17,7 +17,7 @@ if os.getenv("WEZTERM_CLASS") then
 end
 
 config.font = wezterm.font_with_fallback({ "Berkeley Mono" })
-config.font_size = 13
+config.font_size = 11
 config.freetype_load_flags = "DEFAULT"
 config.freetype_load_target = "Light"
 
