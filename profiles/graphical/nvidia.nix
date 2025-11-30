@@ -6,6 +6,9 @@
     "nvidia-drm.modeset=1"  # Required for Wayland + DRM
   ];
 
+  # Ensure NVIDIA modules load at boot
+  boot.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
+
   hardware = {
     # opengl = {
     #   enable = true;
