@@ -14,9 +14,9 @@ with firefox-addons; [
   # Redirects third-party cdn requests to localstorage
   localcdn
   # Disklike button on youtube
-  return-youtube-dislikes
+  # return-youtube-dislikes
   # community listed sponsoring blocking
-  sponsorblock
+  # sponsorblock
   # Free articles
   unpaywall
   # Block youtube shorts
@@ -46,14 +46,14 @@ with firefox-addons; [
   # File icons for github
   github-file-icons
   # Enforce more performant video codec for youtube for <1440p quality
-  h264ify
+  # h264ify
 
   # Watch/listen streams in vlc
   open-in-vlc
   # Github improvements
   refined-github
   # Image search
-  search-by-image
+  # search-by-image
   # TOS
   terms-of-service-didnt-read
 
@@ -61,5 +61,5 @@ with firefox-addons; [
   # vimium
 
   # always use theatre mode for youtube
-  theater-mode-for-youtube
+  # theater-mode-for-youtube
 ]

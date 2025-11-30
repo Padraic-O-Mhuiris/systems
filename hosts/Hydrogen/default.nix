@@ -16,6 +16,11 @@
 
   networking.networkmanager.ensureProfiles.profiles."home".ipv4.address = "192.168.0.51/24";
 
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:1:0:0";
+    intelBusId = "PCI:0:2:0";
+  };
+
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     imports = [
       inputs.secrets.homeModules.default

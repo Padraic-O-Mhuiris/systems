@@ -1,5 +1,11 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [mesa-demos vulkan-tools];
+
+  # Kernel parameters for NVIDIA PRIME
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"  # Required for Wayland + DRM
+  ];
+
   hardware = {
     # opengl = {
     #   enable = true;
@@ -11,6 +17,7 @@
       extraPackages = with pkgs; [
         vulkan-loader
         vulkan-validation-layers
+        nvidia-vaapi-driver
       ];
     };
 
@@ -18,11 +25,16 @@
       open = false;
       # package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
-      prime = {
-        sync.enable = true;
-        nvidiaBusId = "PCI:9:0:0";
-        amdgpuBusId = "PCI:0:2:0";
+
+      # PRIME sync: NVIDIA always active, Intel manages display
+      prime.sync.enable = true;
+
+      # Disable power management (can interfere with PRIME sync)
+      powerManagement = {
+        enable = false;
+        finegrained = false;
       };
+
       # Only needed for X11 screen tearing
       forceFullCompositionPipeline = false;
     };

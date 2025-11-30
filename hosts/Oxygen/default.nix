@@ -26,6 +26,11 @@
   hardware.enableRedistributableFirmware = true;
   hardware.firmware = [pkgs.linux-firmware];
 
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:9:0:0";
+    amdgpuBusId = "PCI:0:2:0";
+  };
+
   # gnome-keyring can spawn popups on program launch like spotify.
   environment.variables.XDG_RUNTIME_DIR = "/run/user/${toString vars.PRIMARY_USER.UID}";
   environment.systemPackages = [pkgs.libsecret];
