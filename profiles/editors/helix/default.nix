@@ -32,6 +32,8 @@
         pyright
         lazygit
 
+        pnpm
+
         stylua
         lua-language-server
 
