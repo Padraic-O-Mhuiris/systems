@@ -453,6 +453,14 @@ in {
           # Add logfile to bwrap environment
           bwrap_args+=(--setenv CLAUDEBOX_LOG_FILE "$logfile")
 
+          # Forward SIGTERM to bwrap process
+          forward_signal() {
+            if [[ -n "$bwrap_pid" ]] && kill -0 "$bwrap_pid" 2>/dev/null; then
+              kill -TERM "$bwrap_pid"
+            fi
+          }
+          trap forward_signal SIGTERM SIGINT
+
           # Launch tmux with Claude in left pane, commands in right
           bwrap "''${bwrap_args[@]}" bash -c "
             # Change to original working directory
@@ -462,7 +470,9 @@ in {
             touch '$logfile'
 
             exec ${lib.getExe wrappedClaudePkg}
-          "
+          " &
+          bwrap_pid=$!
+          wait "$bwrap_pid"
         '';
       };
       claudeTools = pkgs.buildEnv {
