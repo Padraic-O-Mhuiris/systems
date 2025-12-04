@@ -395,6 +395,7 @@ in {
 
           # Bubblewrap sandbox - lightweight isolation for transparency
           bwrap_args=(
+            --die-with-parent  # Ensure child dies when bwrap receives SIGTERM
             --dev /dev
             --proc /proc
             --ro-bind /usr /usr
