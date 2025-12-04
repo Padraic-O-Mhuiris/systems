@@ -84,6 +84,7 @@ in {
       modules =
         [
           ./Hydrogen
+          ../profiles/hardware/battery.nix
           ../profiles/graphical/temperature.nix
         ]
         ++ common;
