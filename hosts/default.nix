@@ -21,6 +21,7 @@
     ../profiles/common/boot.nix
     ../profiles/common/pkgs.nix
     ../profiles/common/impermanence.nix
+    ../profiles/common/shutdown.nix
 
     ../profiles/networking/firewall.nix
     ../profiles/networking/dns.nix
