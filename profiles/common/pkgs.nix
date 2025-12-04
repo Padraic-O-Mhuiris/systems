@@ -21,5 +21,7 @@
     img2pdf
     psmisc
     imagemagick
+    parted
+    exfat
   ];
 }
