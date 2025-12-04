@@ -20,9 +20,10 @@
       PLATFORM_PROFILE_ON_AC = "performance";
       PLATFORM_PROFILE_ON_BAT = "low-power";
 
-      # Battery charge thresholds (if supported - ThinkPad, etc.)
+      # Battery charge thresholds (Dell-specific ranges)
       # Helps preserve battery health by not charging to 100%
-      START_CHARGE_THRESH_BAT0 = 40;
+      # Dell supports: START 50-95%, STOP 55-100%
+      START_CHARGE_THRESH_BAT0 = 50;
       STOP_CHARGE_THRESH_BAT0 = 80;
 
       # USB autosuspend
