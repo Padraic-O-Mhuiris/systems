@@ -1,9 +1,9 @@
 _: {
   # Enable verbose shutdown logging to diagnose hanging user processes
-  systemd.extraConfig = ''
-    LogLevel=debug
-    ShowStatus=yes
-  '';
+  systemd.settings.Manager = {
+    LogLevel = "debug";
+    ShowStatus = "yes";
+  };
 
   # Log user session manager verbosely
   systemd.services."user@".serviceConfig = {
