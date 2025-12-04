@@ -37,6 +37,9 @@ config.term = "wezterm"
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 250
 
+-- Disable audible bell
+config.audible_bell = "Disabled"
+
 config.enable_tab_bar = true
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = false
