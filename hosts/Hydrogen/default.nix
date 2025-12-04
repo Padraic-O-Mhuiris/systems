@@ -21,6 +21,12 @@
     intelBusId = "PCI:0:2:0";
   };
 
+  # Make NVIDIA the default renderer for all applications
+  environment.sessionVariables = {
+    __NV_PRIME_RENDER_OFFLOAD = "1";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
   home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
     imports = [
       inputs.secrets.homeModules.default
@@ -48,6 +54,12 @@
           };
         };
       };
+
+      # Ensure programs launched from niri use NVIDIA
+      environment = {
+        __NV_PRIME_RENDER_OFFLOAD = "1";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      };
     };
   };
 
@@ -56,5 +68,10 @@
   nixpkgs.hostPlatform = "x86_64-linux";
   system.stateVersion = "25.05";
 
-  networking.hostName = "Hydrogen";
+  networking = {
+    hostName = "Hydrogen";
+    hosts = {
+      "127.0.0.1" = ["localhost" "obol.stack"];
+    };
+  };
 }
