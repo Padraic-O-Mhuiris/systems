@@ -1,7 +1,7 @@
-{inputs, ...}: {
+{inputs, ...}: let
+  inherit (inputs.secrets) vars;
+in {
   perSystem = {pkgs, ...}: let
-    vars = inputs.secrets.infra.neon.vars;
-
     wrapper = import ./wrapper.nix {
       inherit pkgs vars;
     };
@@ -9,7 +9,6 @@
     generateFacterReport = import ./generateFacterReport.nix {
       inherit pkgs vars;
       hcloud = wrapper;
-      secrets = inputs.secrets.vars;
     };
 
     hcloud = pkgs.stdenv.mkDerivation {

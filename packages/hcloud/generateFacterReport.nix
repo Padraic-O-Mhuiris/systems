@@ -1,7 +1,6 @@
 {
   pkgs,
   vars,
-  secrets,
   hcloud,
 }:
 pkgs.writeShellApplication {

@@ -4,6 +4,7 @@
   perSystem = {
     inputs',
     pkgs,
+    self',
     ...
   }: {
     devshells.default = {
@@ -18,7 +19,6 @@
 
           alejandra
           git
-          hcloud
           just
 
           nodejs
@@ -26,7 +26,8 @@
         ++ [
           inputs'.nixos-anywhere.packages.default
           inputs'.nixidy.packages.default
-        ];
+        ]
+        ++ [self'.packages.hcloud];
     };
   };
 }
