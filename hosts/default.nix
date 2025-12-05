@@ -90,6 +90,15 @@ in {
         ]
         ++ common;
     };
+
+    # Infrastructure hosts (minimal server configurations)
+    Helium = lib.nixosSystem {
+      inherit specialArgs;
+      modules = [
+        ./Helium
+        ../profiles/common/nix
+      ];
+    };
   };
 
   perSystem = _: {

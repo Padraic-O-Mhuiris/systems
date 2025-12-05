@@ -1,3 +1,6 @@
 _: {
-  imports = [./neon];
+  imports = [
+    ./Helium
+    ./neon
+  ];
 }
