@@ -36,6 +36,8 @@ config.term = "wezterm"
 -- Cursor configuration
 config.default_cursor_style = "BlinkingBar"
 config.cursor_blink_rate = 250
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 
 -- Disable audible bell
 config.audible_bell = "Disabled"
