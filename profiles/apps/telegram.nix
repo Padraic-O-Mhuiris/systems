@@ -1,5 +1,5 @@
 {vars, ...}: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {pkgs, ...}: {
+  home-manager.users.${vars.users.primary.name} = {pkgs, ...}: {
     home.packages = [pkgs.telegram-desktop];
   };
 }

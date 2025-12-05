@@ -4,7 +4,7 @@
     longitude = -6.24;
   };
 in {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.users.primary.name} = _: {
     services.gammastep = {
       inherit (ireland) latitude longitude;
       enable = true;

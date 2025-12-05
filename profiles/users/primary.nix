@@ -6,11 +6,11 @@
 }: {
   users = {
     mutableUsers = false;
-    users."${vars.PRIMARY_USER.NAME}" = {
-      uid = vars.PRIMARY_USER.UID;
+    users."${vars.users.primary.name}" = {
+      uid = vars.users.primary.uid;
       isNormalUser = true;
       shell = pkgs.zsh;
-      hashedPasswordFile = config.sops.secrets."${vars.PRIMARY_USER.NAME}_password".path;
+      hashedPasswordFile = config.sops.secrets."${vars.users.primary.name}_password".path;
       extraGroups = [
         "wheel"
         "input"
@@ -22,9 +22,9 @@
     };
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.users.primary.name} = {config, ...}: {
     home = {
-      homeDirectory = "/home/${vars.PRIMARY_USER.NAME}";
+      homeDirectory = "/home/${vars.users.primary.name}";
       preferXdgDirectories = true;
     };
 

@@ -1,7 +1,7 @@
 {vars, ...}: {
   programs.zsh.enable = true;
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.users.primary.name} = {config, ...}: {
     home.sessionPath = [
       "$HOME/.local/bin"
     ];

@@ -21,7 +21,7 @@
       registry-mirrors = ["https://mirror.gcr.io"];
       storage-driver = "overlay2";
       # Do not have enough storage state in root
-      data-root = "/home/${vars.PRIMARY_USER.NAME}/.local/state/docker-data";
+      data-root = "/home/${vars.users.primary.name}/.local/state/docker-data";
     };
     # Use the rootless mode - run Docker daemon as non-root user
     # rootless = {
@@ -30,7 +30,7 @@
     # };
   };
 
-  users.users.${vars.PRIMARY_USER.NAME}.extraGroups = ["docker"];
+  users.users.${vars.users.primary.name}.extraGroups = ["docker"];
 
   # K3s needs access
   # boot.kernelParams = ["cgroup_enable=memory" "cgroup_enable=cpuset" "cgroup_memory=1"];
@@ -49,7 +49,7 @@
   #     daemon.settings = {
   #       dns = ["1.1.1.1" "8.8.8.8"];
   #       registry-mirrors = ["https://mirror.gcr.io"];
-  #       data-root = "/home/${vars.PRIMARY_USER.NAME}/.local/state/docker-data";
+  #       data-root = "/home/${vars.users.primary.name}/.local/state/docker-data";
   #     };
   #   };
   # };

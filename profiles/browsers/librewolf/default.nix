@@ -12,7 +12,7 @@
     inputs.nur.overlays.default
   ];
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {
+  home-manager.users.${vars.users.primary.name} = {
     config,
     pkgs,
     ...
@@ -47,7 +47,7 @@
     # via package.nix, NOT into the profile
     home.file = let
       # Symlink to allow live editing of scripts without rebuilding
-      JSsrcPath = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/browsers/librewolf/userchrome/scripts";
+      JSsrcPath = "/home/${vars.users.primary.name}/systems/profiles/browsers/librewolf/userchrome/scripts";
     in {
       # Main profile - utils loader and scripts
       ".librewolf/${config.home.username}/chrome/utils" = {

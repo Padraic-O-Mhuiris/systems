@@ -10,7 +10,7 @@
   ];
 
   # Host-specific secrets configuration
-  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
+  sops.secrets."${vars.users.primary.name}_password" = {
     neededForUsers = true;
   };
 
@@ -27,7 +27,7 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.users.primary.name} = _: {
     imports = [
       inputs.secrets.homeModules.default
     ];

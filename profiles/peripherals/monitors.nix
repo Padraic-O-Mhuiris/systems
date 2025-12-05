@@ -9,5 +9,5 @@
     wlr-randr
   ];
   boot.kernelModules = ["i2c-dev"];
-  users.users.${vars.PRIMARY_USER.NAME}.extraGroups = ["i2c"];
+  users.users.${vars.users.primary.name}.extraGroups = ["i2c"];
 }

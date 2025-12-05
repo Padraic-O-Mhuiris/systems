@@ -18,7 +18,7 @@
   };
 
   # Host-specific secrets configuration
-  sops.secrets."${vars.PRIMARY_USER.NAME}_password" = {
+  sops.secrets."${vars.users.primary.name}_password" = {
     neededForUsers = true;
   };
 
@@ -32,10 +32,10 @@
   };
 
   # gnome-keyring can spawn popups on program launch like spotify.
-  environment.variables.XDG_RUNTIME_DIR = "/run/user/${toString vars.PRIMARY_USER.UID}";
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/${toString vars.users.primary.uid}";
   environment.systemPackages = [pkgs.libsecret];
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.users.primary.name} = _: {
     imports = [
       inputs.secrets.homeModules.default
     ];

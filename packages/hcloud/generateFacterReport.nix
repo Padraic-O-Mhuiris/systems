@@ -23,7 +23,7 @@ pkgs.writeShellApplication {
     OUTPUT_FILE="$SERVER_TYPE.json"
 
     SSH_KEY_NAME="neon-primary"
-    SSH_PUBLIC_KEY="${secrets.PRIMARY_USER.SSH_PUBLIC_KEY}"
+    SSH_PUBLIC_KEY="${vars.pubkeys.ssh.primary}"
 
     cleanup() {
       if [ -n "''${TEMP_SERVER_NAME:-}" ]; then

@@ -33,7 +33,7 @@
     bluetuith
   ];
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.users.primary.name} = _: {
     services.blueman-applet.enable = true;
   };
 }

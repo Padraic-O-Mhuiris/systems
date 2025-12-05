@@ -4,9 +4,9 @@
   vars,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.users.primary.name} = {config, ...}: {
     xdg.configFile = let
-      helixSrcPath = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/editors/helix";
+      helixSrcPath = "/home/${vars.users.primary.name}/systems/profiles/editors/helix";
     in {
       "helix/config.toml".source = lib.mkForce (
         config.lib.file.mkOutOfStoreSymlink "${helixSrcPath}/config/helix/config.toml"

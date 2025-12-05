@@ -62,23 +62,23 @@
       chmod 0644 "$temp/persist/etc/ssh/ssh_host_ed25519_key.pub"
 
 
-      install -d -m700 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh"
+      install -d -m700 "$temp/home/${vars.users.primary.name}/.ssh"
 
-      chown ${vars.PRIMARY_USER.NAME}:users "$temp/home/${vars.PRIMARY_USER.NAME}"
-      chown ${vars.PRIMARY_USER.NAME}:users "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh"
+      chown ${vars.users.primary.name}:users "$temp/home/${vars.users.primary.name}"
+      chown ${vars.users.primary.name}:users "$temp/home/${vars.users.primary.name}/.ssh"
 
-      ${pkgs.pass}/bin/pass show "systems/users/${vars.PRIMARY_USER.NAME}/ssh/id_ed25519" > "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519"
-      ${pkgs.pass}/bin/pass show "systems/users/${vars.PRIMARY_USER.NAME}/ssh/id_ed25519.pub" > "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519.pub"
+      ${pkgs.pass}/bin/pass show "systems/users/${vars.users.primary.name}/ssh/id_ed25519" > "$temp/home/${vars.users.primary.name}/.ssh/id_ed25519"
+      ${pkgs.pass}/bin/pass show "systems/users/${vars.users.primary.name}/ssh/id_ed25519.pub" > "$temp/home/${vars.users.primary.name}/.ssh/id_ed25519.pub"
 
-      chmod 0600 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519"
-      chmod 0644 "$temp/home/${vars.PRIMARY_USER.NAME}/.ssh/id_ed25519.pub"
+      chmod 0600 "$temp/home/${vars.users.primary.name}/.ssh/id_ed25519"
+      chmod 0644 "$temp/home/${vars.users.primary.name}/.ssh/id_ed25519.pub"
 
       ${nixos-anywhere}/bin/nixos-anywhere \
         --extra-files "$temp" \
         --disk-encryption-keys /tmp/secret.key <(pass show systems/disks/$HOST) \
         --flake ".#$HOST" \
         --phases 'kexec,disko,install,reboot' \
-        --chown /home/${vars.PRIMARY_USER.NAME}/.ssh ${toString vars.PRIMARY_USER.UID}:${toString gids.users} \
+        --chown /home/${vars.users.primary.name}/.ssh ${toString vars.users.primary.uid}:${toString gids.users} \
         --ssh-port $PORT \
         --debug \
         $URL

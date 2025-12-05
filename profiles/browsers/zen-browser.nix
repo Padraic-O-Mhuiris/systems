@@ -3,7 +3,7 @@
   vars,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {
+  home-manager.users.${vars.users.primary.name} = {
     pkgs,
     config,
     lib,

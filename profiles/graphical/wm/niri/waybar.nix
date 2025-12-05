@@ -25,7 +25,7 @@
     esac
   '';
 in {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {pkgs, ...}: {
+  home-manager.users.${vars.users.primary.name} = {pkgs, ...}: {
     programs.waybar = {
       enable = true;
       settings = {

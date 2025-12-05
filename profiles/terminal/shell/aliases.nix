@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {osConfig, ...}: let
+  home-manager.users.${vars.users.primary.name} = {osConfig, ...}: let
     flakePath = "$HOME/systems";
     host = osConfig.networking.hostName;
   in {

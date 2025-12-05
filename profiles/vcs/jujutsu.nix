@@ -3,7 +3,7 @@
   vars,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = _: {
+  home-manager.users.${vars.users.primary.name} = _: {
     home.packages = with pkgs; [jujutsu];
   };
 }

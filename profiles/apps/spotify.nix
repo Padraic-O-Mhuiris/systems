@@ -1,5 +1,5 @@
 {vars, ...}: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {pkgs, ...}: {
+  home-manager.users.${vars.users.primary.name} = {pkgs, ...}: {
     home.packages = [
       pkgs.spotify
       # TODO The below is some failed workings on the annoying keyring popup. This is consequential of

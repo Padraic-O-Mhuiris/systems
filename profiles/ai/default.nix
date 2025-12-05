@@ -3,7 +3,7 @@
   system,
   ...
 }: {
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {
+  home-manager.users.${vars.users.primary.name} = {
     config,
     pkgs,
     ...
@@ -11,7 +11,7 @@
     imports = [system.homeManagerModules.claude-box];
 
     programs.claude-box = let
-      claudeConfigs = "/home/${vars.PRIMARY_USER.NAME}/systems/profiles/ai/claude";
+      claudeConfigs = "/home/${vars.users.primary.name}/systems/profiles/ai/claude";
     in {
       enable = true;
       package = system.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;

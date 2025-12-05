@@ -151,7 +151,7 @@ in {
     inputs.nur.overlays.default
   ];
 
-  home-manager.users.${vars.PRIMARY_USER.NAME} = {config, ...}: {
+  home-manager.users.${vars.users.primary.name} = {config, ...}: {
     programs.firefox = {
       enable = true;
       inherit package;

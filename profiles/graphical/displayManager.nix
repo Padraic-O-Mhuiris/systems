@@ -6,13 +6,13 @@
     };
     autoLogin = {
       enable = true;
-      user = vars.PRIMARY_USER.NAME;
+      user = vars.users.primary.name;
     };
   };
 
   # if no display we still want to login to tty
   services.getty = {
-    autologinUser = vars.PRIMARY_USER.NAME;
+    autologinUser = vars.users.primary.name;
     autologinOnce = true;
   };
 }
